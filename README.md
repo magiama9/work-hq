@@ -4,7 +4,7 @@ WIP
 
 ## Team
 
-The WorkHQ team consists of May Hitchings, Jon Choi, and Sam Randels.
+The WorkHQ team consists of [May Hitchings](https://github.com/mhitchi), [Jon Choi](https://github.com/Jonathan-J-Choi), and [Sam Randels](https://github.com/magiama9).
 
 ## About
 
