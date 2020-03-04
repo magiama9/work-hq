@@ -1,7 +1,9 @@
-import React, { useState, useCallback, useRef } from "react";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
+import React, { useState, useCallback } from "react";
+import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
+import BoardColumn from "./BoardColumn";
+import BoardItem from "./BoardItem";
 
 // Dummy job data
 const jobList = [
@@ -83,7 +85,6 @@ const classes = {
   }
 };
 
-//
 const Board = () => {
   const [tasks, setTaskStatus] = useState(jobList);
 
@@ -139,38 +140,6 @@ const Board = () => {
           ))}
         </section>
       </DndProvider>
-    </div>
-  );
-};
-
-// This should be split into a separate component
-const BoardColumn = ({ status, changeTaskStatus, children }) => {
-  const ref = useRef(null);
-  const [, drop] = useDrop({
-    accept: "card", // Tells it what type of thing we can drop in
-    drop(item) {
-      changeTaskStatus(item.id, status); // Changes the status to the status of the column
-    }
-  });
-  drop(ref);
-  return <div ref={ref}> {children}</div>;
-};
-
-// This should be split into a separate component
-// Defines each item on the board
-const BoardItem = ({ id, children }) => {
-  const ref = useRef(null);
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: "card", id },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-  const opacity = isDragging ? 0 : 1;
-  drag(ref);
-  return (
-    <div ref={ref} style={{ opacity }}>
-      {children}
     </div>
   );
 };
