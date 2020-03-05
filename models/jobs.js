@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema({
-  
   // Job title
   title: {
     type: String,
@@ -37,8 +36,8 @@ const jobSchema = new mongoose.Schema({
 
   // Job status -- should match status that is used in react front-end
   status: {
-    type:String,
-    default:"interested"
+    type: String,
+    default: "interested"
   }
 });
 
