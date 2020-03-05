@@ -166,12 +166,12 @@ const Board = props => {
 
       // Set the working task
       task = { ...task, status };
-
+      jobPost.updateJob(task.jobID, task);
       // Update the tasks
       let newTasks = update(tasks, {
         [taskIndex]: { $set: task }
       });
-      jobPost.updateJob(task.jobID, task);
+
       // Update state
       setTaskStatus(newTasks);
     },

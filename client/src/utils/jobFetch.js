@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   fetchAll: function() {
-    return axios.get("http://localhost:3001/api/jobs");
+    return axios.get("api/jobs");
   },
   fetchByCompany: function(query) {
     return axios.get("/api/jobs/company", { params: { q: query } });
