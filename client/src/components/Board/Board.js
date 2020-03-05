@@ -221,14 +221,16 @@ const Board = props => {
             <section style={classes.board}>
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
-                <Col md={2}>
+                <Col key={channel} md={2}>
                   <BoardColumn
                     key={channel}
                     status={channel}
                     changeTaskStatus={changeTaskStatus}
                   >
                     <div style={classes.column}>
-                      <div style={classes.columnHead, classes[channel]}>{labelsMap[channel]}</div>
+                      <div style={(classes.columnHead, classes[channel])}>
+                        {labelsMap[channel]}
+                      </div>
                       <div>
                         {/* Renders the correct tasks onto the column */}
                         {tasks
@@ -250,7 +252,6 @@ const Board = props => {
         </Col>
       </Row>
     </Container>
-
   );
 };
 
