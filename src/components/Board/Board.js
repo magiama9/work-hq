@@ -4,6 +4,11 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 
 // Dummy job data
 const jobList = [
@@ -67,18 +72,34 @@ const labelsMap = {
 const classes = {
   board: {
     display: "flex",
-    margin: "0 auto",
+    backgroundColor: "#F5F6FA",
+    margin: "0 20px 0 0",
+    padding: "10px",
     width: "90vw",
     fontFamily: "'Nunito', sans-serif"
   },
+  noPad: {
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important"
+  },
   column: {
-    // minWidth: 200,
-    // width: "18vw",
+    // minWidth: 180,
+    // width: "14vw",
     height: "80vh",
     margin: "0 auto",
     backgroundColor: "#F5F6FA"
   },
-  columnHead: {
+  // columnHead: {
+  //   textAlign: "center",
+  //   padding: 10,
+  //   fontSize: "1.2em",
+  //   color: "white",
+  //   margin: "10px 5px 0 5px",
+  //   borderRadius: "5px",
+  //   fontWeight: 600
+  // },
+  interested: {
+    backgroundColor: "#F69346",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -87,27 +108,52 @@ const classes = {
     borderRadius: "5px",
     fontWeight: 600
   },
-  interested: {
-    backgroundColor: "#F69346"
-  },
   applied: {
-    backgroundColor: "#18C6B3"
+    backgroundColor: "#18C6B3",
+    textAlign: "center",
+    padding: 10,
+    fontSize: "1.2em",
+    color: "white",
+    margin: "10px 5px 0 5px",
+    borderRadius: "5px",
+    fontWeight: 600
   },
   responded: {
-    backgroundColor: "#FFBF13"
+    backgroundColor: "#FFBF13",
+    textAlign: "center",
+    padding: 10,
+    fontSize: "1.2em",
+    color: "white",
+    margin: "10px 5px 0 5px",
+    borderRadius: "5px",
+    fontWeight: 600
   },
   interviewing: {
-    backgroundColor: "#0D92FF"
+    backgroundColor: "#0D92FF",
+    textAlign: "center",
+    padding: 10,
+    fontSize: "1.2em",
+    color: "white",
+    margin: "10px 5px 0 5px",
+    borderRadius: "5px",
+    fontWeight: 600
   },
   offer: {
-    backgroundColor: "#FF4A75"
+    backgroundColor: "#FF4A75",
+    textAlign: "center",
+    padding: 10,
+    fontSize: "1.2em",
+    color: "white",
+    margin: "10px 5px 0 5px",
+    borderRadius: "5px",
+    fontWeight: 600
   },
   item: {
     padding: 10,
     margin: 10,
     fontSize: "0.8em",
     cursor: "pointer",
-    backgroundColor: "#FFBF13",
+    backgroundColor: "white",
     borderRadius: "5px"
   }
 };
@@ -136,47 +182,60 @@ const Board = () => {
   );
 
   return (
-    <div className="row">
-      <div className="col-2">
-      <nav class="nav flex-column">
-        <a class="nav-link active" href="#">Apps</a>
-        <a class="nav-link" href="#">Materials</a>
-        <a class="nav-link" href="#">Todo</a>
-      </nav>
-      </div>
-      <div className="col-10">
-        {/* This handles the click events */}
-        {/* I need to figure out how to make it work with touch events */}
-        <DndProvider backend={HTML5Backend}>
-          <section style={classes.board}>
-            {/* Maps over the different channels and creates a column for each */}
-            {channels.map(channel => (
-              <BoardColumn
-                key={channel}
-                status={channel}
-                changeTaskStatus={changeTaskStatus}
-              >
-                <div style={classes.column}>
-                  <div style={classes.columnHead, classes[channel]}>{labelsMap[channel]}</div>
-                  <div>
-                    {/* Renders the correct tasks onto the column */}
-                    {tasks
-                      .filter(item => item.status === channel)
-                      .map(item => (
-                        <BoardItem key={item._id} id={item._id}>
-                          <div style={classes.item}>
-                            {item.title} - {item.company}
-                          </div>
-                        </BoardItem>
-                      ))}
-                  </div>
-                </div>
-              </BoardColumn>
-            ))}
-          </section>
-        </DndProvider>
-      </div>
-    </div>
+    <Container fluid>
+      <Row noGutters={true}>
+        <Col size="md-2">
+          <Nav
+          activeKey="/home"
+          onSelect={selectedKey => alert(`selected ${selectedKey}`)}
+        >
+          <Nav.Item>
+            <Nav.Link href="/home">Apps</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1">Materials</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-2">Todos</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        </Col>
+        <Col size="md-10" style={classes.noPad}>
+          {/* This handles the click events */}
+          {/* I need to figure out how to make it work with touch events */}
+          <DndProvider backend={HTML5Backend}>
+            <section style={classes.board}>
+              {/* Maps over the different channels and creates a column for each */}
+              {channels.map(channel => (
+                <Col size="md-2">
+                  <BoardColumn
+                    key={channel}
+                    status={channel}
+                    changeTaskStatus={changeTaskStatus}
+                  >
+                    <div style={classes.column}>
+                      <div style={classes.columnHead, classes[channel]}>{labelsMap[channel]}</div>
+                      <div>
+                        {/* Renders the correct tasks onto the column */}
+                        {tasks
+                          .filter(item => item.status === channel)
+                          .map(item => (
+                            <BoardItem key={item._id} id={item._id}>
+                              <div style={classes.item}>
+                                {item.title} - {item.company}
+                              </div>
+                            </BoardItem>
+                          ))}
+                      </div>
+                    </div>
+                  </BoardColumn>
+                </Col>
+              ))}
+            </section>
+          </DndProvider>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
