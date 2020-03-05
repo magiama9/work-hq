@@ -25,13 +25,6 @@ import jobFetch from "../utils/jobFetch";
 //     });
 //   };
 
-//   handleTyping = e => {
-//     // console.log("typing", e.target.value, e.target.name) // for testing //
-//     this.setState({
-
-//     });
-//   };
-
 //   componentDidMount() {
 //     this.getAllJobs();
 //   }
