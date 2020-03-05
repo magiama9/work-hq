@@ -1,7 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Board from "../components/Board";
 import Form from "../components/Form";
-import jobFetch from "../utils/jobFetch";
 
 // class Dashboard extends Component {
 //   constructor(props) {
@@ -44,16 +43,6 @@ import jobFetch from "../utils/jobFetch";
 
 function Home() {
   const [state, setState] = useState({ newApplications: [], tasks: [] });
-  const getAllJobs = () => {
-    jobFetch.fetchAll().then(res => {
-      console.log(res.data[0].id);
-      setState({ ...state, tasks: res.data });
-    });
-  };
-
-  useEffect(() => {
-    getAllJobs();
-  }, []);
 
   return (
     <div>

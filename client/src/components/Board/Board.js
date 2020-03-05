@@ -130,7 +130,6 @@ const classes = {
   }
 };
 const Board = props => {
-  console.log(props.state.tasks);
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = () => {
     jobFetch.fetchAll().then(res => {
