@@ -184,21 +184,21 @@ const Board = () => {
   return (
     <Container fluid>
       <Row noGutters={true}>
-        <Col size="md-2">
+        <Col md={2}>
           <Nav defaultActiveKey="/home" className="flex-column">
             <Nav.Link href="/home">Apps</Nav.Link>
             <Nav.Link eventKey="/materials">Materials</Nav.Link>
             <Nav.Link eventKey="/todos">Todos</Nav.Link>
           </Nav>
         </Col>
-        <Col size="md-10" style={classes.noPad}>
+        <Col md={10} style={classes.noPad}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>
             <section style={classes.board}>
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
-                <Col size="md-2">
+                <Col md={2}>
                   <BoardColumn
                     key={channel}
                     status={channel}
