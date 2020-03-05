@@ -12,9 +12,11 @@ const BoardItem = ({ id, children }) => {
     })
   });
   const opacity = isDragging ? 0 : 1;
-  drag(ref);
+
+  
+  // drag(ref);
   return (
-    <div ref={ref} style={{ opacity }}>
+    <div ref={drag} style={{ opacity }}>
       {children}
     </div>
   );
