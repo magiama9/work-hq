@@ -85,8 +85,8 @@ const classes = {
   }
 };
 
-const Board = () => {
-  const [tasks, setTaskStatus] = useState(jobList);
+const Board = (props) => {
+  const [tasks, setTaskStatus] = useState(props.jobList);
 
   const changeTaskStatus = useCallback(
     (id, status) => {
