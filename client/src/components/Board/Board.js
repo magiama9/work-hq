@@ -144,14 +144,16 @@ const Board = props => {
     for (var i = 0; i < props.state.newApplications.length; i++) {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
+      props.state.newApplications[i].userID = props.userID;
+      console.log(props.userID);
       props.state.newApplications[i].jobID = newState.length + 1;
+      console.log(props.state.newApplications[i].jobID);
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
       jobPost.addJob(newState[newState.length - 1]);
       getAllJobs();
     }
-
     setTaskStatus(newState);
     changeTaskStatus();
   }, [props]);
@@ -169,7 +171,7 @@ const Board = props => {
       let newTasks = update(tasks, {
         [taskIndex]: { $set: task }
       });
-
+      jobPost.updateJob(task.jobID, task);
       // Update state
       setTaskStatus(newTasks);
     },

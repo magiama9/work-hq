@@ -38,6 +38,13 @@ const jobSchema = new mongoose.Schema({
   status: {
     type: String,
     default: "interested"
+  },
+  jobID: {
+    type: Number
+  },
+
+  userID: {
+    type: String
   }
 });
 

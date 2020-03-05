@@ -19,4 +19,9 @@ router.post("/jobs", (req, res) => {
     });
 });
 
+router.put("/jobs/:id", (req, res) => {
+  db.Jobs.findOneAndUpdate({ jobID: req.body.jobID }, req.body);
+  console.log(req.body);
+});
+
 module.exports = router;
