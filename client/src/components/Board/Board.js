@@ -13,30 +13,35 @@ import Nav from "react-bootstrap/Nav";
 // Dummy job data
 const jobList = [
   {
-    _id: 1,
+    jobID: 1,
     title: "Street View Driver",
     company: "Google",
     status: "interested"
   },
-  { _id: 2, title: "Hype Man", company: "Theranos", status: "interested" },
+  { jobID: 2, title: "Hype Man", company: "Theranos", status: "interested" },
   {
-    _id: 3,
+    jobID: 3,
     title: "Back End Developer",
     company: "Google",
     status: "interested"
   },
   {
-    _id: 4,
+    jobID: 4,
     title: "Front End Developer",
     company: "Google",
     status: "applied"
   },
-  { _id: 5, title: "Warehouse Slave", company: "Amazon", status: "applied" },
-  { _id: 6, title: "Moustache Groomer", company: "Apple", status: "responded" },
-  { _id: 7, title: "'Genius'", company: "Apple", status: "interviewing" },
-  { _id: 8, title: "Instructor", company: "2U", status: "interviewing" },
-  { _id: 9, title: "Urban Beekeeper", company: "Hive", status: "offer" },
-  { _id: 10, title: "Alcoholic", company: "Freelance", status: "offer" }
+  { jobID: 5, title: "Warehouse Slave", company: "Amazon", status: "applied" },
+  {
+    jobID: 6,
+    title: "Moustache Groomer",
+    company: "Apple",
+    status: "responded"
+  },
+  { jobID: 7, title: "'Genius'", company: "Apple", status: "interviewing" },
+  { jobID: 8, title: "Instructor", company: "2U", status: "interviewing" },
+  { jobID: 9, title: "Urban Beekeeper", company: "Hive", status: "offer" },
+  { jobID: 10, title: "Alcoholic", company: "Freelance", status: "offer" }
 ];
 
 // The different columns
@@ -157,10 +162,12 @@ const classes = {
   }
 };
 const Board = props => {
+  console.log(props.state.tasks);
   const [tasks, setTaskStatus] = useState(jobList);
 
   // This code adds new applications to the board from data from forms
   useEffect(() => {
+    setTaskStatus(props.state.tasks);
     // console.log("props in board file", props) // for testing
     var newState = tasks;
     for (var i = 0; i < props.state.newApplications.length; i++) {
@@ -168,7 +175,7 @@ const Board = props => {
 
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
-      props.state.newApplications[i]._id = newState.length + 1;
+      props.state.newApplications[i].jobID = newState.length + 1;
       // pushing new applications
       newState.push(props.state.newApplications[i]);
     }
@@ -180,7 +187,7 @@ const Board = props => {
   const changeTaskStatus = useCallback(
     (id, status) => {
       // Match the task to the ID
-      let task = tasks.find(task => task._id === id);
+      let task = tasks.find(task => task.jobID === id);
       const taskIndex = tasks.indexOf(task);
 
       // Set the working task
@@ -227,7 +234,7 @@ const Board = props => {
                         {tasks
                           .filter(item => item.status === channel)
                           .map(item => (
-                            <BoardItem key={item._id} id={item._id}>
+                            <BoardItem key={item.jobID} id={item.jobID}>
                               <div style={classes.item}>
                                 {item.title} - {item.company}
                               </div>
@@ -243,6 +250,7 @@ const Board = props => {
         </Col>
       </Row>
     </Container>
+
   );
 };
 

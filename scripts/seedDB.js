@@ -5,30 +5,30 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/work-hq");
 
 const jobSeed = [
   {
-    _id: 1,
+    jobID: 1,
     title: "Street View Driver",
     company: "Google",
     status: "interested"
   },
-  { _id: 2, title: "Hype Man", company: "Theranos", status: "interested" },
+  { jobID: 2, title: "Hype Man", company: "Theranos", status: "interested" },
   {
-    _id: 3,
+    jobID: 3,
     title: "Back End Developer",
     company: "Google",
     status: "interested"
   },
   {
-    _id: 4,
+    jobID: 4,
     title: "Front End Developer",
     company: "Google",
     status: "applied"
   },
-  { _id: 5, title: "Warehouse Slave", company: "Amazon", status: "applied" },
-  { _id: 6, title: "Moustache Groomer", company: "Apple", status: "responded" },
-  { _id: 7, title: "'Genius'", company: "Apple", status: "interviewing" },
-  { _id: 8, title: "Instructor", company: "2U", status: "interviewing" },
-  { _id: 9, title: "Urban Beekeeper", company: "Hive", status: "offer" },
-  { _id: 10, title: "Alcoholic", company: "Freelance", status: "offer" }
+  { jobID: 5, title: "Warehouse Slave", company: "Amazon", status: "applied" },
+  { jobID: 6, title: "Moustache Groomer", company: "Apple", status: "responded" },
+  { jobID: 7, title: "'Genius'", company: "Apple", status: "interviewing" },
+  { jobID: 8, title: "Instructor", company: "2U", status: "interviewing" },
+  { jobID: 9, title: "Urban Beekeeper", company: "Hive", status: "offer" },
+  { jobID: 10, title: "Alcoholic", company: "Freelance", status: "offer" }
 ];
 
 db.Jobs.remove({})
