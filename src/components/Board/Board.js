@@ -185,20 +185,11 @@ const Board = () => {
     <Container fluid>
       <Row noGutters={true}>
         <Col size="md-2">
-          <Nav
-          activeKey="/home"
-          onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-        >
-          <Nav.Item>
+          <Nav defaultActiveKey="/home" className="flex-column">
             <Nav.Link href="/home">Apps</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-1">Materials</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">Todos</Nav.Link>
-          </Nav.Item>
-        </Nav>
+            <Nav.Link eventKey="/materials">Materials</Nav.Link>
+            <Nav.Link eventKey="/todos">Todos</Nav.Link>
+          </Nav>
         </Col>
         <Col size="md-10" style={classes.noPad}>
           {/* This handles the click events */}
