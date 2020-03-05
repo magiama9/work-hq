@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
@@ -85,8 +85,27 @@ const classes = {
   }
 };
 
-const Board = () => {
+const Board = (props) => {
   const [tasks, setTaskStatus] = useState(jobList);
+
+  // This code adds new applications to the board from data from forms
+  useEffect(()=>{
+    // console.log("props in board file", props) // for testing
+    var newState = tasks
+    for(var i = 0; i<props.state.newApplications.length; i++){
+      // console.log("looping", props.state.newApplications[i]) // testing the loop
+
+      // Adding status and id to new applications
+      props.state.newApplications[i].status="interested"
+      props.state.newApplications[i]._id=newState.length + 1
+      // pushing new applications
+      newState.push(props.state.newApplications[i])
+
+    }
+    // console.log("success", newState) // for testing
+    setTaskStatus(newState)
+    changeTaskStatus() 
+  },[props])
 
   const changeTaskStatus = useCallback(
     (id, status) => {
