@@ -56,11 +56,13 @@ const labelsMap = {
 };
 
 // Some shitty styling
+//set styling for each column as channel.column
 // colors
-  //orange: #18C6B3
+  //orange: #F69346
   //green: #18C6B3
   //yellow: #FFBF13
   //blue: #0D92FF
+  //pink: #FF4A75
   // grey: #F5F6FA
 const classes = {
   board: {
@@ -80,11 +82,25 @@ const classes = {
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
-    backgroundColor: "#18C6B3",
     color: "white",
     margin: "10px 5px 0 5px",
     borderRadius: "5px",
     fontWeight: 600
+  },
+  interested: {
+    backgroundColor: "#F69346"
+  },
+  applied: {
+    backgroundColor: "#18C6B3"
+  },
+  responded: {
+    backgroundColor: "#FFBF13"
+  },
+  interviewing: {
+    backgroundColor: "#0D92FF"
+  },
+  offer: {
+    backgroundColor: "#FF4A75"
   },
   item: {
     padding: 10,
@@ -123,10 +139,9 @@ const Board = () => {
     <div className="row">
       <div className="col-2">
       <nav class="nav flex-column">
-        <a class="nav-link active" href="#">Active</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link active" href="#">Apps</a>
+        <a class="nav-link" href="#">Materials</a>
+        <a class="nav-link" href="#">Todo</a>
       </nav>
       </div>
       <div className="col-10">
@@ -142,7 +157,7 @@ const Board = () => {
                 changeTaskStatus={changeTaskStatus}
               >
                 <div style={classes.column}>
-                  <div style={classes.columnHead}>{labelsMap[channel]}</div>
+                  <div style={classes.columnHead, classes[channel]}>{labelsMap[channel]}</div>
                   <div>
                     {/* Renders the correct tasks onto the column */}
                     {tasks
