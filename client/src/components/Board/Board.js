@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
-
+import jobPost from "../../utils/jobPost";
 
 // The different columns
 const channels = [
@@ -133,26 +133,25 @@ const Board = props => {
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = () => {
     jobFetch.fetchAll().then(res => {
-      console.log(res.data[0].id);
       setTaskStatus(res.data);
     });
   };
   // This code adds new applications to the board from data from forms
   useEffect(() => {
     getAllJobs();
-    // console.log("props in board file", props) // for testing
+
     var newState = tasks;
     for (var i = 0; i < props.state.newApplications.length; i++) {
-      // console.log("looping", props.state.newApplications[i]) // testing the loop
-
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].jobID = newState.length + 1;
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
+      jobPost.addJob(newState[newState.length - 1]);
+      getAllJobs();
     }
-    // console.log("success", newState) // for testing
+
     setTaskStatus(newState);
     changeTaskStatus();
   }, [props]);
