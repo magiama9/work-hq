@@ -178,6 +178,7 @@ const Board = props => {
       props.state.newApplications[i].jobID = newState.length + 1;
       // pushing new applications
       newState.push(props.state.newApplications[i]);
+      props.state.newApplications = [];
     }
     // console.log("success", newState) // for testing
     setTaskStatus(newState);
