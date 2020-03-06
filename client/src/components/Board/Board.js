@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import uuid from "react-uuid";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
@@ -137,14 +138,15 @@ const classes = {
 };
 const Board = props => {
   const [tasks, setTaskStatus] = useState([]);
-  const getAllJobs = () => {
-    jobFetch.fetchAll().then(res => {
+  const getAllJobs = userID => {
+    jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
     });
   };
   // This code adds new applications to the board from data from forms
   useEffect(() => {
-    getAllJobs();
+    console.log(props.userID);
+    getAllJobs(props.userID);
 
     var newState = tasks;
     for (var i = 0; i < props.state.newApplications.length; i++) {
@@ -152,13 +154,13 @@ const Board = props => {
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].userID = props.userID;
       console.log(props.userID);
-      props.state.newApplications[i].jobID = newState.length + 1;
+      props.state.newApplications[i].jobID = uuid();
       console.log(props.state.newApplications[i].jobID);
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
       jobPost.addJob(newState[newState.length - 1]);
-      getAllJobs();
+      getAllJobs(props.userID);
     }
     setTaskStatus(newState);
     changeTaskStatus();
