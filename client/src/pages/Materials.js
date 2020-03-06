@@ -16,8 +16,8 @@ function Materials() {
     },
     resumes: {
       height: "50px",
-      margin: "10px auto 10px auto",
-      padding: "40px auto 10px auto",
+      margin: "10px 10px 10px auto",
+      padding: "10px auto 10px auto",
       borderRadius: "5px",
       backgroundColor: "#F69346",
       color: "white",
@@ -26,8 +26,8 @@ function Materials() {
     },
     covers: {
       height: "50px",
-      margin: "10px auto 10px auto",
-      padding: "40px auto 10px auto",
+      margin: "10px auto 10px 10px",
+      padding: "10px auto 10px auto",
       borderRadius: "5px",
       backgroundColor: "#FFBF13",
       color: "white",
@@ -52,11 +52,11 @@ function Materials() {
         </Col>
         <Col md={3}>
           <h2 style={classes.resumes}>Resumes</h2>
-          <Button>Add Link</Button>
+          <Button onClick="addRes">Add Link</Button>
         </Col>
-        <Col md={3} style={classes.covers}>
-          <h2>Cover Letters</h2>
-          <Button>Add Link</Button>
+        <Col md={3}>
+          <h2 style={classes.covers}>Cover Letters</h2>
+          <Button onClick="addCov">Add Link</Button>
         </Col>
       </Row>
     </>
