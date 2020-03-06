@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import jobPost from "../../utils/jobPost";
 
 // Function to add new application
 function Add(props) {
@@ -33,7 +32,6 @@ function Add(props) {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(formState); // for testing
   return (
     <>
       <Button variant="primary" onClick={handleShow}>

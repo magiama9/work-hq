@@ -19,4 +19,19 @@ router.post("/jobs", (req, res) => {
     });
 });
 
+router.put("/jobs/:id", (req, res) => {
+  console.log(req.body);
+  db.Jobs.findOneAndUpdate(
+    { jobID: req.params.id },
+    { status: req.body.status }
+  )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  res.send("complete");
+});
+
 module.exports = router;
