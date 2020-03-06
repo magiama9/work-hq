@@ -179,13 +179,12 @@ const Board = props => {
   );
 
   return (
-    <Container fluid>
+    // <Container fluid>
       <Row noGutters={true}>
         <Col md={2}>
-          <Nav defaultActiveKey="/home" className="flex-column">
-            <Nav.Link href="/home">Apps</Nav.Link>
-            <Nav.Link eventKey="/materials">Materials</Nav.Link>
-            <Nav.Link eventKey="/todos">Todos</Nav.Link>
+          <Nav defaultActiveKey="/" className="flex-column">
+            <Nav.Link href="/">Apps</Nav.Link>
+            <Nav.Link href="/materials">Materials</Nav.Link>
           </Nav>
         </Col>
         <Col md={10} style={classes.noPad}>
@@ -225,7 +224,7 @@ const Board = props => {
           </DndProvider>
         </Col>
       </Row>
-    </Container>
+    // </Container>
   );
 };
 
