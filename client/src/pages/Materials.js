@@ -15,22 +15,24 @@ function Materials() {
       paddingBottom: "10px"
     },
     resumes: {
-      height: "80px",
+      height: "50px",
       margin: "10px auto 10px auto",
-      padding: ".5em .5em .5em .5em",
+      padding: "40px auto 10px auto",
       borderRadius: "5px",
       backgroundColor: "#F69346",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
+      textAlign: "center",
     },
     covers: {
-      height: "80px",
+      height: "50px",
       margin: "10px auto 10px auto",
-      padding: ".5em .5em .5em .5em",
+      padding: "40px auto 10px auto",
       borderRadius: "5px",
       backgroundColor: "#FFBF13",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
+      textAlign: "center",
     }
   }
 
