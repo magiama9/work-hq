@@ -48,14 +48,14 @@ function Materials() {
 
   const addRes = (event) => {
     event.preventDefault();
-    //TODO add input into db, render list
+    //TODO add input into db associated with user id, render list
     const { name, value } = event.target;
     setResLinks({...resLinks, [name]: value});
   }
 
   const addCov = (event) => {
     event.preventDefault();
-    //TODO add input into db, render list
+    //TODO add input into db associated with user id, render list
     const { name, value } = event.target;
     setCovLinks({...covLinks, [name]: value});
   }

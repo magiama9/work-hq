@@ -164,6 +164,7 @@ const Board = props => {
     changeTaskStatus();
   }, [props]);
 
+  //updating job in db whenever task is changed
   const changeTaskStatus = useCallback(
     (id, status) => {
       // Match the task to the ID
