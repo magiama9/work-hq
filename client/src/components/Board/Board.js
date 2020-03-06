@@ -10,6 +10,15 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
+import firebase from "firebase/app";
+import Button from "react-bootstrap/Button";
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+  IfFirebaseAuthed,
+  IfFirebaseAuthedAnd
+} from "@react-firebase/auth";
+import "firebase/auth";
 
 // The different columns
 const channels = [
@@ -200,6 +209,31 @@ const Board = props => {
             <Nav.Link href="/">Apps</Nav.Link>
             <Nav.Link href="/materials">Materials</Nav.Link>
           </Nav>
+          <div>
+            <Button
+              onClick={() => {
+                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(googleAuthProvider);
+              }}
+            >
+              Sign In with Google
+            </Button>
+            <Button
+              data-testid="signin-anon"
+              onClick={() => {
+                firebase.auth().signInAnonymously();
+              }}
+            >
+              Sign In Anonymously
+            </Button>
+            <Button
+              onClick={() => {
+                firebase.auth().signOut();
+              }}
+            >
+              Sign Out
+            </Button>
+          </div>
         </Col>
         <Col md={10} style={classes.noPad}>
           {/* This handles the click events */}

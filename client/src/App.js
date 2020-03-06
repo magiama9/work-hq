@@ -30,31 +30,7 @@ function App() {
     <>
       {/* Login authentication */}
       <FirebaseAuthProvider {...config} firebase={firebase}>
-        <div>
-          <button
-            onClick={() => {
-              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-              firebase.auth().signInWithPopup(googleAuthProvider);
-            }}
-          >
-            Sign In with Google
-          </button>
-          <button
-            data-testid="signin-anon"
-            onClick={() => {
-              firebase.auth().signInAnonymously();
-            }}
-          >
-            Sign In Anonymously
-          </button>
-          <button
-            onClick={() => {
-              firebase.auth().signOut();
-            }}
-          >
-            Sign Out
-          </button>
-          {/* <FirebaseAuthConsumer>
+        {/* <FirebaseAuthConsumer>
             {({ isSignedIn, user, providerId }) => {
               return (
                 <pre style={{ height: 300, overflow: "auto" }}>
@@ -63,38 +39,37 @@ function App() {
               );
             }}
           </FirebaseAuthConsumer> */}
-          <div>
-            <Router>
-              <Route exact path="/" component={Landing} />
-              <IfFirebaseAuthed>
-                {user => {
-                  return (
+        <div>
+          <Router>
+            <Route exact path="/" component={Landing} />
+            <IfFirebaseAuthed>
+              {user => {
+                return (
+                  <div>
+                    {" "}
+                    {/* <Dashboard userID={user.user.uid} /> */}
                     <div>
-                      {" "}
-                      {/* <Dashboard userID={user.user.uid} /> */}
-                      <div>
-                        <Route
-                          exact
-                          path="/dashboard"
-                          render={props => (
-                            <Dashboard {...props} userID={user.user.uid} />
-                          )}
-                        />
-                        <Route exact path="/materials" component={Materials} />
-                      </div>
+                      <Route
+                        exact
+                        path="/dashboard"
+                        render={props => (
+                          <Dashboard {...props} userID={user.user.uid} />
+                        )}
+                      />
+                      <Route exact path="/materials" component={Materials} />
                     </div>
-                  );
-                }}
-              </IfFirebaseAuthed>
-            </Router>
-            <IfFirebaseAuthedAnd
-              filter={({ providerId }) => providerId !== "anonymous"}
-            >
-              {({ providerId }) => {
-                return <div>You are authenticated with {providerId}</div>;
+                  </div>
+                );
               }}
-            </IfFirebaseAuthedAnd>
-          </div>
+            </IfFirebaseAuthed>
+          </Router>
+          <IfFirebaseAuthedAnd
+            filter={({ providerId }) => providerId !== "anonymous"}
+          >
+            {({ providerId }) => {
+              return <div>You are authenticated with {providerId}</div>;
+            }}
+          </IfFirebaseAuthedAnd>
         </div>
       </FirebaseAuthProvider>
     </>
