@@ -8,9 +8,8 @@ function Home(props) {
 
   return (
     <div>
-      <h1>Work HQ - Your Job Search Launchpad</h1>
-      <Form state={state} setState={setState} />
       <Board state={state} userID={props.userID} />
+      <Form state={state} setState={setState} />
     </div>
   );
 }

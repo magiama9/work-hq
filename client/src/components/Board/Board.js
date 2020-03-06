@@ -4,10 +4,8 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
@@ -42,6 +40,14 @@ const labelsMap = {
 //pink: #FF4A75
 // grey: #F5F6FA
 const classes = {
+  header: {
+    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    color: "white",
+    fontFamily: "'Nunito', sans-serif",
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px"
+  },
   board: {
     display: "flex",
     backgroundColor: "#F5F6FA",
@@ -179,7 +185,12 @@ const Board = props => {
   );
 
   return (
-    // <Container fluid>
+    <>
+      <Row>
+        <Col style={classes.header}>
+          <h1>Applications</h1>
+        </Col>
+      </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
@@ -224,7 +235,7 @@ const Board = props => {
           </DndProvider>
         </Col>
       </Row>
-    // </Container>
+    </>
   );
 };
 
