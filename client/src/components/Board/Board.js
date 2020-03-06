@@ -257,7 +257,18 @@ const Board = props => {
                         {tasks
                           .filter(item => item.status === channel)
                           .map(item => (
-                            <BoardItem key={item.jobID} id={item.jobID}>
+                            <BoardItem
+                              key={item.jobID}
+                              id={item.jobID}
+                              title={item.title}
+                              description={item.description}
+                              company={item.company}
+                              salary={item.salary}
+                              url={item.href}
+                              resume={item.resume}
+                              coverLetter={item.coverLetter}
+                              contactEmail={item.contactEmail}
+                            >
                               <div style={classes.item}>
                                 {item.title} - {item.company}
                               </div>
