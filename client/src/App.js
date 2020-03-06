@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
+import Materials from "./pages/Materials";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
 import {
@@ -24,61 +26,70 @@ const config = {
 
 function App() {
   return (
-    <FirebaseAuthProvider {...config} firebase={firebase}>
-      <div>
-        <button
-          onClick={() => {
-            const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithPopup(googleAuthProvider);
-          }}
-        >
-          Sign In with Google
-        </button>
-        <button
-          data-testid="signin-anon"
-          onClick={() => {
-            firebase.auth().signInAnonymously();
-          }}
-        >
-          Sign In Anonymously
-        </button>
-        <button
-          onClick={() => {
-            firebase.auth().signOut();
-          }}
-        >
-          Sign Out
-        </button>
-        <FirebaseAuthConsumer>
-          {({ isSignedIn, user, providerId }) => {
-            return (
-              <pre style={{ height: 300, overflow: "auto" }}>
-                {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
-              </pre>
-            );
-          }}
-        </FirebaseAuthConsumer>
+    <>
+      <Router>
         <div>
-          <IfFirebaseAuthed>
-            {user => {
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/materials" component={Materials} />
+        </div>
+      </Router>
+      {/* Login authentification */}
+      {/* <FirebaseAuthProvider {...config} firebase={firebase}>
+        <div>
+          <button
+            onClick={() => {
+              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+              firebase.auth().signInWithPopup(googleAuthProvider);
+            }}
+          >
+            Sign In with Google
+          </button>
+          <button
+            data-testid="signin-anon"
+            onClick={() => {
+              firebase.auth().signInAnonymously();
+            }}
+          >
+            Sign In Anonymously
+          </button>
+          <button
+            onClick={() => {
+              firebase.auth().signOut();
+            }}
+          >
+            Sign Out
+          </button>
+          <FirebaseAuthConsumer>
+            {({ isSignedIn, user, providerId }) => {
               return (
-                <div>
-                  {" "}
-                  <Dashboard userID={user.user.uid} />
-                </div>
+                <pre style={{ height: 300, overflow: "auto" }}>
+                  {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
+                </pre>
               );
             }}
-          </IfFirebaseAuthed>
-          <IfFirebaseAuthedAnd
-            filter={({ providerId }) => providerId !== "anonymous"}
-          >
-            {({ providerId }) => {
-              return <div>You are authenticated with {providerId}</div>;
-            }}
-          </IfFirebaseAuthedAnd>
+          </FirebaseAuthConsumer>
+          <div>
+            <IfFirebaseAuthed>
+              {user => {
+                return (
+                  <div>
+                    {" "}
+                    <Dashboard userID={user.user.uid} />
+                  </div>
+                );
+              }}
+            </IfFirebaseAuthed>
+            <IfFirebaseAuthedAnd
+              filter={({ providerId }) => providerId !== "anonymous"}
+            >
+              {({ providerId }) => {
+                return <div>You are authenticated with {providerId}</div>;
+              }}
+            </IfFirebaseAuthedAnd>
+          </div>
         </div>
-      </div>
-    </FirebaseAuthProvider>
+      </FirebaseAuthProvider> */}
+    </>
   );
 }
 
