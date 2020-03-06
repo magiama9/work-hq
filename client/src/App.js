@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import Materials from "./pages/Materials";
+import Landing from "./pages/Landing";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
@@ -64,6 +65,7 @@ function App() {
           </FirebaseAuthConsumer> */}
           <div>
             <Router>
+              <Route exact path="/" component={Landing} />
               <IfFirebaseAuthed>
                 {user => {
                   return (
@@ -73,7 +75,7 @@ function App() {
                       <div>
                         <Route
                           exact
-                          path="/"
+                          path="/dashboard"
                           render={props => (
                             <Dashboard {...props} userID={user.user.uid} />
                           )}
