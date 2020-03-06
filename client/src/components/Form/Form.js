@@ -65,7 +65,7 @@ function Add(props) {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Description</Form.Label>
-              <Form.Control
+              <Form.Control as = "textarea" rows="5"
                 type="input"
                 name="description"
                 onChange={handleTyping}
