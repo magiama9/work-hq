@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("/jobs", (req, res) => {
-  db.Jobs.find({})
+router.get("/jobs/:uid", (req, res) => {
+  console.log(req.params.uid)
+  db.Jobs.find({ userID: req.params.uid })
     .then(jobs => res.json(jobs))
     .catch(err => res.status(422).end());
 });

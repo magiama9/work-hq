@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export default {
-  fetchAll: function() {
-    return axios.get("api/jobs");
+  fetchAll: function(userID) {
+    console.log(userID);
+    return axios.get(`api/jobs/${userID}`);
   },
   fetchByCompany: function(query) {
     return axios.get("/api/jobs/company", { params: { q: query } });

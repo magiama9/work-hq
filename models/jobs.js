@@ -40,7 +40,7 @@ const jobSchema = new mongoose.Schema({
     default: "interested"
   },
   jobID: {
-    type: Number
+    type: String
   },
 
   userID: {
