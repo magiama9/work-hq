@@ -27,14 +27,8 @@ const config = {
 function App() {
   return (
     <>
-      <Router>
-        <div>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/materials" component={Materials} />
-        </div>
-      </Router>
-      {/* Login authentification */}
-      {/* <FirebaseAuthProvider {...config} firebase={firebase}>
+      {/* Login authentication */}
+      <FirebaseAuthProvider {...config} firebase={firebase}>
         <div>
           <button
             onClick={() => {
@@ -59,7 +53,7 @@ function App() {
           >
             Sign Out
           </button>
-          <FirebaseAuthConsumer>
+          {/* <FirebaseAuthConsumer>
             {({ isSignedIn, user, providerId }) => {
               return (
                 <pre style={{ height: 300, overflow: "auto" }}>
@@ -67,18 +61,30 @@ function App() {
                 </pre>
               );
             }}
-          </FirebaseAuthConsumer>
+          </FirebaseAuthConsumer> */}
           <div>
-            <IfFirebaseAuthed>
-              {user => {
-                return (
-                  <div>
-                    {" "}
-                    <Dashboard userID={user.user.uid} />
-                  </div>
-                );
-              }}
-            </IfFirebaseAuthed>
+            <Router>
+              <IfFirebaseAuthed>
+                {user => {
+                  return (
+                    <div>
+                      {" "}
+                      {/* <Dashboard userID={user.user.uid} /> */}
+                      <div>
+                        <Route
+                          exact
+                          path="/"
+                          render={props => (
+                            <Dashboard {...props} userID={user.user.uid} />
+                          )}
+                        />
+                        <Route exact path="/materials" component={Materials} />
+                      </div>
+                    </div>
+                  );
+                }}
+              </IfFirebaseAuthed>
+            </Router>
             <IfFirebaseAuthedAnd
               filter={({ providerId }) => providerId !== "anonymous"}
             >
@@ -88,7 +94,7 @@ function App() {
             </IfFirebaseAuthedAnd>
           </div>
         </div>
-      </FirebaseAuthProvider> */}
+      </FirebaseAuthProvider>
     </>
   );
 }
