@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
+import Dashboard from "../pages/Dashboard";
+import Login from "../components/Login";
 import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
@@ -44,51 +46,48 @@ const classes = {
 
 function Landing() {
   return (
-    <div>
-      <Row>
-        <Col style={classes.header}>
-          <h1>Landing</h1>
-        </Col>
-      </Row>
-      <Row noGutters={true}>
-        <Col md={2}>
-          <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/materials">Materials</Nav.Link>
-          </Nav>
-          <div>
-            <Button
-              onClick={() => {
-                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                firebase
-                  .auth()
-                  .signInWithPopup(googleAuthProvider)
-                  .then(() => {
-                    window.location.replace("http://localhost:3000/dashboard");
-                  });
-              }}
-            >
-              Sign In with Google
-            </Button>
-            <Button
-              data-testid="signin-anon"
-              onClick={() => {
-                firebase.auth().signInAnonymously();
-              }}
-            >
-              Sign In Anonymously
-            </Button>
-            <Button
-              onClick={() => {
-                firebase.auth().signOut();
-              }}
-            >
-              Sign Out
-            </Button>
-          </div>
-        </Col>
-      </Row>
-    </div>
+    // <div>
+    //   <Row noGutters={true}>
+    //     <Col md={2}>
+    //       <div>
+    //         <Button
+    //           onClick={() => {
+    //             const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    //             firebase
+    //               .auth()
+    //               .signInWithPopup(googleAuthProvider)
+    //               .then(() => {
+    //                 window.location.replace("http://localhost:3000/dashboard");
+    //               });
+    //           }}
+    //         >
+    //           Sign In with Google
+    //         </Button>
+    //         <Button
+    //           data-testid="signin-anon"
+    //           onClick={() => {
+    //             firebase.auth().signInAnonymously();
+    //           }}
+    //         >
+    //           Sign In Anonymously
+    //         </Button>
+    //         <Button
+    //           onClick={() => {
+    //             firebase.auth().signOut();
+    //           }}
+    //         >
+    //           Sign Out
+    //         </Button>
+    //       </div>
+    //     </Col>
+    //     <Dashboard/>
+    //   </Row>
+    // </div>
+    <>
+      <Login/>
+      <Dashboard/>
+    </>
+  
   );
 }
 
