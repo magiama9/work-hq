@@ -29,7 +29,19 @@ const Materials = props => {
       fontFamily: "'Nunito', sans-serif",
       textAlign: "center",
       paddingTop: "10px",
-      paddingBottom: "10px"
+      paddingBottom: "10px",
+      paddingRight: "120px"
+    },
+    headerBtn: {
+      background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+      color: "white",
+      fontFamily: "'Nunito', sans-serif",
+    },
+    dropdown: {
+      backgroundColor: "white",
+      borderRadius: "5px",
+      width: "75px",
+      marginTop: "17px"
     },
     resumes: {
       width: "100%",
@@ -112,9 +124,8 @@ const Materials = props => {
   return (
     <>
       <Row>
-        <Col style={classes.header}>
-          <h1>Materials</h1>
-          <NavDropdown title="User" id="nav-dropdown">
+      <Col md={1} style={classes.headerBtn}>
+          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
@@ -146,6 +157,9 @@ const Materials = props => {
             </NavDropdown.Item>
           </NavDropdown>
         </Col>
+        <Col md={11} style={classes.header}>
+          <h1>Materials</h1>
+        </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
@@ -161,7 +175,6 @@ const Materials = props => {
               placeholder="https://"
               aria-label="resumeLink"
               aria-describedby="basic-addon2"
-              ref="link"
               // onChange={handleTyping}
             />
             <InputGroup.Append>
@@ -177,7 +190,6 @@ const Materials = props => {
               aria-label="coverLink"
               aria-describedby="basic-addon2"
               // onChange={handleTyping}
-              ref="link"
             />
             <InputGroup.Append>
               <Button variant="outline-secondary" name="cover" onClick={addLink}>Add Link</Button>
@@ -190,8 +202,7 @@ const Materials = props => {
             placeholder="https://"
             aria-label="otherLink"
             aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
+            // onChange={handleTyping
           />
           <InputGroup.Append>
             <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
@@ -202,8 +213,7 @@ const Materials = props => {
             placeholder="https://"
             aria-label="otherLink"
             aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
+            // onChange={handleTyping
           />
           <InputGroup.Append>
             <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
@@ -214,8 +224,7 @@ const Materials = props => {
             placeholder="https://"
             aria-label="otherLink"
             aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
+            // onChange={handleTyping
           />
           <InputGroup.Append>
             <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
