@@ -3,6 +3,18 @@ import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
+const classes= {
+  btn: {
+    backgroundColor: "white",
+    color: "#0D92FF",
+    borderRadius: "5px",
+    width: "175px",
+    height: "42px",
+    fontWeight: "bold",
+    marginTop: "17px"
+  }
+}
+
 // Function to add new application
 function Add(props) {
   const [validated, setValidated] = useState(false)
@@ -56,7 +68,7 @@ function Add(props) {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} style={classes.btn}>
         New Application +
       </Button>
 

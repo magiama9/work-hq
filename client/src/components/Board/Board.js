@@ -58,12 +58,19 @@ const classes = {
     fontFamily: "'Nunito', sans-serif",
     textAlign: "center",
     paddingTop: "10px",
-    paddingBottom: "10px"
+    paddingBottom: "10px",
+    paddingRight: "180px"
   },
   headerBtn: {
     background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
     color: "white",
     fontFamily: "'Nunito', sans-serif",
+  },
+  dropdown: {
+    backgroundColor: "white",
+    borderRadius: "5px",
+    width: "75px",
+    marginTop: "17px"
   },
   board: {
     display: "flex",
@@ -208,7 +215,7 @@ const Board = props => {
     <>
       <Row>
         <Col md={1} style={classes.headerBtn}>
-          <NavDropdown title="User" id="nav-dropdown">
+          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
@@ -241,7 +248,7 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={state} setState={setState} />
+          <Form state={state} setState={setState} style={classes.headerBtn}/>
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
