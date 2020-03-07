@@ -8,22 +8,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
 import {
   FirebaseAuthProvider,
-  FirebaseAuthConsumer,
   IfFirebaseAuthed,
   IfFirebaseAuthedAnd
 } from "@react-firebase/auth";
 import "firebase/auth";
+import config from "./firebase-config";
 
-const config = {
-  apiKey: "AIzaSyCultPP-E1RzSrFFTcWSWK5G20mSKdTfbg",
-  authDomain: "work-hq.firebaseapp.com",
-  databaseURL: "https://work-hq.firebaseio.com",
-  projectId: "work-hq",
-  storageBucket: "work-hq.appspot.com",
-  messagingSenderId: "30525482181",
-  appId: "1:30525482181:web:825dd913c1bfdd371afcac",
-  measurementId: "G-CB66800GCV"
-};
+if (process.env.NODE_ENV === "production") {
+  console.log("production");
+  console.log(process.env.FIREBASE_CONFIG);
+} else {
+  console.log("not production");
+}
 
 function App() {
   return (

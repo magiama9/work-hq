@@ -12,12 +12,12 @@ import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
+// import {
+//   FirebaseAuthProvider,
+//   FirebaseAuthConsumer,
+//   IfFirebaseAuthed,
+//   IfFirebaseAuthedAnd
+// } from "@react-firebase/auth";
 import "firebase/auth";
 
 // The different columns

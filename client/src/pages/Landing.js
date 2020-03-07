@@ -4,12 +4,12 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
+// import {
+//   FirebaseAuthProvider,
+//   FirebaseAuthConsumer,
+//   IfFirebaseAuthed,
+//   IfFirebaseAuthedAnd
+// } from "@react-firebase/auth";
 import "firebase/auth";
 
 const classes = {
@@ -60,10 +60,12 @@ function Landing() {
             <Button
               onClick={() => {
                 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithPopup(googleAuthProvider);
-                // .then(() => {
-                //   window.location.replace("http://localhost:3000/dashboard");
-                // });
+                firebase
+                  .auth()
+                  .signInWithPopup(googleAuthProvider)
+                  .then(() => {
+                    window.location.replace("http://localhost:3000/dashboard");
+                  });
               }}
             >
               Sign In with Google
