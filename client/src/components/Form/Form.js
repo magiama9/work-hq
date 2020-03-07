@@ -57,7 +57,7 @@ function Add(props) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add a New Application! +
+        New Application +
       </Button>
 
       <Modal show={show} onHide={handleClose}>

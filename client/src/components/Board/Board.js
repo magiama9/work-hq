@@ -5,6 +5,7 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
+import Form from "../Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -58,6 +59,11 @@ const classes = {
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px"
+  },
+  headerBtn: {
+    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+    color: "white",
+    fontFamily: "'Nunito', sans-serif",
   },
   board: {
     display: "flex",
@@ -147,6 +153,7 @@ const classes = {
   }
 };
 const Board = props => {
+  const [state, setState] = useState({ newApplications: [], tasks: [] });
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -200,40 +207,45 @@ const Board = props => {
   return (
     <>
       <Row>
-        <Col style={classes.header}>
+        <Col md={1} style={classes.headerBtn}>
+          <NavDropdown title="User" id="nav-dropdown">
+            <NavDropdown.Item eventKey="4.1">
+              <Button
+                onClick={() => {
+                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                  firebase.auth().signInWithPopup(googleAuthProvider);
+                }}
+              >
+                Sign In with Google
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.2">
+              <Button
+                data-testid="signin-anon"
+                onClick={() => {
+                  firebase.auth().signInAnonymously();
+                }}
+              >
+                Sign In Anonymously
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.3">
+              <Button
+                onClick={() => {
+                  firebase.auth().signOut();
+                }}
+              >
+                Sign Out
+              </Button>
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Col>
+        <Col md={2} style={classes.headerBtn}>
+          <Form state={state} setState={setState} />
+        </Col>
+        <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
-        <NavDropdown title="User" id="nav-dropdown">
-        <NavDropdown.Item eventKey="4.1">
-          <Button
-            onClick={() => {
-              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-              firebase.auth().signInWithPopup(googleAuthProvider);
-            }}
-          >
-            Sign In with Google
-          </Button>
-        </NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">
-          <Button
-            data-testid="signin-anon"
-            onClick={() => {
-              firebase.auth().signInAnonymously();
-            }}
-          >
-            Sign In Anonymously
-          </Button>
-        </NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">
-          <Button
-            onClick={() => {
-              firebase.auth().signOut();
-            }}
-          >
-            Sign Out
-          </Button>
-        </NavDropdown.Item>
-      </NavDropdown>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
