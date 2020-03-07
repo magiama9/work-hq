@@ -13,9 +13,13 @@ function Add(props) {
   const [formState, setFormState] = useState({
     title: "",
     company: "",
+    link: "",
     salary: "",
     location: "",
-    description: ""
+    description: "",
+    contactEmail: "",
+    coverLetter: "",
+    resume: ""
   });
   const handleTyping = e => {
     // console.log("typing", e.target.value, e.target.name) // for testing //
@@ -89,8 +93,18 @@ function Add(props) {
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Description <span style={redStyle}>*</span></Form.Label>
-              <Form.Control as="textarea" rows="5"
+
+              <Form.Label>Link</Form.Label>
+              <Form.Control
+                type="input"
+                name="link"
+                onChange={handleTyping}
+                placeholder="https://"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Description</Form.Label>
+              <Form.Control as = "textarea" rows="5"
                 type="input"
                 name="description"
                 onChange={handleTyping}
@@ -116,17 +130,43 @@ function Add(props) {
                 placeholder=""
               />
             </Form.Group>
-            <p style={redStyle}> * required</p>
-            {/* Button must be inside form element to trigger validation */}
-            <Button variant="primary" type="submit">
-              Add to The Dashboard!
-              </Button>
-              <span> </span>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-              </Button>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Contact Email</Form.Label>
+              <Form.Control
+                type="input"
+                name="contactEmail"
+                onChange={handleTyping}
+                placeholder=""
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Cover Letter</Form.Label>
+              <Form.Control
+                type="input"
+                name="coverLetter"
+                onChange={handleTyping}
+                placeholder="https://"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                type="input"
+                name="resume"
+                onChange={handleTyping}
+                placeholder="https://"
+              />
+            </Form.Group>
           </Form>
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSave}>
+            Add to The Dashboard
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
