@@ -16,7 +16,7 @@ import config from "./firebase-config";
 
 if (process.env.NODE_ENV === "production") {
   console.log("production");
-  console.log(process.env.FIREBASE_CONFIG);
+  console.log(process.env.FIREBASE_APIKEY);
 } else {
   console.log("not production");
 }
