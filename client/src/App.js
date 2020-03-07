@@ -42,11 +42,7 @@ function App() {
         <div>
           <Router>
             <Route exact path="/" component={Landing} />
-            <Route
-              exact
-              path="/dashboard"
-              render={props => <Dashboard {...props} userID={user.user.uid} />}
-            />
+            <Route exact path="/materials" component={Materials} />
             <IfFirebaseAuthed>
               {user => {
                 return (
@@ -54,7 +50,13 @@ function App() {
                     {" "}
                     {/* <Dashboard userID={user.user.uid} /> */}
                     <div>
-                      <Route exact path="/materials" component={Materials} />
+                      <Route
+                        exact
+                        path="/dashboard"
+                        render={props => (
+                          <Dashboard {...props} userID={user.user.uid} />
+                        )}
+                      />
                     </div>
                   </div>
                 );
