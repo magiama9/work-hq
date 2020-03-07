@@ -60,12 +60,10 @@ function Landing() {
             <Button
               onClick={() => {
                 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                firebase
-                  .auth()
-                  .signInWithPopup(googleAuthProvider)
-                  .then(() => {
-                    window.location.replace("http://localhost:3000/dashboard");
-                  });
+                firebase.auth().signInWithPopup(googleAuthProvider);
+                // .then(() => {
+                //   window.location.replace("http://localhost:3000/dashboard");
+                // });
               }}
             >
               Sign In with Google

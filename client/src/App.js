@@ -42,6 +42,7 @@ function App() {
         <div>
           <Router>
             <Route exact path="/" component={Landing} />
+
             <IfFirebaseAuthed>
               {user => {
                 return (
