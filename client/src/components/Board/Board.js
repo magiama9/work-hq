@@ -84,6 +84,10 @@ const classes = {
     paddingLeft: "0 !important",
     paddingRight: "0 !important"
   },
+  activeLink: {
+    backgroundColor: "#18C6B3",
+    color: "white"
+  },
   column: {
     // minWidth: 180,
     // width: "14vw",
@@ -160,7 +164,7 @@ const classes = {
   }
 };
 const Board = props => {
-  const [state, setState] = useState({ newApplications: [], tasks: [] });
+  const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -248,45 +252,20 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={state} setState={setState} style={classes.headerBtn}/>
+          <Form state={state} setState={setState}/>
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2}>
+        <Col md={2} >
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">Apps</Nav.Link>
-            <Nav.Link href="/materials">Materials</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/materials">MATERIALS</Nav.Link>
           </Nav>
-          <div>
-            {/* <Button
-              onClick={() => {
-                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithPopup(googleAuthProvider);
-              }}
-            >
-              Sign In with Google
-            </Button> */}
-            {/* <Button
-              data-testid="signin-anon"
-              onClick={() => {
-                firebase.auth().signInAnonymously();
-              }}
-            >
-              Sign In Anonymously
-            </Button> */}
-            {/* <Button
-              onClick={() => {
-                firebase.auth().signOut();
-              }}
-            >
-              Sign Out
-            </Button> */}
-          </div>
         </Col>
-        <Col md={10} style={classes.noPad}>
+        <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>
