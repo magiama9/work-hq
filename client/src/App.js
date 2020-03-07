@@ -16,7 +16,11 @@ import config from "./firebase-config";
 
 if (process.env.NODE_ENV === "production") {
   console.log("production");
-  console.log(process.env.FIREBASE_APIKEY);
+  if (process.env.FIREBASE_TEST === "a") {
+    console.log("worked");
+  } else {
+    console.log("failed");
+  }
 } else {
   console.log("not production");
 }
