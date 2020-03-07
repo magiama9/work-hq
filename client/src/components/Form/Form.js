@@ -5,6 +5,9 @@ import Form from "react-bootstrap/Form";
 
 // Function to add new application
 function Add(props) {
+  const [validated, setValidated] = useState(false)
+  const [formMessage, setFormMessage] = useState("")
+
   // console.log("props in form", props) // for testing//
   const [show, setShow] = useState(false);
   const [formState, setFormState] = useState({
@@ -23,17 +26,32 @@ function Add(props) {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  // For handling the save to move over to board
-  const handleSave = () => {
-    // To do: onClick api call to save to database
-    var oldState = props.state;
-    oldState.newApplications.push(formState);
-    props.setState({
-      ...props.state,
-      newApplications: oldState.newApplications
-    });
-    handleClose();
+  const redStyle = {
+    color: 'red',
   };
+
+  // For handling the save to move over to board
+  const handleSave = (event) => {
+    const form = event.currentTarget
+    // console.log("submit") // for testing
+    if (form.checkValidity() === false) {
+      // console.log("bad form") // for testing
+      setFormMessage("Please fill out the required fields")
+      event.preventDefault();
+      event.stopPropagation();
+
+    } else {
+      var oldState = props.state;
+      oldState.newApplications.push(formState);
+      props.setState({
+        ...props.state,
+        newApplications: oldState.newApplications
+      });
+      setValidated(true);
+      handleClose();
+    }
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -48,26 +66,34 @@ function Add(props) {
         </Modal.Header>
         <Modal.Body>
           Please fill out the information below!
-          <Form>
+          <Form noValidate validated={validated} onSubmit={handleSave}>
+            {/* Message when required fields are not filled out  */}
+            {formMessage.length > 0 && (
+              <p style={redStyle}>{formMessage}</p>
+            )}
+
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Title <span style={redStyle}>*</span></Form.Label>
               <Form.Control
                 type="input"
                 name="title"
                 onChange={handleTyping}
                 placeholder=""
+                required="required"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Company Name</Form.Label>
+              <Form.Label>Company Name <span style={redStyle}>*</span></Form.Label>
               <Form.Control
                 type="input"
                 name="company"
                 onChange={handleTyping}
                 placeholder=""
+                required="required"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
+
               <Form.Label>Link</Form.Label>
               <Form.Control
                 type="input"
@@ -83,6 +109,7 @@ function Add(props) {
                 name="description"
                 onChange={handleTyping}
                 placeholder=""
+                required="required"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
