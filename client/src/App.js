@@ -48,12 +48,24 @@ const classes = {
     borderRadius: "20px",
     position: "block"
   },
-  
+  h1: {
+    fontFamily: "'Fredoka One', sans-serif",
+    fontSize: "5em",
+    color: "white",
+    textAlign: "center",
+    marginTop: "100px",
+    marginBottom: "40px"
+  }
 }
 
 function App() {
   return (
     <Container fluid={true} style={classes.background}>
+      <Row>
+        <Col md={4}></Col>
+        <Col md={4}><h1 style={classes.h1} >Work HQ</h1></Col>
+        <Col md={4}></Col>
+      </Row>
       <Row>
         <Col md={4}></Col>
         <Col md={4}>
