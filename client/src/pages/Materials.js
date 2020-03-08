@@ -20,6 +20,7 @@ import "firebase/auth";
 
 const Materials = props => {
   const [state, setState] = useState({resLinks: [], covLinks: [], otherLinks: []});
+  const userID = props.userID;
   const [resLinks, setResLinks] = useState([]);
 
   const classes = {
@@ -95,17 +96,27 @@ const Materials = props => {
 
   //load materials
   const loadMats = userID => {
-    getMats.fetchAll(userID).then(res => {
-      console.log(res);
+    getMats.fetchAll(userID)
+    .then(res => res.json() )
+    .then(res => {
       setResLinks(res);
-      console.log(resLinks);
+      setState({ resLinks: res })
+      console.log(`resLinks: ${resLinks}`);
+      console.log("yo");
+      //TODO THROWING ERR 431 when proxy port 3000
+      //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
     }).catch(err => console.log(err))
-
   };
 
   //on component mount, load materials
   useEffect(() => {
-    loadMats(props.userID);
+    loadMats(userID);
+    var newState = resLinks;
+    for(var i = 0; i< state.resLinks.length; i++) {
+      newState.push(state.resLinks[i]);
+      loadMats(userID);
+      console.log(state.resLinks);
+    }
   }, []);
 
   const addLink = event => {

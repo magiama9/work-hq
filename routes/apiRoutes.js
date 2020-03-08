@@ -37,17 +37,18 @@ router.put("/jobs/:id", (req, res) => {
 
 router.get("/materials/:uid", (req, res) => {
   db.Jobs.find({ userID: req.params.uid })
-    .distinct("resume")
+    // .distinct("resume")
     .then((err, response) => {
       if (err) console.error(err);
+      //CONSOLE LOGGING JOBS
       console.log(response);
     });
-    db.Jobs.find({ userID: req.params.uid })
-    .distinct("coverLetter")
-    .then((err, response) => {
-      if (err) console.error(err);
-      console.log(response);
-    });
+    // db.Jobs.find({ userID: req.params.uid })
+    // .distinct("coverLetter")
+    // .then((err, response) => {
+    //   if (err) console.error(err);
+    //   // console.log(response);
+    // });
 });
 
 module.exports = router;

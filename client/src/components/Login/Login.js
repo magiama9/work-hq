@@ -1,10 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Dashboard from "../../pages/Dashboard";
-import Materials from "../../pages/Materials";
 import firebase from "firebase/app";
 import {
   FirebaseAuthProvider,
@@ -58,7 +55,7 @@ function Login() {
           {/* Login authentication */}
           <FirebaseAuthProvider {...config} firebase={firebase}>
             <div className={classes.btnDiv}>
-              <button block
+              <button block={true}
                 style={classes.btn}
                 onClick={() => {
                   const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
@@ -71,7 +68,7 @@ function Login() {
               >
                 Sign In with Google
               </button>
-              <button block
+              <button block={true}
                 style={classes.btn}
                 data-testid="signin-anon"
                 onClick={() => {
@@ -84,7 +81,7 @@ function Login() {
               >
                 Sign In Anonymously
               </button>
-              <button block
+              <button block={true}
                 style={classes.btn}
                 onClick={() => {
                   firebase.auth().signOut();
