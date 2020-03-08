@@ -74,6 +74,7 @@ router.put("/todos/:id", (req, res) => {
       console.error(err);
     });
   res.send("complete");
+});
 router.get("/materials/:uid", (req, res) => {
   db.Jobs.find({ userID: req.params.uid })
     .distinct("resume")
@@ -88,5 +89,7 @@ router.get("/materials/:uid", (req, res) => {
       console.log(response);
     });
 });
+
+
 
 module.exports = router;
