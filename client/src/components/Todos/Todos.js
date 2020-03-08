@@ -207,7 +207,7 @@ const Todos = props => {
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashTodos" style={classes.activeLink}>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>
               APPLICATIONS
             </Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
