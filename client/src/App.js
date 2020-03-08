@@ -37,7 +37,9 @@ function App() {
                         <Dashboard {...props} userID={user.user.uid} />
                       )}
                     />
-                    <Route exact path="/materials" component={Materials} />
+                    <Route exact path="/materials" render={props => (
+                      <Materials {...props} userID={user.user.uid} />
+                    )}/>
                   </div>
                 </div>
               );
