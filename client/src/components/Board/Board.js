@@ -297,6 +297,7 @@ const Board = props => {
                               resume={item.resume}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
+                              changeTaskStatus= {changeTaskStatus}
                             >
                               <div style={classes.item}>
                                 {item.title} - {item.company}
