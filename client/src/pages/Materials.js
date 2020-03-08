@@ -92,10 +92,8 @@ const Materials = props => {
       marginTop: "20px"
     }
   };
-  useEffect(() => {
-    loadMats(props.userID);
-  }, []);
 
+  //load materials
   const loadMats = userID => {
     getMats.fetchAll(userID).then(res => {
       console.log(res);
@@ -103,6 +101,13 @@ const Materials = props => {
     })
 
   };
+
+  //on component mount, load materials
+  useEffect(() => {
+    //TODO returning undefined
+    console.log(props.userID);
+    loadMats(props.userID);
+  }, []);
 
   const addLink = event => {
     event.preventDefault();
