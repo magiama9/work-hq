@@ -207,10 +207,11 @@ const Todos = props => {
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>
-              APPLICATIONS
-            </Nav.Link>
+            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/todos" style={classes.activeLink}>
+              TODO
+            </Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
@@ -240,16 +241,9 @@ const Todos = props => {
                               id={item.jobID}
                               todo={item.todo}
                               description={item.description}
-                              company={item.company}
-                              salary={item.salary}
-                              url={item.href}
-                              resume={item.resume}
-                              coverLetter={item.coverLetter}
-                              contactEmail={item.contactEmail}
+                              changeTaskStatus={changeTaskStatus}
                             >
-                              <div style={classes.item}>
-                                {item.todo}
-                              </div>
+                              <div style={classes.item}>{item.todo}</div>
                             </TodosItem>
                           ))}
                       </div>
