@@ -39,7 +39,7 @@ const Materials = props => {
       backgroundColor: "#F69346",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
-      textAlign: "center",
+      textAlign: "center"
     },
     covers: {
       width: "100%",
@@ -49,7 +49,7 @@ const Materials = props => {
       backgroundColor: "#FFBF13",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
-      textAlign: "center",
+      textAlign: "center"
     },
     input: {
       margin: "10px 10px 30px 10px"
@@ -57,16 +57,16 @@ const Materials = props => {
     linksCol: {
       marginLeft: "20px"
     }
-  }
+  };
   useEffect(() => {
     loadMats();
-  }, [])
+  }, []);
 
   const loadMats = () => {
     // getMat.getLinks().then(res => {
     //   console.log(res);
     // })
-  }
+  };
 
   // const handleTyping = event => {
   //   const { name, value } = event.target;
@@ -83,12 +83,12 @@ const Materials = props => {
   //   //TODO clear input field
   // }
 
-  const addLink = (event) => {
+  const addLink = event => {
     event.preventDefault();
     const { name, value } = event.target;
     //TODO add input into db associated with user id, render list
     //get input with name match
-    switch(name) {
+    switch (name) {
       case "resume":
         setResLinks(...resLinks, value);
         break;
@@ -106,8 +106,7 @@ const Materials = props => {
     // })
     //   .then(res => loadMats())
     //   .catch(err => console.log(err));
-
-  }
+  };
 
   return (
     <>
@@ -161,11 +160,17 @@ const Materials = props => {
               placeholder="https://"
               aria-label="resumeLink"
               aria-describedby="basic-addon2"
-              ref="link"
+              // ref="link"
               // onChange={handleTyping}
             />
             <InputGroup.Append>
-              <Button variant="outline-secondary" name="resume" onClick={addLink}>Add Link</Button>
+              <Button
+                variant="outline-secondary"
+                name="resume"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
             </InputGroup.Append>
           </InputGroup>
         </Col>
@@ -177,56 +182,78 @@ const Materials = props => {
               aria-label="coverLink"
               aria-describedby="basic-addon2"
               // onChange={handleTyping}
-              ref="link"
+              // ref="link"
             />
             <InputGroup.Append>
-              <Button variant="outline-secondary" name="cover" onClick={addLink}>Add Link</Button>
+              <Button
+                variant="outline-secondary"
+                name="cover"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
             </InputGroup.Append>
           </InputGroup>
         </Col>
         <Col md={3} style={classes.linksCol}>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping}
-            ref="link"
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
-          
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping}
+              // ref="link"
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping}
+              // ref="link"
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping}
+              // ref="link"
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
         </Col>
       </Row>
     </>
-  )
-}
-
+  );
+};
 
 export default Materials;
