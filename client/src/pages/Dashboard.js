@@ -7,7 +7,7 @@ function Home(props) {
 
   return (
     <div>
-      <Board state={state} userID={props.userID} />
+      <Board state={state} setState={setState} userID={props.userID} />
     </div>
   );
 }
