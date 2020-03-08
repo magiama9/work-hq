@@ -35,7 +35,7 @@ router.put("/jobs/:id", (req, res) => {
   res.send("complete");
 });
 
-router.get("/materials:uid", (req, res) => {
+router.get("/materials/:uid", (req, res) => {
   db.Jobs.find({ userID: req.params.uid })
     .distinct("resume")
     .then((err, response) => {
