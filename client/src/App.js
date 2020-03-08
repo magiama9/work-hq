@@ -1,5 +1,8 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Materials from "./pages/Materials";
 import Landing from "./pages/Landing";
@@ -28,51 +31,11 @@ if (process.env.NODE_ENV === "production") {
 function App() {
   return (
     <>
-      {/* Login authentication */}
-      <FirebaseAuthProvider {...config} firebase={firebase}>
-        {/* <FirebaseAuthConsumer>
-            {({ isSignedIn, user, providerId }) => {
-              return (
-                <pre style={{ height: 300, overflow: "auto" }}>
-                  {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
-                </pre>
-              );
-            }}
-          </FirebaseAuthConsumer> */}
-        <div>
-          <Router>
-            <Route exact path="/" component={Landing} />
-
-            <IfFirebaseAuthed>
-              {user => {
-                return (
-                  <div>
-                    {" "}
-                    {/* <Dashboard userID={user.user.uid} /> */}
-                    <div>
-                      <Route
-                        exact
-                        path="/dashboard"
-                        render={props => (
-                          <Dashboard {...props} userID={user.user.uid} />
-                        )}
-                      />
-                      <Route exact path="/materials" component={Materials} />
-                    </div>
-                  </div>
-                );
-              }}
-            </IfFirebaseAuthed>
-          </Router>
-          <IfFirebaseAuthedAnd
-            filter={({ providerId }) => providerId !== "anonymous"}
-          >
-            {({ providerId }) => {
-              return <div>You are authenticated with {providerId}</div>;
-            }}
-          </IfFirebaseAuthedAnd>
-        </div>
-      </FirebaseAuthProvider>
+      <Router>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/materials" component={Materials} />
+      </Router>
     </>
   );
 }

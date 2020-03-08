@@ -12,12 +12,13 @@ import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
-// import {
-//   FirebaseAuthProvider,
-//   FirebaseAuthConsumer,
-//   IfFirebaseAuthed,
-//   IfFirebaseAuthedAnd
-// } from "@react-firebase/auth";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+  IfFirebaseAuthed,
+  IfFirebaseAuthedAnd
+} from "@react-firebase/auth";
 import "firebase/auth";
 
 // The different columns
@@ -202,37 +203,68 @@ const Board = props => {
         <Col style={classes.header}>
           <h1>Applications</h1>
         </Col>
+        <NavDropdown title="User" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.1">
+          <Button
+            onClick={() => {
+              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+              firebase.auth().signInWithPopup(googleAuthProvider);
+            }}
+          >
+            Sign In with Google
+          </Button>
+        </NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.2">
+          <Button
+            data-testid="signin-anon"
+            onClick={() => {
+              firebase.auth().signInAnonymously();
+            }}
+          >
+            Sign In Anonymously
+          </Button>
+        </NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.3">
+          <Button
+            onClick={() => {
+              firebase.auth().signOut();
+            }}
+          >
+            Sign Out
+          </Button>
+        </NavDropdown.Item>
+      </NavDropdown>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/">Apps</Nav.Link>
+            <Nav.Link href="/dashboard">Apps</Nav.Link>
             <Nav.Link href="/materials">Materials</Nav.Link>
           </Nav>
           <div>
-            <Button
+            {/* <Button
               onClick={() => {
                 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().signInWithPopup(googleAuthProvider);
               }}
             >
               Sign In with Google
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               data-testid="signin-anon"
               onClick={() => {
                 firebase.auth().signInAnonymously();
               }}
             >
               Sign In Anonymously
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               onClick={() => {
                 firebase.auth().signOut();
               }}
             >
               Sign Out
-            </Button>
+            </Button> */}
           </div>
         </Col>
         <Col md={10} style={classes.noPad}>

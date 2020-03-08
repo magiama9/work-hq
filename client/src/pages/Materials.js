@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import firebase from "firebase/app";
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+  IfFirebaseAuthed,
+  IfFirebaseAuthedAnd
+} from "@react-firebase/auth";
+import "firebase/auth";
+// import getMat from "../utils/materialsFetch";
+// import postMat from "../utils/materialsPost";
 
-function Materials() {
+const Materials = props => {
   const [resLinks, setResLinks] = useState([]);
   const [covLinks, setCovLinks] = useState([]);
+  const [othLinks, setOthLinks] = useState([]);
+
   const classes = {
     header: {
       background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
@@ -45,19 +58,55 @@ function Materials() {
       marginLeft: "20px"
     }
   }
+  useEffect(() => {
+    loadMats();
+  }, [])
 
-  const addRes = (event) => {
-    event.preventDefault();
-    //TODO add input into db associated with user id, render list
-    const { name, value } = event.target;
-    setResLinks({...resLinks, [name]: value});
+  const loadMats = () => {
+    // getMat.getLinks().then(res => {
+    //   console.log(res);
+    // })
   }
 
-  const addCov = (event) => {
+  // const handleTyping = event => {
+  //   const { name, value } = event.target;
+  //   // switch(name) {
+  //   //   case "resume":
+  //   //     setResLinks(...resLinks, value);
+  //   //     break;
+  //   //   case "cover":
+  //   //     setCovLinks(...covLinks, value);
+  //   //     break;
+  //   //   default:
+  //   //     setOthLinks(...othLinks, value);
+  //   //     break;
+  //   //TODO clear input field
+  // }
+
+  const addLink = (event) => {
     event.preventDefault();
-    //TODO add input into db associated with user id, render list
     const { name, value } = event.target;
-    setCovLinks({...covLinks, [name]: value});
+    //TODO add input into db associated with user id, render list
+    //get input with name match
+    switch(name) {
+      case "resume":
+        setResLinks(...resLinks, value);
+        break;
+      case "cover":
+        setCovLinks(...covLinks, value);
+        break;
+      default:
+        setOthLinks(...othLinks, value);
+        break;
+    }
+    console.log(resLinks, covLinks, othLinks);
+    // postMat.addRes({
+    //   type: links.name,
+    //   link: links.value
+    // })
+    //   .then(res => loadMats())
+    //   .catch(err => console.log(err));
+
   }
 
   return (
@@ -65,67 +114,114 @@ function Materials() {
       <Row>
         <Col style={classes.header}>
           <h1>Materials</h1>
+          <NavDropdown title="User" id="nav-dropdown">
+            <NavDropdown.Item eventKey="4.1">
+              <Button
+                onClick={() => {
+                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                  firebase.auth().signInWithPopup(googleAuthProvider);
+                }}
+              >
+                Sign In with Google
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.2">
+              <Button
+                data-testid="signin-anon"
+                onClick={() => {
+                  firebase.auth().signInAnonymously();
+                }}
+              >
+                Sign In Anonymously
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.3">
+              <Button
+                onClick={() => {
+                  firebase.auth().signOut();
+                }}
+              >
+                Sign Out
+              </Button>
+            </NavDropdown.Item>
+          </NavDropdown>
         </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/">Apps</Nav.Link>
+            <Nav.Link href="/dashboard">Apps</Nav.Link>
             <Nav.Link href="/materials">Materials</Nav.Link>
           </Nav>
         </Col>
         <Col md={3}>
           <h2 style={classes.resumes}>Resumes</h2>
           <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-            <Button onClick="addRes">Add Link</Button>
-            </InputGroup.Prepend>
             <FormControl
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
+              placeholder="https://"
+              aria-label="resumeLink"
+              aria-describedby="basic-addon2"
+              ref="link"
+              // onChange={handleTyping}
             />
+            <InputGroup.Append>
+              <Button variant="outline-secondary" name="resume" onClick={addLink}>Add Link</Button>
+            </InputGroup.Append>
           </InputGroup>
         </Col>
         <Col md={3}>
           <h2 style={classes.covers}>Cover Letters</h2>
-          <InputGroup className="mb-3" style={classes.input}>
-            <InputGroup.Prepend>
-            <Button onClick="addCov">Add Link</Button>
-            </InputGroup.Prepend>
+          <InputGroup className="mb-3">
             <FormControl
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
+              placeholder="https://"
+              aria-label="coverLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping}
+              ref="link"
             />
+            <InputGroup.Append>
+              <Button variant="outline-secondary" name="cover" onClick={addLink}>Add Link</Button>
+            </InputGroup.Append>
           </InputGroup>
         </Col>
         <Col md={3} style={classes.linksCol}>
-          <InputGroup className="mb-3" style={classes.input}>
-              <InputGroup.Prepend>
-              <Button onClick="addCov">Website</Button>
-              </InputGroup.Prepend>
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-              />
-            </InputGroup>
-            <InputGroup className="mb-3" style={classes.input}>
-            <InputGroup.Prepend>
-            <Button onClick="addCov">LinkedIn</Button>
-            </InputGroup.Prepend>
-            <FormControl
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
-            />
-          </InputGroup>
-          <InputGroup className="mb-3" style={classes.input}>
-            <InputGroup.Prepend>
-            <Button onClick="addCov">Github</Button>
-            </InputGroup.Prepend>
-            <FormControl
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
-            />
-          </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping}
+            ref="link"
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping}
+            ref="link"
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping}
+            ref="link"
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
+          
         </Col>
       </Row>
     </>
