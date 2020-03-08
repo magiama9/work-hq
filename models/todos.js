@@ -2,22 +2,17 @@ const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema({
   // Job title
-  title: {
+  todo: {
     type: String,
     required: true
   },
-  company: {
-    type: String,
-    required: true
-  },
-  // Company Name
   description: {
     type: String,
     default: ""
   },
   status: {
     type: String,
-    default: "interested"
+    default: "todo"
   },
   todoID: {
     type: String

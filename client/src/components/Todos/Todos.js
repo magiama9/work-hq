@@ -5,7 +5,7 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import TodosColumn from "./TodosColumn";
 import TodosItem from "./TodosItem";
-import Form from "../Form";
+import TodoForm from "../TodoForm";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -198,7 +198,7 @@ const Todos = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState} />
+          <TodoForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
@@ -238,7 +238,7 @@ const Todos = props => {
                             <TodosItem
                               key={item.jobID}
                               id={item.jobID}
-                              title={item.title}
+                              todo={item.todo}
                               description={item.description}
                               company={item.company}
                               salary={item.salary}
@@ -248,7 +248,7 @@ const Todos = props => {
                               contactEmail={item.contactEmail}
                             >
                               <div style={classes.item}>
-                                {item.title} - {item.company}
+                                {item.todo}
                               </div>
                             </TodosItem>
                           ))}
