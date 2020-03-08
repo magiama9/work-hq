@@ -98,14 +98,13 @@ const Materials = props => {
     getMats.fetchAll(userID).then(res => {
       console.log(res);
       setResLinks(res);
-    })
+      console.log(resLinks);
+    }).catch(err => console.log(err))
 
   };
 
   //on component mount, load materials
   useEffect(() => {
-    //TODO returning undefined
-    console.log(props.userID);
     loadMats(props.userID);
   }, []);
 
