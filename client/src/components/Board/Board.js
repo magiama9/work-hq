@@ -164,7 +164,6 @@ const classes = {
   }
 };
 const Board = props => {
-  const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -252,7 +251,7 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={state} setState={setState}/>
+          <Form state={props.state} setState={props.setState}/>
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>

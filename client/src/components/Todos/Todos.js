@@ -112,7 +112,6 @@ const classes = {
 };
 
 const Todos = props => {
-  const [state, setState] = useState({ newApplications: [], tasks: [] });
   const [tasks, setTaskStatus] = useState([]);
   const getAllTodos = userID => {
     todoFetch.fetchAll(userID).then(res => {
@@ -199,7 +198,7 @@ const Todos = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={state} setState={setState} />
+          <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
@@ -218,10 +217,10 @@ const Todos = props => {
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>
-            <section style={classes.Todos}>
+            <section style={classes.todos}>
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
-                <Col key={channel} md={4}>
+                <Col key={channel} md={3}>
                   <TodosColumn
                     key={channel}
                     status={channel}

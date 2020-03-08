@@ -7,7 +7,7 @@ function TodoPage(props) {
 
   return (
     <div>
-      <Todos state={state} userID={props.userID} />
+      <Todos state={state} setState={setState} userID={props.userID} />
     </div>
   );
 }
