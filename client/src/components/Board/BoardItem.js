@@ -6,13 +6,14 @@ import Button from "react-bootstrap/Button";
 
 // This should be split into a separate component
 // Defines each item on the board
-const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail }, props) => {
+const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail, changeTaskStatus }, props) => {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
   const [formState, setFormState] = useState({description: ""})
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   const handleTyping = e => {
     console.log("typing", e.target.value, e.target.name) // for testing //
@@ -32,6 +33,13 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
   const redStyle = {
     color: 'red',
   };
+
+  // Delete
+  const handleDelete = (event) => {
+    event.preventDefault()
+    changeTaskStatus(id, "deleted")
+    console.log(id)
+  }
 
   // For handling the save to move over to board
   const handleSave = (event) => {
@@ -54,6 +62,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
       handleClose();
     }
   };
+
 
 
   //make transparent while dragging
@@ -93,7 +102,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
               Save
               </Button>
               <span> </span>
-              <Button variant="danger" type="submit">
+              <Button variant="danger" onClick={handleDelete}>
               Delete
               </Button>
               <span> </span>
@@ -102,14 +111,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
               </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-        <Button variant="secondary">
-            Edit
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
+
       </Modal>
     </>
   );
