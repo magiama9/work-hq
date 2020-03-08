@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import getMats from "../utils/getMats";
 import firebase from "firebase/app";
 import {
   FirebaseAuthProvider,
@@ -18,9 +19,8 @@ import "firebase/auth";
 // import postMat from "../utils/materialsPost";
 
 const Materials = props => {
+  const [state, setState] = useState({resLinks: [], covLinks: [], otherLinks: []});
   const [resLinks, setResLinks] = useState([]);
-  const [covLinks, setCovLinks] = useState([]);
-  const [othLinks, setOthLinks] = useState([]);
 
   const classes = {
     matBoard: {
@@ -92,48 +92,42 @@ const Materials = props => {
       marginTop: "20px"
     }
   };
-  useEffect(() => {
-    loadMats();
-  }, []);
 
-  const loadMats = () => {
-    // getMat.getLinks().then(res => {
-    //   console.log(res);
-    // })
+  //load materials
+  const loadMats = userID => {
+    getMats.fetchAll(userID).then(res => {
+      console.log(res);
+      setResLinks(res);
+    })
+
   };
 
-  // const handleTyping = event => {
-  //   const { name, value } = event.target;
-  //   // switch(name) {
-  //   //   case "resume":
-  //   //     setResLinks(...resLinks, value);
-  //   //     break;
-  //   //   case "cover":
-  //   //     setCovLinks(...covLinks, value);
-  //   //     break;
-  //   //   default:
-  //   //     setOthLinks(...othLinks, value);
-  //   //     break;
-  //   //TODO clear input field
-  // }
+  //on component mount, load materials
+  useEffect(() => {
+    //TODO returning undefined
+    console.log(props.userID);
+    loadMats(props.userID);
+  }, []);
 
   const addLink = event => {
     event.preventDefault();
     const { name, value } = event.target;
     //TODO add input into db associated with user id, render list
     //get input with name match
-    switch (name) {
-      case "resume":
-        setResLinks(...resLinks, value);
-        break;
-      case "cover":
-        setCovLinks(...covLinks, value);
-        break;
-      default:
-        setOthLinks(...othLinks, value);
-        break;
-    }
-    console.log(resLinks, covLinks, othLinks);
+
+    // switch (name) {
+    //   case "resume":
+    //     setResLinks(...resLinks, value);
+    //     break;
+    //   case "cover":
+    //     setCovLinks(...covLinks, value);
+    //     break;
+    //   default:
+    //     setOthLinks(...othLinks, value);
+    //     break;
+    // }
+    // console.log(resLinks, covLinks, othLinks);
+
     // postMat.addRes({
     //   type: links.name,
     //   link: links.value
@@ -208,6 +202,13 @@ const Materials = props => {
               </Button>
             </InputGroup.Append>
           </InputGroup>
+          {/* display links */}
+          <div>
+            {resLinks.map(link => (
+              <p>{link}</p>
+            )
+            )}
+          </div>
         </Col>
         <Col md={3} style={classes.linksCol}>
           <h2 style={classes.covers}>Cover Letters</h2>
