@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 // This should be split into a separate component
 // Defines each item on the Todos
-const TodosItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail }, props) => {
+const TodosItem = ({ id, children, todo, description }, props) => {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
@@ -59,7 +59,6 @@ const TodosItem = ({ id, children, title, company, description, url, resume, cov
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
   drag(ref);
-  console.log(title)
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
@@ -69,7 +68,7 @@ const TodosItem = ({ id, children, title, company, description, url, resume, cov
       {/* popup on click */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{title} - {company}</Modal.Title>
+          <Modal.Title>{todo}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {description}
