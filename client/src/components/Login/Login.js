@@ -64,7 +64,7 @@ function Login() {
                   const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
                   firebase.auth().signInWithPopup(googleAuthProvider)
                     .then(() => {
-                      window.location.replace("http://localhost:3000/dashboard")
+                      window.location.replace("/dashboard")
                     })
                     .catch(error => console.log(error));
                 }}
@@ -77,7 +77,7 @@ function Login() {
                 onClick={() => {
                   firebase.auth().signInAnonymously()
                     .then(() => {
-                      window.location.replace("http://localhost:3000/dashboard")
+                      window.location.replace("/dashboard")
                     })
                     .catch(error => console.log(error))
                 }}
