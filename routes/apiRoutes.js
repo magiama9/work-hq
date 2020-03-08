@@ -59,6 +59,7 @@ router.put("/jobs/:id", (req, res) => {
   res.send("complete");
 });
 
+
 // Put route for updating todos in the dashboard
 router.put("/todos/:id", (req, res) => {
   console.log(req.body);
@@ -73,6 +74,19 @@ router.put("/todos/:id", (req, res) => {
       console.error(err);
     });
   res.send("complete");
+router.get("/materials/:uid", (req, res) => {
+  db.Jobs.find({ userID: req.params.uid })
+    .distinct("resume")
+    .then((err, response) => {
+      if (err) console.error(err);
+      console.log(response);
+    });
+    db.Jobs.find({ userID: req.params.uid })
+    .distinct("coverLetter")
+    .then((err, response) => {
+      if (err) console.error(err);
+      console.log(response);
+    });
 });
 
 module.exports = router;

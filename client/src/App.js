@@ -38,7 +38,6 @@ function App() {
                         <Dashboard {...props} userID={user.user.uid} />
                       )}
                     />
-                    <Route exact path="/materials" component={Materials} />
                     <Route
                       exact
                       path="/todos"
@@ -46,6 +45,10 @@ function App() {
                         <Todos {...props} userID={user.user.uid} />
                       )}
                     />
+
+                    <Route exact path="/materials" render={props => (
+                      <Materials {...props} userID={user.user.uid} />
+                    )}/>
                   </div>
                 </div>
               );
@@ -56,6 +59,7 @@ function App() {
           <IfFirebaseUnAuthed>
             <Route exact path="/dashboard" component={Landing} />
             <Route exact path="/materials" component={Landing} />
+              <Route exact path="/todos" component={Landing} />
           </IfFirebaseUnAuthed>
         </Router>
       </FirebaseAuthProvider>
