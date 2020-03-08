@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Landing from "./pages/Landing";
@@ -9,32 +8,49 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
 import {
-  FirebaseAuthProvider,
   IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
+  IfFirebaseUnAuthed,
+  FirebaseAuthProvider
 } from "@react-firebase/auth";
 import "firebase/auth";
 import config from "./firebase-config";
 
-if (process.env.NODE_ENV === "production") {
-  console.log("production");
-  if (process.env.FIREBASE_TEST === "a") {
-    console.log("worked");
-  } else {
-    console.log("failed");
-  }
-} else {
-  console.log("not production");
-}
-
 function App() {
   return (
     <>
-      <Router>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/materials" component={Materials} />
-      </Router>
+      <FirebaseAuthProvider {...config} firebase={firebase}>
+        <Router>
+          <Route exact path="/" component={Landing} />
+
+          {/* Displays the user's correct pages if they are authenticated */}
+          {/* TODO: Pass the user to the materials page and render it properly */}
+          <IfFirebaseAuthed>
+            {user => {
+              return (
+                <div>
+                  {" "}
+                  <div>
+                    <Route
+                      exact
+                      path="/dashboard"
+                      render={props => (
+                        <Dashboard {...props} userID={user.user.uid} />
+                      )}
+                    />
+                    <Route exact path="/materials" component={Materials} />
+                  </div>
+                </div>
+              );
+            }}
+          </IfFirebaseAuthed>
+
+          {/* If the user isn't authenticated, it displays the landing page */}
+          <IfFirebaseUnAuthed>
+            <Route exact path="/dashboard" component={Landing} />
+            <Route exact path="/materials" component={Landing} />
+          </IfFirebaseUnAuthed>
+        </Router>
+      </FirebaseAuthProvider>
     </>
   );
 }
