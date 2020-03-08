@@ -1,3 +1,3 @@
-import Board from "./Board";
+import Todos from "./Todos";
 
-export default Board;
+export default Todos;

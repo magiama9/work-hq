@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Materials from "./pages/Materials";
+import Todos from "./pages/Todos";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
@@ -38,6 +39,13 @@ function App() {
                       )}
                     />
                     <Route exact path="/materials" component={Materials} />
+                    <Route
+                      exact
+                      path="/todos"
+                      render={props => (
+                        <Todos {...props} userID={user.user.uid} />
+                      )}
+                    />
                   </div>
                 </div>
               );

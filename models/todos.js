@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema({
   // Job title
-  todoItem: {
+  title: {
+    type: String,
+    required: true
+  },
+  company: {
     type: String,
     required: true
   },

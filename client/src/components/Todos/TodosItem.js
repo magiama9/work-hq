@@ -5,8 +5,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 // This should be split into a separate component
-// Defines each item on the board
-const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail }, props) => {
+// Defines each item on the Todos
+const TodosItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail }, props) => {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
@@ -33,7 +33,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     color: 'red',
   };
 
-  // For handling the save to move over to board
+  // For handling the save to move over to Todos
   const handleSave = (event) => {
     const form = event.currentTarget
     // console.log("submit") // for testing
@@ -116,4 +116,4 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
 
 };
 
-export default BoardItem;
+export default TodosItem;

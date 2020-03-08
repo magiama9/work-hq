@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export default {
-  addTodo: function(newJob) {
-    console.log(newJob);
-    return axios.post("api/todos", newJob);
+  addTodo: function(newTodo) {
+    console.log(newTodo);
+    return axios.post("api/todos", newTodo);
   },
 
   updateTodo: function(todoID, updatedTodo) {
-    console.log(updatedJob);
+    console.log(updatedTodo);
     return axios.put(`api/todos/${todoID}`, updatedTodo);
   }
 };

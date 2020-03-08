@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Board from "../components/Board";
 
-function Home(props) {
+function Dashboard(props) {
   const [state, setState] = useState({ newApplications: [], tasks: [] });
   const userID = props.userID;
 
@@ -12,4 +12,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default Dashboard;
