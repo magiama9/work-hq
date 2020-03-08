@@ -34,6 +34,24 @@ const jobSchema = new mongoose.Schema({
     default: ""
   },
 
+  //contact Email
+  contactEmail: {
+    type: String,
+    default: ""
+  },
+
+  //cover letter link
+  coverLetter: {
+    type: String,
+    default: ""
+  },
+
+  //resume link
+  resume: {
+    type: String,
+    default: ""
+  },
+
   // Job status -- should match status that is used in react front-end
   status: {
     type: String,
