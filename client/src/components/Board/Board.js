@@ -5,6 +5,7 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
+import Form from "../Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -57,7 +58,19 @@ const classes = {
     fontFamily: "'Nunito', sans-serif",
     textAlign: "center",
     paddingTop: "10px",
-    paddingBottom: "10px"
+    paddingBottom: "10px",
+    paddingRight: "180px"
+  },
+  headerBtn: {
+    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+    color: "white",
+    fontFamily: "'Nunito', sans-serif",
+  },
+  dropdown: {
+    backgroundColor: "white",
+    borderRadius: "5px",
+    width: "75px",
+    marginTop: "17px"
   },
   board: {
     display: "flex",
@@ -70,6 +83,10 @@ const classes = {
   noPad: {
     paddingLeft: "0 !important",
     paddingRight: "0 !important"
+  },
+  activeLink: {
+    backgroundColor: "#18C6B3",
+    color: "white"
   },
   column: {
     // minWidth: 180,
@@ -147,6 +164,7 @@ const classes = {
   }
 };
 const Board = props => {
+  const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -200,74 +218,54 @@ const Board = props => {
   return (
     <>
       <Row>
-        <Col style={classes.header}>
+        <Col md={1} style={classes.headerBtn}>
+          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
+            <NavDropdown.Item eventKey="4.1">
+              <Button
+                onClick={() => {
+                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+                  firebase.auth().signInWithPopup(googleAuthProvider);
+                }}
+              >
+                Sign In with Google
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.2">
+              <Button
+                data-testid="signin-anon"
+                onClick={() => {
+                  firebase.auth().signInAnonymously();
+                }}
+              >
+                Sign In Anonymously
+              </Button>
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.3">
+              <Button
+                onClick={() => {
+                  firebase.auth().signOut();
+                }}
+              >
+                Sign Out
+              </Button>
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Col>
+        <Col md={2} style={classes.headerBtn}>
+          <Form state={state} setState={setState}/>
+        </Col>
+        <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
-        <NavDropdown title="User" id="nav-dropdown">
-        <NavDropdown.Item eventKey="4.1">
-          <Button
-            onClick={() => {
-              const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-              firebase.auth().signInWithPopup(googleAuthProvider);
-            }}
-          >
-            Sign In with Google
-          </Button>
-        </NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">
-          <Button
-            data-testid="signin-anon"
-            onClick={() => {
-              firebase.auth().signInAnonymously();
-            }}
-          >
-            Sign In Anonymously
-          </Button>
-        </NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">
-          <Button
-            onClick={() => {
-              firebase.auth().signOut();
-            }}
-          >
-            Sign Out
-          </Button>
-        </NavDropdown.Item>
-      </NavDropdown>
       </Row>
       <Row noGutters={true}>
-        <Col md={2}>
+        <Col md={2} >
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">Apps</Nav.Link>
-            <Nav.Link href="/materials">Materials</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/materials">MATERIALS</Nav.Link>
           </Nav>
-          <div>
-            {/* <Button
-              onClick={() => {
-                const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithPopup(googleAuthProvider);
-              }}
-            >
-              Sign In with Google
-            </Button> */}
-            {/* <Button
-              data-testid="signin-anon"
-              onClick={() => {
-                firebase.auth().signInAnonymously();
-              }}
-            >
-              Sign In Anonymously
-            </Button> */}
-            {/* <Button
-              onClick={() => {
-                firebase.auth().signOut();
-              }}
-            >
-              Sign Out
-            </Button> */}
-          </div>
         </Col>
-        <Col md={10} style={classes.noPad}>
+        <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>

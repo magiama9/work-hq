@@ -23,13 +23,36 @@ const Materials = props => {
   const [othLinks, setOthLinks] = useState([]);
 
   const classes = {
+    matBoard: {
+      backgroundColor: "#F5F6FA",
+      height: "1000px"
+    },
     header: {
       background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
       textAlign: "center",
       paddingTop: "10px",
-      paddingBottom: "10px"
+      paddingBottom: "10px",
+      paddingRight: "120px"
+    },
+    headerBtn: {
+      background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+      color: "white",
+      fontFamily: "'Nunito', sans-serif",
+    },
+    dropdown: {
+      backgroundColor: "white",
+      borderRadius: "5px",
+      width: "75px",
+      marginTop: "17px"
+    },
+    nav: {
+      backgroundColor: "white"
+    },
+    activeLink: {
+      backgroundColor: "#18C6B3",
+      color: "white"
     },
     resumes: {
       width: "100%",
@@ -51,11 +74,22 @@ const Materials = props => {
       fontFamily: "'Nunito', sans-serif",
       textAlign: "center"
     },
+    other: {
+      width: "100%",
+      margin: "10px auto 10px 10px",
+      padding: "10px auto 10px auto",
+      borderRadius: "5px",
+      backgroundColor: "#18C6B3",
+      color: "white",
+      fontFamily: "'Nunito', sans-serif",
+      textAlign: "center",
+    },
     input: {
       margin: "10px 10px 30px 10px"
     },
     linksCol: {
-      marginLeft: "20px"
+      marginLeft: "20px",
+      marginTop: "20px"
     }
   };
   useEffect(() => {
@@ -110,10 +144,9 @@ const Materials = props => {
 
   return (
     <>
-      <Row>
-        <Col style={classes.header}>
-          <h1>Materials</h1>
-          <NavDropdown title="User" id="nav-dropdown">
+      <Row >
+      <Col md={1} style={classes.headerBtn}>
+          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
@@ -145,22 +178,24 @@ const Materials = props => {
             </NavDropdown.Item>
           </NavDropdown>
         </Col>
+        <Col md={11} style={classes.header}>
+          <h1>Materials</h1>
+        </Col>
       </Row>
-      <Row noGutters={true}>
-        <Col md={2}>
+      <Row style={classes.matBoard} noGutters={true}>
+        <Col md={2} style={classes.nav}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">Apps</Nav.Link>
-            <Nav.Link href="/materials">Materials</Nav.Link>
+            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
+            <Nav.Link href="/materials" style={classes.activeLink}>MATERIALS</Nav.Link>
           </Nav>
         </Col>
-        <Col md={3}>
+        <Col md={3} style={classes.linksCol}>
           <h2 style={classes.resumes}>Resumes</h2>
           <InputGroup className="mb-3">
             <FormControl
               placeholder="https://"
               aria-label="resumeLink"
               aria-describedby="basic-addon2"
-              // ref="link"
               // onChange={handleTyping}
             />
             <InputGroup.Append>
@@ -174,7 +209,7 @@ const Materials = props => {
             </InputGroup.Append>
           </InputGroup>
         </Col>
-        <Col md={3}>
+        <Col md={3} style={classes.linksCol}>
           <h2 style={classes.covers}>Cover Letters</h2>
           <InputGroup className="mb-3">
             <FormControl
@@ -182,7 +217,6 @@ const Materials = props => {
               aria-label="coverLink"
               aria-describedby="basic-addon2"
               // onChange={handleTyping}
-              // ref="link"
             />
             <InputGroup.Append>
               <Button
@@ -196,60 +230,41 @@ const Materials = props => {
           </InputGroup>
         </Col>
         <Col md={3} style={classes.linksCol}>
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="https://"
-              aria-label="otherLink"
-              aria-describedby="basic-addon2"
-              // onChange={handleTyping}
-              // ref="link"
-            />
-            <InputGroup.Append>
-              <Button
-                variant="outline-secondary"
-                name="other"
-                onClick={addLink}
-              >
-                Add Link
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="https://"
-              aria-label="otherLink"
-              aria-describedby="basic-addon2"
-              // onChange={handleTyping}
-              // ref="link"
-            />
-            <InputGroup.Append>
-              <Button
-                variant="outline-secondary"
-                name="other"
-                onClick={addLink}
-              >
-                Add Link
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="https://"
-              aria-label="otherLink"
-              aria-describedby="basic-addon2"
-              // onChange={handleTyping}
-              // ref="link"
-            />
-            <InputGroup.Append>
-              <Button
-                variant="outline-secondary"
-                name="other"
-                onClick={addLink}
-              >
-                Add Link
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
+
+        <h2 style={classes.other}>Other</h2>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="https://"
+            aria-label="otherLink"
+            aria-describedby="basic-addon2"
+            // onChange={handleTyping
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
+          </InputGroup.Append>
+        </InputGroup>
         </Col>
       </Row>
     </>
