@@ -25,7 +25,7 @@ function Add(props) {
   const [formState, setFormState] = useState({
     title: "",
     company: "",
-    link: "",
+    href: "",
     salary: "",
     location: "",
     description: "",
@@ -109,7 +109,7 @@ function Add(props) {
               <Form.Label>Link</Form.Label>
               <Form.Control
                 type="input"
-                name="link"
+                name="href"
                 onChange={handleTyping}
                 placeholder="https://"
               />

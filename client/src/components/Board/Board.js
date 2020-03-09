@@ -91,12 +91,12 @@ const Board = props => {
   
   // Editing Tasks
   const editTask = useCallback(
-    (id, description) => {
+    (id, title, company, href, description, salary, location) => {
       // Match the task to the ID
       let task = tasks.find(task => task.jobID === id);
       const taskIndex = tasks.indexOf(task);
       // Set the working task
-      task = { ...task, description };
+      task = { ...task, title, company, href, description, salary, location };
       jobPost.updateJob(task.jobID, task);
       // Update the tasks
       let newTasks = update(tasks, {
@@ -188,8 +188,9 @@ const Board = props => {
                               description={item.description}
                               company={item.company}
                               salary={item.salary}
-                              url={item.href}
+                              href={item.href}
                               resume={item.resume}
+                              location={item.location}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
                               changeTaskStatus= {changeTaskStatus}
