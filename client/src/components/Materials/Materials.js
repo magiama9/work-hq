@@ -166,9 +166,10 @@ const Materials = props => {
           </InputGroup>
           {/* display links */}
           <div>
-            {resLinks.map(link => (
-              <p>{link}</p>
-            ))}
+            {resLinks.filter(link => link !== "")
+              .map(link => (
+                <p>{link}</p>
+              ))}
           </div>
         </Col>
         <Col md={3} style={classes.linksCol}>
