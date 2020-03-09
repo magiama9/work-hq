@@ -61,7 +61,7 @@ function TodoForm(props) {
   return (
     <>
       <Button variant="primary" onClick={handleShow} style={classes.btn}>
-        New Application +
+        Add Task +
       </Button>
 
       <Modal show={show} onHide={handleClose}>
