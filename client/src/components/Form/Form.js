@@ -54,6 +54,7 @@ function Add(props) {
 
     } else {
       var oldState = props.state;
+      //push new form to applications
       oldState.newApplications.push(formState);
       props.setState({
         ...props.state,

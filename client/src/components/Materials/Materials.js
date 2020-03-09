@@ -29,8 +29,8 @@ const Materials = props => {
   const [resLinks, setResLinks] = useState([]);
   const userID = props.userID;
 
-  console.log(props.state.resLinks);
-  console.log(resLinks);
+  // console.log(props.state.resLinks);
+  // console.log(resLinks);
 
   //load materials
   const loadMats = userID => {
@@ -38,7 +38,15 @@ const Materials = props => {
       .fetchAll(userID)
       .then(res => {
         console.log(res.data);
-        setResLinks(res.data);
+        //if not a repeat, add to resLinks
+        let addedLinks = []
+        for (var i = 0; i < res.data.length; i++ ) {
+          if( res.data[i].resume !== "" && addedLinks.indexOf(res.data[i].resume) < 0 ) {
+            addedLinks.push(res.data[i])
+          }
+        }
+        console.log(addedLinks);
+        setResLinks(addedLinks);
         //TODO THROWING ERR 431 when proxy port 3000
         //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
       })
@@ -49,13 +57,13 @@ const Materials = props => {
   useEffect(() => {
     loadMats(userID);
     var newState = resLinks;
-    console.log(newState);
-    for (var i = 0; i < props.state.resLinks.length; i++) {
-      newState.push(props.state.resLinks[i]);
-      props.state.resLinks = [];
-      loadMats(userID);
-      console.log(resLinks);
-    }
+    // console.log(newState);
+    // for (var i = 0; i < props.state.resLinks.length; i++) {
+    //   newState.push(props.state.resLinks[i]);
+    //   props.state.resLinks = [];
+    //   loadMats(userID);
+    //   console.log(resLinks);
+    // }
   }, []);
 
   const addLink = event => {
