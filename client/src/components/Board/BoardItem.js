@@ -116,7 +116,7 @@ const BoardItem = ({ id, children, title, company, description, href, salary, lo
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
 
-              <Form.Label><h6>href</h6></Form.Label>
+              <Form.Label><h6>Link</h6></Form.Label>
               <Form.Control
                 type="input"
                 name="href"
