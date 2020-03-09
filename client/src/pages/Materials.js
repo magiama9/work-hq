@@ -8,18 +8,16 @@ import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import getMats from "../utils/getMats";
 import firebase from "firebase/app";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
 import "firebase/auth";
 // import getMat from "../utils/materialsFetch";
 // import postMat from "../utils/materialsPost";
 
 const Materials = props => {
-  const [state, setState] = useState({resLinks: [], covLinks: [], otherLinks: []});
+  const [state, setState] = useState({
+    resLinks: [],
+    covLinks: [],
+    otherLinks: []
+  });
   const [resLinks, setResLinks] = useState([]);
 
   const classes = {
@@ -39,7 +37,7 @@ const Materials = props => {
     headerBtn: {
       background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
       color: "white",
-      fontFamily: "'Nunito', sans-serif",
+      fontFamily: "'Nunito', sans-serif"
     },
     dropdown: {
       backgroundColor: "white",
@@ -82,7 +80,7 @@ const Materials = props => {
       backgroundColor: "#18C6B3",
       color: "white",
       fontFamily: "'Nunito', sans-serif",
-      textAlign: "center",
+      textAlign: "center"
     },
     input: {
       margin: "10px 10px 30px 10px"
@@ -98,8 +96,7 @@ const Materials = props => {
     getMats.fetchAll(userID).then(res => {
       console.log(res);
       setResLinks(res);
-    })
-
+    });
   };
 
   //on component mount, load materials
@@ -138,8 +135,8 @@ const Materials = props => {
 
   return (
     <>
-      <Row >
-      <Col md={1} style={classes.headerBtn}>
+      <Row>
+        <Col md={1} style={classes.headerBtn}>
           <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
               <Button
@@ -180,7 +177,10 @@ const Materials = props => {
         <Col md={2} style={classes.nav}>
           <Nav defaultActiveKey="/" className="flex-column">
             <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials" style={classes.activeLink}>MATERIALS</Nav.Link>
+            <Nav.Link href="/materials" style={classes.activeLink}>
+              MATERIALS
+            </Nav.Link>
+            <Nav.Link href="/todos">TODO</Nav.Link>
           </Nav>
         </Col>
         <Col md={3} style={classes.linksCol}>
@@ -206,8 +206,7 @@ const Materials = props => {
           <div>
             {resLinks.map(link => (
               <p>{link}</p>
-            )
-            )}
+            ))}
           </div>
         </Col>
         <Col md={3} style={classes.linksCol}>
@@ -231,41 +230,58 @@ const Materials = props => {
           </InputGroup>
         </Col>
         <Col md={3} style={classes.linksCol}>
-
-        <h2 style={classes.other}>Other</h2>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <FormControl
-            placeholder="https://"
-            aria-label="otherLink"
-            aria-describedby="basic-addon2"
-            // onChange={handleTyping
-          />
-          <InputGroup.Append>
-            <Button variant="outline-secondary" name="other" onClick={addLink}>Add Link</Button>
-          </InputGroup.Append>
-        </InputGroup>
+          <h2 style={classes.other}>Other</h2>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="https://"
+              aria-label="otherLink"
+              aria-describedby="basic-addon2"
+              // onChange={handleTyping
+            />
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                name="other"
+                onClick={addLink}
+              >
+                Add Link
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
         </Col>
       </Row>
     </>

@@ -4,45 +4,41 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-// This should be split into a separate component
 // Defines each item on the Todos
-const TodosItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail }, props) => {
+const TodosItem = (
+  { id, children, todo, description, changeTaskStatus },
+  props
+) => {
+  // State hooks
+  // ========================================
   const [show, setShow] = useState(false);
-  const [validated, setValidated] = useState(false)
-  const [formMessage, setFormMessage] = useState("")
-  const [formState, setFormState] = useState({description: ""})
+  const [validated, setValidated] = useState(false);
+  const [formMessage, setFormMessage] = useState("");
+  const [formState, setFormState] = useState({ description: description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // ========================================
 
+  // Event Handling
+  // ========================================
   const handleTyping = e => {
-    console.log("typing", e.target.value, e.target.name) // for testing //
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  //make draggable
-  const ref = useRef(null);
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: "card", id },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-
-  // Red words
-  const redStyle = {
-    color: 'red',
+  const handleDelete = event => {
+    event.preventDefault();
+    changeTaskStatus(id, "deleted");
   };
 
   // For handling the save to move over to Todos
-  const handleSave = (event) => {
-    const form = event.currentTarget
+  const handleSave = event => {
+    const form = event.currentTarget;
     // console.log("submit") // for testing
     if (form.checkValidity() === false) {
       // console.log("bad form") // for testing
-      setFormMessage("Please fill out the required fields")
+      setFormMessage("Please fill out the required fields");
       event.preventDefault();
       event.stopPropagation();
-
     } else {
       var oldState = props.state;
       oldState.newApplications.push(formState);
@@ -54,12 +50,29 @@ const TodosItem = ({ id, children, title, company, description, url, resume, cov
       handleClose();
     }
   };
+  // ========================================
 
+  // Dragging
+  // ========================================
+  const ref = useRef(null);
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: "card", id },
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  });
+  drag(ref);
+  // ========================================
+
+
+  // Red words
+  const redStyle = {
+    color: "red"
+  };
 
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
-  drag(ref);
-  console.log(title)
+
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
@@ -69,43 +82,44 @@ const TodosItem = ({ id, children, title, company, description, url, resume, cov
       {/* popup on click */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{title} - {company}</Modal.Title>
+          <Modal.Title>{todo}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {description}
           <Form noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
-            {formMessage.length > 0 && (
-              <p style={redStyle}>{formMessage}</p>
-            )}
+            {formMessage.length > 0 && <p style={redStyle}>{formMessage}</p>}
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Description <span style={redStyle}>*</span></Form.Label>
-              <Form.Control as="textarea" rows="5"
+              <Form.Label>
+                Description <span style={redStyle}>*</span>
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows="5"
                 type="input"
                 name="description"
                 onChange={handleTyping}
+                value={formState.description} // Controlled Input
                 placeholder=""
                 required="required"
               />
             </Form.Group>
             <p style={redStyle}> * required</p>
-              <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit">
               Save
-              </Button>
-              <span> </span>
-              <Button variant="danger" type="submit">
+            </Button>
+            <span> </span>
+            <Button variant="danger" onClick={handleDelete}>
               Delete
-              </Button>
-              <span> </span>
-              <Button variant="secondary" onClick={handleClose}>
+            </Button>
+            <span> </span>
+            <Button variant="secondary" onClick={handleClose}>
               Close
-              </Button>
+            </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="secondary">
-            Edit
-          </Button>
+          <Button variant="secondary">Edit</Button>
           <Button variant="primary" onClick={handleClose}>
             Close
           </Button>
@@ -113,7 +127,6 @@ const TodosItem = ({ id, children, title, company, description, url, resume, cov
       </Modal>
     </>
   );
-
 };
 
 export default TodosItem;

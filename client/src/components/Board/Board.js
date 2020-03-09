@@ -14,12 +14,6 @@ import jobPost from "../../utils/jobPost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
 import "firebase/auth";
 
 // The different columns
@@ -64,7 +58,7 @@ const classes = {
   headerBtn: {
     background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
     color: "white",
-    fontFamily: "'Nunito', sans-serif",
+    fontFamily: "'Nunito', sans-serif"
   },
   dropdown: {
     backgroundColor: "white",
@@ -89,21 +83,10 @@ const classes = {
     color: "white"
   },
   column: {
-    // minWidth: 180,
-    // width: "14vw",
     height: "80vh",
     margin: "0 auto",
     backgroundColor: "#F5F6FA"
   },
-  // columnHead: {
-  //   textAlign: "center",
-  //   padding: 10,
-  //   fontSize: "1.2em",
-  //   color: "white",
-  //   margin: "10px 5px 0 5px",
-  //   borderRadius: "5px",
-  //   fontWeight: 600
-  // },
   interested: {
     backgroundColor: "#F69346",
     textAlign: "center",
@@ -172,7 +155,6 @@ const Board = props => {
   };
   // This code adds new applications to the board from data from forms
   useEffect(() => {
-    console.log(props.userID);
     getAllJobs(props.userID);
 
     var newState = tasks;
@@ -180,9 +162,8 @@ const Board = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].userID = props.userID;
-      console.log(props.userID);
       props.state.newApplications[i].jobID = uuid();
-      console.log(props.state.newApplications[i].jobID);
+
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
@@ -272,17 +253,20 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState}/>
+          <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2} >
+        <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>
+              APPLICATIONS
+            </Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/todos">TODO</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>

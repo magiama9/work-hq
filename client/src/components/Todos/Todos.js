@@ -5,7 +5,7 @@ import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
 import TodosColumn from "./TodosColumn";
 import TodosItem from "./TodosItem";
-import Form from "../Form";
+import TodoForm from "../TodoForm";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -129,7 +129,7 @@ const Todos = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "todo";
       props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].jobID = uuid();
+      props.state.newApplications[i].todoID = uuid();
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
@@ -144,7 +144,7 @@ const Todos = props => {
   const changeTaskStatus = useCallback(
     (id, status) => {
       // Match the task to the ID
-      let task = tasks.find(task => task.ID === id);
+      let task = tasks.find(task => task.todoID === id);
       const taskIndex = tasks.indexOf(task);
 
       // Set the working task
@@ -198,7 +198,7 @@ const Todos = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState} />
+          <TodoForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
@@ -207,10 +207,11 @@ const Todos = props => {
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashTodos" style={classes.activeLink}>
-              APPLICATIONS
-            </Nav.Link>
+            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/todos" style={classes.activeLink}>
+              TODO
+            </Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
@@ -236,20 +237,13 @@ const Todos = props => {
                           .filter(item => item.status === channel)
                           .map(item => (
                             <TodosItem
-                              key={item.jobID}
-                              id={item.jobID}
-                              title={item.title}
+                              key={item.todoID}
+                              id={item.todoID}
+                              todo={item.todo}
                               description={item.description}
-                              company={item.company}
-                              salary={item.salary}
-                              url={item.href}
-                              resume={item.resume}
-                              coverLetter={item.coverLetter}
-                              contactEmail={item.contactEmail}
+                              changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
                             >
-                              <div style={classes.item}>
-                                {item.title} - {item.company}
-                              </div>
+                              <div style={classes.item}>{item.todo}</div>
                             </TodosItem>
                           ))}
                       </div>
