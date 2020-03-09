@@ -65,7 +65,7 @@ router.put("/todos/:id", (req, res) => {
   console.log(req.params.id);
   db.Todos.findOneAndUpdate(
     { todoID: req.params.id },
-    { status: req.body.status }
+    { status: req.body.status, description: req.body.description }
   )
     .then(response => {
       console.log(response);
@@ -96,7 +96,5 @@ router.get("/materials/:uid", (req, res) => {
   //   // console.log(response);
   // });
 });
-
-
 
 module.exports = router;

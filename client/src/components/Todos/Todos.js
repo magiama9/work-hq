@@ -80,6 +80,25 @@ const Todos = props => {
     [tasks]
   );
 
+  // Editing Tasks
+  const editTask = useCallback(
+    (id, description) => {
+      // Match the task to the ID
+      let task = tasks.find(task => task.todoID === id);
+      const taskIndex = tasks.indexOf(task);
+      // Set the working task
+      task = { ...task, description };
+      todoPost.updateTodo(task.todoID, task);
+      // Update the tasks
+      let newTasks = update(tasks, {
+        [taskIndex]: { $set: task }
+      });
+      // Update state
+      setTaskStatus(newTasks);
+    },
+    [tasks]
+  );
+
   return (
     <>
       <Row>
@@ -161,6 +180,7 @@ const Todos = props => {
                               todo={item.todo}
                               description={item.description}
                               changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
+                              editTask={editTask}
                             >
                               <div style={classes.item}>{item.todo}</div>
                             </TodosItem>

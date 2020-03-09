@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 // Defines each item on the Todos
 const TodosItem = (
-  { id, children, todo, description, changeTaskStatus },
+  { id, children, todo, description, changeTaskStatus, editTask },
   props
 ) => {
   // State hooks
@@ -28,6 +28,13 @@ const TodosItem = (
   const handleDelete = event => {
     event.preventDefault();
     changeTaskStatus(id, "deleted");
+  };
+
+  const handleEdit = event => {
+    event.preventDefault();
+    editTask(id, formState.description);
+    console.log(id);
+    handleClose();
   };
 
   // For handling the save to move over to Todos
@@ -63,7 +70,6 @@ const TodosItem = (
   });
   drag(ref);
   // ========================================
-
 
   // Red words
   const redStyle = {
@@ -105,7 +111,7 @@ const TodosItem = (
               />
             </Form.Group>
             <p style={redStyle}> * required</p>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" onClick={handleEdit}>
               Save
             </Button>
             <span> </span>

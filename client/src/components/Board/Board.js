@@ -192,7 +192,6 @@ const Board = props => {
                               resume={item.resume}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
-
                               changeTaskStatus= {changeTaskStatus}
                               editTask = {editTask}
                             >
