@@ -129,7 +129,7 @@ const Todos = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "todo";
       props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].jobID = uuid();
+      props.state.newApplications[i].todoID = uuid();
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
@@ -144,7 +144,7 @@ const Todos = props => {
   const changeTaskStatus = useCallback(
     (id, status) => {
       // Match the task to the ID
-      let task = tasks.find(task => task.ID === id);
+      let task = tasks.find(task => task.todoID === id);
       const taskIndex = tasks.indexOf(task);
 
       // Set the working task
@@ -237,11 +237,11 @@ const Todos = props => {
                           .filter(item => item.status === channel)
                           .map(item => (
                             <TodosItem
-                              key={item.jobID}
-                              id={item.jobID}
+                              key={item.todoID}
+                              id={item.todoID}
                               todo={item.todo}
                               description={item.description}
-                              changeTaskStatus={changeTaskStatus}
+                              changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
                             >
                               <div style={classes.item}>{item.todo}</div>
                             </TodosItem>

@@ -4,19 +4,23 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-// This should be split into a separate component
 // Defines each item on the Todos
 const TodosItem = (
   { id, children, todo, description, changeTaskStatus },
   props
 ) => {
+  // State hooks
+  // ========================================
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
   const [formMessage, setFormMessage] = useState("");
   const [formState, setFormState] = useState({ description: description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // ========================================
 
+  // Event Handling
+  // ========================================
   const handleTyping = e => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
@@ -24,20 +28,6 @@ const TodosItem = (
   const handleDelete = event => {
     event.preventDefault();
     changeTaskStatus(id, "deleted");
-  };
-
-  //make draggable
-  const ref = useRef(null);
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: "card", id },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-
-  // Red words
-  const redStyle = {
-    color: "red"
   };
 
   // For handling the save to move over to Todos
@@ -60,10 +50,29 @@ const TodosItem = (
       handleClose();
     }
   };
+  // ========================================
+
+  // Dragging
+  // ========================================
+  const ref = useRef(null);
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: "card", id },
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  });
+  drag(ref);
+  // ========================================
+
+
+  // Red words
+  const redStyle = {
+    color: "red"
+  };
 
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
-  drag(ref);
+
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
@@ -90,7 +99,7 @@ const TodosItem = (
                 type="input"
                 name="description"
                 onChange={handleTyping}
-                value={formState.description}
+                value={formState.description} // Controlled Input
                 placeholder=""
                 required="required"
               />
