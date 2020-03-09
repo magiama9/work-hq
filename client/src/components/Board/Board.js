@@ -129,15 +129,15 @@ const Board = props => {
           <Form state={props.state} setState={props.setState}/>
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Applications</h1>
+          <h1>Work HQ</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2} >
           <Nav defaultActiveKey="/" className="flex-column">
             <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials">MATERIALS</Nav.Link>
-            <Nav.Link href="/todos">TODOS</Nav.Link>
+            <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
+            <Nav.Link href="/todos" style={classes.link}>TODOS</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>

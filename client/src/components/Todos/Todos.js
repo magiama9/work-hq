@@ -120,14 +120,14 @@ const Todos = props => {
           <TodoForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Todo</h1>
+          <h1>Work HQ</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.link}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
             <Nav.Link href="/todos" style={classes.activeLink}>
               TODO
             </Nav.Link>
