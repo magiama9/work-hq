@@ -48,7 +48,7 @@ router.put("/jobs/:id", (req, res) => {
   console.log(req.body);
   db.Jobs.findOneAndUpdate(
     { jobID: req.params.id },
-    { status: req.body.status, description: req.body.description }
+    { status: req.body.status, title:req.body.title, company:req.body.company, href:req.body.href, description: req.body.description, salary:req.body.salary, location:req.body.location }
   )
     .then(response => {
       console.log(response);
