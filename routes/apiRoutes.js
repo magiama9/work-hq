@@ -62,6 +62,7 @@ router.put("/jobs/:id", (req, res) => {
 // Put route for updating todos in the dashboard
 router.put("/todos/:id", (req, res) => {
   console.log(req.body);
+  console.log(req.params.id);
   db.Todos.findOneAndUpdate(
     { todoID: req.params.id },
     { status: req.body.status }

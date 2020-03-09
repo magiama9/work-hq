@@ -8,12 +8,6 @@ import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import getMats from "../utils/getMats";
 import firebase from "firebase/app";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
 import "firebase/auth";
 // import getMat from "../utils/materialsFetch";
 // import postMat from "../utils/materialsPost";

@@ -57,6 +57,7 @@ function App() {
 
           {/* If the user isn't authenticated, it displays the landing page */}
           <IfFirebaseUnAuthed>
+            {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
             <Route exact path="/dashboard" component={Landing} />
             <Route exact path="/materials" component={Landing} />
               <Route exact path="/todos" component={Landing} />

@@ -1,16 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Dashboard from "../../pages/Dashboard";
-import Materials from "../../pages/Materials";
 import firebase from "firebase/app";
-import {
-  FirebaseAuthProvider,
-} from "@react-firebase/auth";
+import { FirebaseAuthProvider } from "@react-firebase/auth";
 import "firebase/auth";
-import config from "../../firebase-config"
+import config from "../../firebase-config";
 
 const classes = {
   background: {
@@ -41,15 +36,16 @@ const classes = {
     marginTop: "100px",
     marginBottom: "40px"
   }
-}
+};
 
 function Login() {
   return (
-    <>
-      <Container fluid={true} style={classes.background}>
+    <Container fluid={true} style={classes.background}>
       <Row>
         <Col md={4}></Col>
-        <Col md={4}><h1 style={classes.h1} >Work HQ</h1></Col>
+        <Col md={4}>
+          <h1 style={classes.h1}>Work HQ</h1>
+        </Col>
         <Col md={4}></Col>
       </Row>
       <Row>
@@ -58,33 +54,40 @@ function Login() {
           {/* Login authentication */}
           <FirebaseAuthProvider {...config} firebase={firebase}>
             <div className={classes.btnDiv}>
-              <button block
+              <button
+                block
                 style={classes.btn}
                 onClick={() => {
                   const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                  firebase.auth().signInWithPopup(googleAuthProvider)
+                  firebase
+                    .auth()
+                    .signInWithPopup(googleAuthProvider)
                     .then(() => {
-                      window.location.replace("/dashboard")
+                      window.location.replace("/dashboard");
                     })
                     .catch(error => console.log(error));
                 }}
               >
                 Sign In with Google
               </button>
-              <button block
+              <button
+                block
                 style={classes.btn}
                 data-testid="signin-anon"
                 onClick={() => {
-                  firebase.auth().signInAnonymously()
+                  firebase
+                    .auth()
+                    .signInAnonymously()
                     .then(() => {
-                      window.location.replace("/dashboard")
+                      window.location.replace("/dashboard");
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => console.log(error));
                 }}
               >
                 Sign In Anonymously
               </button>
-              <button block
+              <button
+                block
                 style={classes.btn}
                 onClick={() => {
                   firebase.auth().signOut();
@@ -92,53 +95,12 @@ function Login() {
               >
                 Sign Out
               </button>
-              {/* <FirebaseAuthConsumer>
-                {({ isSignedIn, user, providerId }) => {
-                  return (
-                    <pre style={{ height: 300, overflow: "auto" }}>
-                      {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
-                    </pre>
-                  );
-                }}
-              </FirebaseAuthConsumer> */}
             </div>
-            {/* <div>
-                <Router>
-                  <IfFirebaseAuthed>
-                    {user => {
-                      return (
-                        <div>
-                          {" "}
-                          
-                          <div>
-                            <Route
-                              exact
-                              path="/"
-                              render={props => (
-                                <Dashboard {...props} userID={user.user.uid} />
-                              )}
-                            />
-                            <Route exact path="/materials" component={Materials} />
-                          </div>
-                        </div>
-                      );
-                    }}
-                  </IfFirebaseAuthed>
-                </Router>
-                <IfFirebaseAuthedAnd
-                  filter={({ providerId }) => providerId !== "anonymous"}
-                >
-                  {({ providerId }) => {
-                    return <div>You are authenticated with {providerId}</div>;
-                  }}
-                </IfFirebaseAuthedAnd>
-              </div> */}
           </FirebaseAuthProvider>
         </Col>
         <Col md={4}></Col>
       </Row>
     </Container>
-    </>
   );
 }
 
