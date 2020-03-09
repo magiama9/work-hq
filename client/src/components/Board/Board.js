@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
-import resourcePost from "../../utils/resourcePost"
+import resourcePost from "../../utils/resourcePost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -44,6 +44,9 @@ const Board = props => {
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
+      res.data.forEach(job => {
+        console.log(job.resume);
+      });
     });
   };
   // This code adds new applications to the board from data from forms
@@ -87,7 +90,7 @@ const Board = props => {
     },
     [tasks]
   );
-  
+
   // Editing Tasks
   const editTask = useCallback(
     (id, title, company, href, description, salary, location) => {
@@ -144,16 +147,18 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState}/>
+          <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2} >
+        <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>
+              APPLICATIONS
+            </Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
             <Nav.Link href="/todos">TODOS</Nav.Link>
           </Nav>
@@ -192,8 +197,8 @@ const Board = props => {
                               location={item.location}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
-                              changeTaskStatus= {changeTaskStatus}
-                              editTask = {editTask}
+                              changeTaskStatus={changeTaskStatus}
+                              editTask={editTask}
                             >
                               <div style={classes.item}>
                                 {item.title} - {item.company}
