@@ -8,25 +8,25 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
 import "firebase/auth";
 import config from "../../firebase-config";
 
-
 function Login() {
   return (
-    <Container fluid={true} style={classes.background}>
-      <Row>
+    <>
+      <Container fluid={true} style={classes.background}>
+      <Row style={classes.row}>
         <Col md={4}></Col>
         <Col md={4}>
           <h1 style={classes.h1}>Work HQ</h1>
         </Col>
         <Col md={4}></Col>
       </Row>
-      <Row>
-        <Col md={4}></Col>
-        <Col md={4}>
+      <Row style={classes.row}>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
           {/* Login authentication */}
           <FirebaseAuthProvider {...config} firebase={firebase}>
             <div className={classes.btnDiv}>
-              <button
-                block
+              <button block={true}
+
                 style={classes.btn}
                 onClick={() => {
                   const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
@@ -41,8 +41,10 @@ function Login() {
               >
                 Sign In with Google
               </button>
-              <button
-                block
+
+              <button block={true}
+
+
                 style={classes.btn}
                 data-testid="signin-anon"
                 onClick={() => {
@@ -57,8 +59,9 @@ function Login() {
               >
                 Sign In Anonymously
               </button>
-              <button
-                block
+
+              <button block={true}
+
                 style={classes.btn}
                 onClick={() => {
                   firebase.auth().signOut();
@@ -69,7 +72,7 @@ function Login() {
             </div>
           </FirebaseAuthProvider>
         </Col>
-        <Col md={4}></Col>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
       </Row>
     </Container>
   );

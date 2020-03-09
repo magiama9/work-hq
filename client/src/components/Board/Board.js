@@ -15,6 +15,7 @@ import jobPost from "../../utils/jobPost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import "firebase/auth";
 // The different columns
 const channels = [
   "interested",
