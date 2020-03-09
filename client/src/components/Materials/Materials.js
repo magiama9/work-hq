@@ -88,17 +88,17 @@ const Materials = props => {
           </NavDropdown>
         </Col>
         <Col md={11} style={classes.header}>
-          <h1>Materials</h1>
+          <h1>Work HQ</h1>
         </Col>
       </Row>
       <Row style={classes.matBoard} noGutters={true}>
         <Col md={2} style={classes.nav}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.link}>APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials" style={classes.activeLink}>
               MATERIALS
             </Nav.Link>
-            <Nav.Link href="/todos">TODOS</Nav.Link>
+            <Nav.Link href="/todos" style={classes.link}>TODOS</Nav.Link>
           </Nav>
         </Col>
         <Col md={3} style={classes.linksCol}>

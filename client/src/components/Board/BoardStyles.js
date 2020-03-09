@@ -16,7 +16,7 @@ const classes = {
   header: {
     background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
     color: "white",
-    fontFamily: "'Nunito', sans-serif",
+    fontFamily: "'Fredoka One', sans-serif",
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px",
@@ -46,8 +46,17 @@ const classes = {
     paddingRight: "0 !important"
   },
   activeLink: {
-    backgroundColor: "#18C6B3",
-    color: "white"
+    backgroundColor: "#F5F6FA",
+    color: "#0D92FF",
+    fontWeight: "600",
+    fontFamily: "'Nunito', sans-serif",
+    padding: "20px 0 20px 50px",
+    borderRadius: "45px 0px 0px 45px"
+  },
+  link: {
+    fontWeight: "600",
+    fontFamily: "'Nunito', sans-serif",
+    padding: "20px 0 20px 50px"
   },
   column: {
     // minWidth: 180,
