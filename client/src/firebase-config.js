@@ -1,3 +1,6 @@
+// FIREBASE CONFIG
+// I REALLY HAVE TO STOP COMMITTING THIS SHIT TO GITHUB
+
 const config = {
   apiKey: "AIzaSyCultPP-E1RzSrFFTcWSWK5G20mSKdTfbg",
   authDomain: "work-hq.firebaseapp.com",

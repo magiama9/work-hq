@@ -29,7 +29,7 @@ As someone who isn't actively job searching, but is open to opportunities, I wan
 1. ~~Users are able to add jobs to their dashboard~~
 2. ~~Users are able to move jobs across the categories in their dashboard~~
 3. Users are able to remove jobs from their dashboard
-4. Users are able to create and track to-dos related to their job applications
+4. ~~Users are able to create and track to-dos related to their job applications~~
 5. Users are able to view their professional materials
 6. ~~Users are be authenticated and their information persists.~~
 
