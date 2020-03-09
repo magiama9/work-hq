@@ -8,7 +8,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import getMats from "../../utils/getMats";
-import jobFetch from "../../utils/jobFetch";
 import firebase from "firebase/app";
 import {
   FirebaseAuthProvider,
@@ -17,20 +16,11 @@ import {
   IfFirebaseAuthedAnd
 } from "@react-firebase/auth";
 import "firebase/auth";
-// import getMat from "../utils/materialsFetch";
-// import postMat from "../utils/materialsPost";
+
 
 const Materials = props => {
-  // const [state, setState] = useState({
-  //   covLinks: [],
-  //   otherLinks: []
-  // });
-
   const [resLinks, setResLinks] = useState([]);
   const userID = props.userID;
-
-  console.log(props.state.resLinks);
-  console.log(resLinks);
 
   //load materials
   const loadMats = userID => {
@@ -39,8 +29,6 @@ const Materials = props => {
       .then(res => {
         console.log(res.data);
         setResLinks(res.data);
-        //TODO THROWING ERR 431 when proxy port 3000
-        //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
       })
       .catch(err => console.log(err));
   };
@@ -48,41 +36,19 @@ const Materials = props => {
   //on component mount, load materials
   useEffect(() => {
     loadMats(userID);
-    var newState = resLinks;
-    console.log(newState);
-    for (var i = 0; i < props.state.resLinks.length; i++) {
-      newState.push(props.state.resLinks[i]);
-      props.state.resLinks = [];
-      loadMats(userID);
-      console.log(resLinks);
+    //if not a repeat, add to resLinks
+    let addedLinks = resLinks;
+    for (var i = 0; i < resLinks.length; i++ ) {
+      if( resLinks[i].resume !== "" && addedLinks.indexOf(resLinks[i].resume) < 0 ) {
+        addedLinks.push(resLinks[i].resume)
+      }
     }
+    setResLinks(addedLinks);
   }, []);
 
   const addLink = event => {
     event.preventDefault();
     const { name, value } = event.target;
-    //TODO add input into db associated with user id, render list
-    //get input with name match
-
-    // switch (name) {
-    //   case "resume":
-    //     setResLinks(...resLinks, value);
-    //     break;
-    //   case "cover":
-    //     setCovLinks(...covLinks, value);
-    //     break;
-    //   default:
-    //     setOthLinks(...othLinks, value);
-    //     break;
-    // }
-    // console.log(resLinks, covLinks, othLinks);
-
-    // postMat.addRes({
-    //   type: links.name,
-    //   link: links.value
-    // })
-    //   .then(res => loadMats())
-    //   .catch(err => console.log(err));
   };
 
   return (
@@ -156,9 +122,10 @@ const Materials = props => {
           </InputGroup>
           {/* display links */}
           <div>
-            {resLinks.map(link => (
-              <p>{link.resume}</p>
-            ))}
+            {resLinks.filter(link => link !== "")
+              .map(link => (
+                <p>{link}</p>
+              ))}
           </div>
         </Col>
         <Col md={3} style={classes.linksCol}>
