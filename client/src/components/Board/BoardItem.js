@@ -10,7 +10,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
-  const [formState, setFormState] = useState({ description: description });
+  const [formState, setFormState] = useState({ description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -44,8 +44,9 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     // Edit
     const handleEdit = (event) => {
       event.preventDefault()
-      editTask(id)
+      editTask(id, formState.description)
       console.log(id)
+      handleClose()
     }
 
   // For handling the save to move over to board
@@ -70,8 +71,6 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     }
   };
 
-
-
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
   drag(ref);
@@ -89,7 +88,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
         </Modal.Header>
         <Modal.Body>
           {description}
-          <Form noValidate validated={validated} onSubmit={handleSave}>
+          <Form name="modal" noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
             {formMessage.length > 0 && (
               <p style={redStyle}>{formMessage}</p>

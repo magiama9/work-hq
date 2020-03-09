@@ -195,13 +195,12 @@ const Board = props => {
     [tasks]
   );
   
-  // Editing Apps
+  // Editing Tasks
   const editTask = useCallback(
     (id, description) => {
       // Match the task to the ID
       let task = tasks.find(task => task.jobID === id);
       const taskIndex = tasks.indexOf(task);
-
       // Set the working task
       task = { ...task, description };
       jobPost.updateJob(task.jobID, task);
@@ -209,7 +208,6 @@ const Board = props => {
       let newTasks = update(tasks, {
         [taskIndex]: { $set: task }
       });
-
       // Update state
       setTaskStatus(newTasks);
     },
