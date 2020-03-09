@@ -2,7 +2,7 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.get("/jobs/:uid", (req, res) => {
-  console.log(req.params.uid)
+  console.log(req.params.uid);
   db.Jobs.find({ userID: req.params.uid })
     .then(jobs => res.json(jobs))
     .catch(err => res.status(422).end());
@@ -37,18 +37,21 @@ router.put("/jobs/:id", (req, res) => {
 
 router.get("/materials/:uid", (req, res) => {
   db.Jobs.find({ userID: req.params.uid })
+    .select("resume -_id")
     // .distinct("resume")
-    .then((err, response) => {
-      if (err) console.error(err);
+    .then(items => {
       //CONSOLE LOGGING JOBS
-      console.log(response);
+      res.json(items);
+    })
+    .catch(error => {
+      console.error(error);
     });
-    // db.Jobs.find({ userID: req.params.uid })
-    // .distinct("coverLetter")
-    // .then((err, response) => {
-    //   if (err) console.error(err);
-    //   // console.log(response);
-    // });
+  // db.Jobs.find({ userID: req.params.uid })
+  // .distinct("coverLetter")
+  // .then((err, response) => {
+  //   if (err) console.error(err);
+  //   // console.log(response);
+  // });
 });
 
 module.exports = router;
