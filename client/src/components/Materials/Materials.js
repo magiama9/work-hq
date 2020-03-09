@@ -16,20 +16,11 @@ import {
   IfFirebaseAuthedAnd
 } from "@react-firebase/auth";
 import "firebase/auth";
-// import getMat from "../utils/materialsFetch";
-// import postMat from "../utils/materialsPost";
+
 
 const Materials = props => {
-  // const [state, setState] = useState({
-  //   covLinks: [],
-  //   otherLinks: []
-  // });
-
   const [resLinks, setResLinks] = useState([]);
   const userID = props.userID;
-
-  // console.log(props.state.resLinks);
-  // console.log(resLinks);
 
   //load materials
   const loadMats = userID => {
@@ -45,15 +36,6 @@ const Materials = props => {
   //on component mount, load materials
   useEffect(() => {
     loadMats(userID);
-    // var newState = resLinks;
-    // console.log(newState);
-    // for (var i = 0; i < props.state.resLinks.length; i++) {
-    //   newState.push(props.state.resLinks[i]);
-    //   props.state.resLinks = [];
-    //   loadMats(userID);
-    //   console.log(resLinks);
-    // }
-
     //if not a repeat, add to resLinks
     let addedLinks = resLinks;
     for (var i = 0; i < resLinks.length; i++ ) {
@@ -61,38 +43,12 @@ const Materials = props => {
         addedLinks.push(resLinks[i].resume)
       }
     }
-    console.log(addedLinks);
-    //TODO not working
     setResLinks(addedLinks);
-    //TODO console.logging empty arr
-    console.log(resLinks);
   }, []);
 
   const addLink = event => {
     event.preventDefault();
     const { name, value } = event.target;
-    //TODO add input into db associated with user id, render list
-    //get input with name match
-
-    // switch (name) {
-    //   case "resume":
-    //     setResLinks(...resLinks, value);
-    //     break;
-    //   case "cover":
-    //     setCovLinks(...covLinks, value);
-    //     break;
-    //   default:
-    //     setOthLinks(...othLinks, value);
-    //     break;
-    // }
-    // console.log(resLinks, covLinks, othLinks);
-
-    // postMat.addRes({
-    //   type: links.name,
-    //   link: links.value
-    // })
-    //   .then(res => loadMats())
-    //   .catch(err => console.log(err));
   };
 
   return (
