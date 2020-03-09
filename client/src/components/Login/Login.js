@@ -54,8 +54,8 @@ function Login() {
           {/* Login authentication */}
           <FirebaseAuthProvider {...config} firebase={firebase}>
             <div className={classes.btnDiv}>
-              <button
-                block
+              <button block={true}
+
                 style={classes.btn}
                 onClick={() => {
                   const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
@@ -70,8 +70,10 @@ function Login() {
               >
                 Sign In with Google
               </button>
-              <button
-                block
+
+              <button block={true}
+
+
                 style={classes.btn}
                 data-testid="signin-anon"
                 onClick={() => {
@@ -86,8 +88,9 @@ function Login() {
               >
                 Sign In Anonymously
               </button>
-              <button
-                block
+
+              <button block={true}
+
                 style={classes.btn}
                 onClick={() => {
                   firebase.auth().signOut();
