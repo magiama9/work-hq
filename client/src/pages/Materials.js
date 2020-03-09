@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import Materials from "../components/Materials";
+import Resources from "../components/Resources";
 
 function MaterialsPage(props) {
-  const [state, setState] = useState({ resLinks: [], covLinks: [] });
+  const [state, setState] = useState({
+    newApplications: [],
+    tasks: [],
+    resLinks: [],
+    covLinks: []
+  });
   const userID = props.userID;
-
 
   return (
     <div>
-      <Materials state={state} setState={setState} userID={props.userID} />
+      <Resources state={state} setState={setState} userID={props.userID} />
     </div>
-
   );
 }
 

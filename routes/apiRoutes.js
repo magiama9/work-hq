@@ -96,4 +96,23 @@ router.get("/materials/:uid", (req, res) => {
   // });
 });
 
+router.get("/resources/:uid", (req, res) => {
+  db.Jobs.find({ userID: req.params.uid })
+    // .select("resume -_id")
+    .distinct("resume")
+    .then(items => {
+      //CONSOLE LOGGING JOBS
+      res.json(items);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  // db.Jobs.find({ userID: req.params.uid })
+  // .distinct("coverLetter")
+  // .then((err, response) => {
+  //   if (err) console.error(err);
+  //   // console.log(response);
+  // });
+});
+
 module.exports = router;

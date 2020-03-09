@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const todoSchema = new mongoose.Schema({
+const resourceSchema = new mongoose.Schema({
   // Job title
-  itemLink: {
+  resource: {
     type: String,
     required: true
   },
@@ -15,13 +15,17 @@ const todoSchema = new mongoose.Schema({
     default: "resume"
   },
   jobIDArray: {
-    type: Array
+    type: Array,
+    default: []
+  },
+  resourceID: {
+    type: String
   },
   userID: {
     type: String
   }
 });
 
-const Materials = mongoose.model("Todos", todoSchema);
+const Resources = mongoose.model("Resources", resourceSchema);
 
-module.exports = Materials;
+module.exports = Resources;
