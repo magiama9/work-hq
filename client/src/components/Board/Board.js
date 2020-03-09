@@ -3,6 +3,7 @@ import uuid from "react-uuid";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import update from "immutability-helper";
+import classes from "./BoardStyles";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
 import Form from "../Form";
@@ -15,7 +16,6 @@ import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
-
 // The different columns
 const channels = [
   "interested",
@@ -37,116 +37,8 @@ const labelsMap = {
   offer: "Offer"
 };
 
-//set styling for each column as channel.column
-// colors
-//orange: #F69346
-//green: #18C6B3
-//yellow: #FFBF13
-//blue: #0D92FF
-//pink: #FF4A75
-// grey: #F5F6FA
-const classes = {
-  header: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
-    color: "white",
-    fontFamily: "'Nunito', sans-serif",
-    textAlign: "center",
-    paddingTop: "10px",
-    paddingBottom: "10px",
-    paddingRight: "180px"
-  },
-  headerBtn: {
-    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
-    color: "white",
-    fontFamily: "'Nunito', sans-serif"
-  },
-  dropdown: {
-    backgroundColor: "white",
-    borderRadius: "5px",
-    width: "75px",
-    marginTop: "17px"
-  },
-  board: {
-    display: "flex",
-    backgroundColor: "#F5F6FA",
-    margin: "0 20px 0 0",
-    padding: "10px",
-    width: "90vw",
-    fontFamily: "'Nunito', sans-serif"
-  },
-  noPad: {
-    paddingLeft: "0 !important",
-    paddingRight: "0 !important"
-  },
-  activeLink: {
-    backgroundColor: "#18C6B3",
-    color: "white"
-  },
-  column: {
-    height: "80vh",
-    margin: "0 auto",
-    backgroundColor: "#F5F6FA"
-  },
-  interested: {
-    backgroundColor: "#F69346",
-    textAlign: "center",
-    padding: 10,
-    fontSize: "1.2em",
-    color: "white",
-    margin: "10px 5px 0 5px",
-    borderRadius: "5px",
-    fontWeight: 600
-  },
-  applied: {
-    backgroundColor: "#18C6B3",
-    textAlign: "center",
-    padding: 10,
-    fontSize: "1.2em",
-    color: "white",
-    margin: "10px 5px 0 5px",
-    borderRadius: "5px",
-    fontWeight: 600
-  },
-  responded: {
-    backgroundColor: "#FFBF13",
-    textAlign: "center",
-    padding: 10,
-    fontSize: "1.2em",
-    color: "white",
-    margin: "10px 5px 0 5px",
-    borderRadius: "5px",
-    fontWeight: 600
-  },
-  interviewing: {
-    backgroundColor: "#0D92FF",
-    textAlign: "center",
-    padding: 10,
-    fontSize: "1.2em",
-    color: "white",
-    margin: "10px 5px 0 5px",
-    borderRadius: "5px",
-    fontWeight: 600
-  },
-  offer: {
-    backgroundColor: "#FF4A75",
-    textAlign: "center",
-    padding: 10,
-    fontSize: "1.2em",
-    color: "white",
-    margin: "10px 5px 0 5px",
-    borderRadius: "5px",
-    fontWeight: 600
-  },
-  item: {
-    padding: 10,
-    margin: 10,
-    fontSize: "0.8em",
-    cursor: "pointer",
-    backgroundColor: "white",
-    borderRadius: "5px"
-  }
-};
 const Board = props => {
+  // const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -155,6 +47,7 @@ const Board = props => {
   };
   // This code adds new applications to the board from data from forms
   useEffect(() => {
+    console.log(props.userID);
     getAllJobs(props.userID);
 
     var newState = tasks;
@@ -162,8 +55,9 @@ const Board = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].userID = props.userID;
+      console.log(props.userID);
       props.state.newApplications[i].jobID = uuid();
-
+      console.log(props.state.newApplications[i].jobID);
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
@@ -216,7 +110,7 @@ const Board = props => {
 
   return (
     <>
-      <Row>
+      <Row style={classes.row}>
         <Col md={1} style={classes.headerBtn}>
           <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
@@ -251,20 +145,18 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState} />
+          <Form state={props.state} setState={props.setState}/>
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2}>
+        <Col md={2} >
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>
-              APPLICATIONS
-            </Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
-            <Nav.Link href="/todos">TODO</Nav.Link>
+            <Nav.Link href="/todos">TODOS</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
@@ -300,6 +192,7 @@ const Board = props => {
                               resume={item.resume}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
+
                               changeTaskStatus= {changeTaskStatus}
                               editTask = {editTask}
                             >
