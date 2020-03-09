@@ -61,7 +61,7 @@ function ResourceForm(props) {
   return (
     <>
       <Button variant="primary" onClick={handleShow} style={classes.btn}>
-        Add Task +
+        Add Resource +
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -76,7 +76,7 @@ function ResourceForm(props) {
 
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>
-                Task <span style={redStyle}>*</span>
+                Resource Link <span style={redStyle}>*</span>
               </Form.Label>
               <Form.Control
                 type="input"
@@ -89,7 +89,7 @@ function ResourceForm(props) {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>
-                Description <span style={redStyle}>*</span>
+                Notes <span style={redStyle}>*</span>
               </Form.Label>
               <Form.Control
                 as="textarea"

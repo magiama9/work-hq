@@ -46,13 +46,13 @@ const Resources = props => {
     var newState = resLinks;
     for (var i = 0; i < props.state.newApplications.length; i++) {
       // Adding status and id to new applications
-      props.state.newApplications[i].status = "todo";
+      props.state.newApplications[i].status = "resume";
       props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].todoID = uuid();
+      props.state.newApplications[i].resourceID = uuid();
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
-      resourcePost.addTodo(newState[newState.length - 1]);
+      resourcePost.addResource(newState[newState.length - 1]);
       getAllResources(props.userID);
     }
     setResLinks(newState);
@@ -175,15 +175,15 @@ const Resources = props => {
                           .filter(item => item.status === channel)
                           .map(item => (
                             <ResourceItem
-                              key={item.todoID}
-                              id={item.todoID}
+                              key={item.resourceID}
+                              id={item.resourceID}
                               resource={item.resource}
                               description={item.description}
                               jobArray={item.jobArray}
                               changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
                               editLink={editLink}
                             >
-                              <div style={classes.item}>{item.todo}</div>
+                              <div style={classes.item}>{item.resource}</div>
                             </ResourceItem>
                           ))}
                       </div>

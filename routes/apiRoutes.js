@@ -48,7 +48,15 @@ router.put("/jobs/:id", (req, res) => {
   console.log(req.body);
   db.Jobs.findOneAndUpdate(
     { jobID: req.params.id },
-    { status: req.body.status, title:req.body.title, company:req.body.company, href:req.body.href, description: req.body.description, salary:req.body.salary, location:req.body.location }
+    {
+      status: req.body.status,
+      title: req.body.title,
+      company: req.body.company,
+      href: req.body.href,
+      description: req.body.description,
+      salary: req.body.salary,
+      location: req.body.location
+    }
   )
     .then(response => {
       console.log(response);
@@ -97,9 +105,8 @@ router.get("/materials/:uid", (req, res) => {
 });
 
 router.get("/resources/:uid", (req, res) => {
-  db.Jobs.find({ userID: req.params.uid })
+  db.Resources.find({ userID: req.params.uid })
     // .select("resume -_id")
-    .distinct("resume")
     .then(items => {
       //CONSOLE LOGGING JOBS
       res.json(items);
@@ -113,6 +120,39 @@ router.get("/resources/:uid", (req, res) => {
   //   if (err) console.error(err);
   //   // console.log(response);
   // });
+});
+// Put route for updating todos in the dashboard
+router.put("/resources/:id", (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+  db.Resources.findOneAndUpdate(
+    { resourceID: req.params.id },
+    { status: req.body.status, description: req.body.description }
+  )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  res.send("complete");
+});
+
+// Todo post route for adding todos
+router.post("/resources", (req, res) => {
+  console.log(req.body);
+  db.Resources.findOneAndUpdate({ resourceID: req.params.id }, req.body, {
+    upsert: true,
+    new: true,
+    setDefaultsOnInsert: true
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  res.send("complete");
 });
 
 module.exports = router;

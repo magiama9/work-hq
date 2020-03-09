@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Board from "../components/Board";
 
 function Dashboard(props) {
-  const [state, setState] = useState({ newApplications: [], tasks: [] });
+  const [state, setState] = useState({ newApplications: [], tasks: [], resources: [] });
 
   return (
     <div>

@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
+import resourcePost from "../../utils/resourcePost"
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -55,9 +56,7 @@ const Board = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].userID = props.userID;
-      console.log(props.userID);
       props.state.newApplications[i].jobID = uuid();
-      console.log(props.state.newApplications[i].jobID);
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
