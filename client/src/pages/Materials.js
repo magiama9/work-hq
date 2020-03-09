@@ -22,8 +22,14 @@ const Materials = props => {
   const [state, setState] = useState({resLinks: [], covLinks: [], otherLinks: []});
   const userID = props.userID;
   const [resLinks, setResLinks] = useState([]);
+  const [covLinks, setCovLinks] = useState([]);
+  const [othLinks, setOthLinks] = useState([]);
 
   const classes = {
+    row: {
+      paddingLeft: "0px",
+      paddingRight: "0px"
+    },
     matBoard: {
       backgroundColor: "#F5F6FA",
       height: "1000px"
@@ -97,11 +103,13 @@ const Materials = props => {
   //load materials
   const loadMats = userID => {
     getMats.fetchAll(userID)
-    .then(res => res.json() )
     .then(res => {
+      console.log(res);
       setResLinks(res);
       setState({ resLinks: res })
+      //TODO resLinks returning empty
       console.log(`resLinks: ${resLinks}`);
+      //Console logging
       console.log("yo");
       //TODO THROWING ERR 431 when proxy port 3000
       //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
@@ -125,18 +133,18 @@ const Materials = props => {
     //TODO add input into db associated with user id, render list
     //get input with name match
 
-    // switch (name) {
-    //   case "resume":
-    //     setResLinks(...resLinks, value);
-    //     break;
-    //   case "cover":
-    //     setCovLinks(...covLinks, value);
-    //     break;
-    //   default:
-    //     setOthLinks(...othLinks, value);
-    //     break;
-    // }
-    // console.log(resLinks, covLinks, othLinks);
+    switch (name) {
+      case "resume":
+        setResLinks(...resLinks, value);
+        break;
+      case "cover":
+        setCovLinks(...covLinks, value);
+        break;
+      default:
+        setOthLinks(...othLinks, value);
+        break;
+    }
+    console.log(resLinks, covLinks, othLinks);
 
     // postMat.addRes({
     //   type: links.name,
@@ -148,7 +156,7 @@ const Materials = props => {
 
   return (
     <>
-      <Row >
+      <Row style={classes.row}>
       <Col md={1} style={classes.headerBtn}>
           <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
@@ -202,23 +210,24 @@ const Materials = props => {
               aria-describedby="basic-addon2"
               // onChange={handleTyping}
             />
-            <InputGroup.Append>
+            <InputGroup.Append name="resume"
+                onClick={addLink}>
               <Button
                 variant="outline-secondary"
-                name="resume"
-                onClick={addLink}
+                // name="resume"
+                // onClick={addLink}
               >
                 Add Link
               </Button>
             </InputGroup.Append>
           </InputGroup>
           {/* display links */}
-          <div>
+          {/* <div>
             {resLinks.map(link => (
               <p>{link}</p>
             )
             )}
-          </div>
+          </div> */}
         </Col>
         <Col md={3} style={classes.linksCol}>
           <h2 style={classes.covers}>Cover Letters</h2>

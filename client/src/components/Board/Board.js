@@ -14,14 +14,6 @@ import jobPost from "../../utils/jobPost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
-} from "@react-firebase/auth";
-import "firebase/auth";
-
 // The different columns
 const channels = [
   "interested",
@@ -52,6 +44,10 @@ const labelsMap = {
 //pink: #FF4A75
 // grey: #F5F6FA
 const classes = {
+  row: {
+    paddingLeft: "0px",
+    paddingRight: "0px"
+  },
   header: {
     background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
     color: "white",
@@ -217,7 +213,7 @@ const Board = props => {
 
   return (
     <>
-      <Row>
+      <Row style={classes.row}>
         <Col md={1} style={classes.headerBtn}>
           <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">

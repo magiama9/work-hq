@@ -41,7 +41,7 @@ router.get("/materials/:uid", (req, res) => {
     .then((err, response) => {
       if (err) console.error(err);
       //CONSOLE LOGGING JOBS
-      console.log(response);
+      console.log(res.json(response));
     });
     // db.Jobs.find({ userID: req.params.uid })
     // .distinct("coverLetter")

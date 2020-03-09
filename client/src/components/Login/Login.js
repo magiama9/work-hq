@@ -10,10 +10,16 @@ import "firebase/auth";
 import config from "../../firebase-config"
 
 const classes = {
+  row: {
+    paddingLeft: "0px",
+    paddingRight: "0px"
+  },
   background: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    background: "linear-gradient(to bottom right, #18C6B3, #0D92FF, #18C6B3)",
     height: "100em",
-    margin: "0"
+    margin: "0px",
+    paddingLeft: "0px",
+    paddingRight: "0px"
   },
   btnDiv: {
     marginTop: "100px",
@@ -44,14 +50,14 @@ function Login() {
   return (
     <>
       <Container fluid={true} style={classes.background}>
-      <Row>
+      <Row style={classes.row}>
         <Col md={4}></Col>
         <Col md={4}><h1 style={classes.h1} >Work HQ</h1></Col>
         <Col md={4}></Col>
       </Row>
-      <Row>
-        <Col md={4}></Col>
-        <Col md={4}>
+      <Row style={classes.row}>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
           {/* Login authentication */}
           <FirebaseAuthProvider {...config} firebase={firebase}>
             <div className={classes.btnDiv}>
@@ -132,7 +138,7 @@ function Login() {
               </div> */}
           </FirebaseAuthProvider>
         </Col>
-        <Col md={4}></Col>
+        <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
       </Row>
     </Container>
     </>
