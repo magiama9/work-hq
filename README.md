@@ -1,5 +1,7 @@
 # work-hq
 
+![Heroku](http://heroku-badge.herokuapp.com/?app=work-hq&style=flat&svg=1)
+
 Job searching that doesn't suck.
 
 ## Team
