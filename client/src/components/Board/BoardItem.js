@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 // This should be split into a separate component
 // Defines each item on the board
-const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail, changeTaskStatus }, props) => {
+const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail, changeTaskStatus, editTask }, props) => {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
@@ -40,6 +40,13 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     changeTaskStatus(id, "deleted")
     console.log(id)
   }
+
+    // Edit
+    const handleEdit = (event) => {
+      event.preventDefault()
+      editTask(id)
+      console.log(id)
+    }
 
   // For handling the save to move over to board
   const handleSave = (event) => {
@@ -98,7 +105,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
               />
             </Form.Group>
             <p style={redStyle}> * required</p>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" onClick={handleEdit}>
               Save
               </Button>
               <span> </span>
