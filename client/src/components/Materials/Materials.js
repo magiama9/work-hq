@@ -8,7 +8,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import getMats from "../../utils/getMats";
-import jobFetch from "../../utils/jobFetch";
 import firebase from "firebase/app";
 import {
   FirebaseAuthProvider,
@@ -38,22 +37,7 @@ const Materials = props => {
       .fetchAll(userID)
       .then(res => {
         console.log(res.data);
-        //if not a repeat, add to resLinks
-        let addedLinks = []
-        for (var i = 0; i < res.data.length; i++ ) {
-          console.log(res.data[i].resume);
-          if( res.data[i].resume !== "" && addedLinks.indexOf(res.data[i].resume) < 0 ) {
-            //TODO nothing pushing
-            
-            addedLinks.push(res.data[i].resume)
-            console.log(addedLinks);
-          }
-        }
-        console.log(addedLinks);
-        setResLinks(addedLinks);
-        console.log(resLinks);
-        //TODO THROWING ERR 431 when proxy port 3000
-        //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
+        setResLinks(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -61,7 +45,7 @@ const Materials = props => {
   //on component mount, load materials
   useEffect(() => {
     loadMats(userID);
-    var newState = resLinks;
+    // var newState = resLinks;
     // console.log(newState);
     // for (var i = 0; i < props.state.resLinks.length; i++) {
     //   newState.push(props.state.resLinks[i]);
@@ -69,6 +53,19 @@ const Materials = props => {
     //   loadMats(userID);
     //   console.log(resLinks);
     // }
+
+    //if not a repeat, add to resLinks
+    let addedLinks = resLinks;
+    for (var i = 0; i < resLinks.length; i++ ) {
+      if( resLinks[i].resume !== "" && addedLinks.indexOf(resLinks[i].resume) < 0 ) {
+        addedLinks.push(resLinks[i].resume)
+      }
+    }
+    console.log(addedLinks);
+    //TODO not working
+    setResLinks(addedLinks);
+    //TODO console.logging empty arr
+    console.log(resLinks);
   }, []);
 
   const addLink = event => {
@@ -170,7 +167,7 @@ const Materials = props => {
           {/* display links */}
           <div>
             {resLinks.map(link => (
-              <p>{link.resume}</p>
+              <p>{link}</p>
             ))}
           </div>
         </Col>

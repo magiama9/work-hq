@@ -79,9 +79,8 @@ router.put("/todos/:id", (req, res) => {
 // Get route for materials
 router.get("/materials/:uid", (req, res) => {
   db.Jobs.find({ userID: req.params.uid })
-
-    .select("resume -_id")
-    // .distinct("resume")
+    // .select("resume -_id")
+    .distinct("resume")
     .then(items => {
       //CONSOLE LOGGING JOBS
       res.json(items);
