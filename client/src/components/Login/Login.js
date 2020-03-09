@@ -75,6 +75,7 @@ function Login() {
         <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
       </Row>
     </Container>
+    </>
   );
 }
 
