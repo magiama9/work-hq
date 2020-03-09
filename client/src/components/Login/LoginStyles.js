@@ -4,7 +4,9 @@ const classes = {
   background: {
     background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
     height: "100em",
-    margin: "0"
+    margin: "0px",
+    paddingLeft: "0px",
+    paddingRight: "0px"
   },
   btnDiv: {
     marginTop: "100px",
