@@ -88,6 +88,25 @@ const Board = props => {
     },
     [tasks]
   );
+  
+  // Editing Tasks
+  const editTask = useCallback(
+    (id, description) => {
+      // Match the task to the ID
+      let task = tasks.find(task => task.jobID === id);
+      const taskIndex = tasks.indexOf(task);
+      // Set the working task
+      task = { ...task, description };
+      jobPost.updateJob(task.jobID, task);
+      // Update the tasks
+      let newTasks = update(tasks, {
+        [taskIndex]: { $set: task }
+      });
+      // Update state
+      setTaskStatus(newTasks);
+    },
+    [tasks]
+  );
 
   return (
     <>
@@ -173,6 +192,9 @@ const Board = props => {
                               resume={item.resume}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
+
+                              changeTaskStatus= {changeTaskStatus}
+                              editTask = {editTask}
                             >
                               <div style={classes.item}>
                                 {item.title} - {item.company}

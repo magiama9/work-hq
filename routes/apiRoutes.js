@@ -48,7 +48,7 @@ router.put("/jobs/:id", (req, res) => {
   console.log(req.body);
   db.Jobs.findOneAndUpdate(
     { jobID: req.params.id },
-    { status: req.body.status }
+    { status: req.body.status, description: req.body.description }
   )
     .then(response => {
       console.log(response);
@@ -96,5 +96,7 @@ router.get("/materials/:uid", (req, res) => {
   //   // console.log(response);
   // });
 });
+
+
 
 module.exports = router;

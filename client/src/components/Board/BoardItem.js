@@ -6,11 +6,11 @@ import Button from "react-bootstrap/Button";
 
 // This should be split into a separate component
 // Defines each item on the board
-const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail, changeTaskStatus }, props) => {
+const BoardItem = ({ id, children, title, company, description, url, resume, coverLetter, salary, contactEmail, changeTaskStatus, editTask }, props) => {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
-  const [formState, setFormState] = useState({description: ""})
+  const [formState, setFormState] = useState({ description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -41,6 +41,14 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     console.log(id)
   }
 
+    // Edit
+    const handleEdit = (event) => {
+      event.preventDefault()
+      editTask(id, formState.description)
+      console.log(id)
+      handleClose()
+    }
+
   // For handling the save to move over to board
   const handleSave = (event) => {
     const form = event.currentTarget
@@ -63,8 +71,6 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
     }
   };
 
-
-
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
   drag(ref);
@@ -81,8 +87,9 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
           <Modal.Title>{title} - {company}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h4>Description</h4>
           {description}
-          <Form noValidate validated={validated} onSubmit={handleSave}>
+          <Form name="modal" noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
             {formMessage.length > 0 && (
               <p style={redStyle}>{formMessage}</p>
@@ -90,15 +97,18 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Description <span style={redStyle}>*</span></Form.Label>
               <Form.Control as="textarea" rows="5"
+                as="textarea"
+                rows="5"
                 type="input"
                 name="description"
                 onChange={handleTyping}
+                value={formState.description} // Controlled Input
                 placeholder=""
                 required="required"
               />
             </Form.Group>
             <p style={redStyle}> * required</p>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" onClick={handleEdit}>
               Save
               </Button>
               <span> </span>
