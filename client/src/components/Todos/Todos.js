@@ -120,7 +120,7 @@ const Todos = props => {
           <TodoForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Applications</h1>
+          <h1>Todo</h1>
         </Col>
       </Row>
       <Row noGutters={true}>

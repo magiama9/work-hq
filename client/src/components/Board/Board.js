@@ -137,6 +137,7 @@ const Board = props => {
           <Nav defaultActiveKey="/" className="flex-column">
             <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/todos">TODOS</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>

@@ -132,6 +132,7 @@ const Materials = props => {
             <Nav.Link href="/materials" style={classes.activeLink}>
               MATERIALS
             </Nav.Link>
+            <Nav.Link href="/todos">TODOS</Nav.Link>
           </Nav>
         </Col>
         <Col md={3} style={classes.linksCol}>
