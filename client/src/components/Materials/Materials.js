@@ -41,12 +41,17 @@ const Materials = props => {
         //if not a repeat, add to resLinks
         let addedLinks = []
         for (var i = 0; i < res.data.length; i++ ) {
+          console.log(res.data[i].resume);
           if( res.data[i].resume !== "" && addedLinks.indexOf(res.data[i].resume) < 0 ) {
-            addedLinks.push(res.data[i])
+            //TODO nothing pushing
+            
+            addedLinks.push(res.data[i].resume)
+            console.log(addedLinks);
           }
         }
         console.log(addedLinks);
         setResLinks(addedLinks);
+        console.log(resLinks);
         //TODO THROWING ERR 431 when proxy port 3000
         //TODO sometimes throwing Network error net::ERR_EMPTY_RESPONSE
       })
