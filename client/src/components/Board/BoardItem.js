@@ -87,6 +87,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
           <Modal.Title>{title} - {company}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h4>Description</h4>
           {description}
           <Form name="modal" noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
