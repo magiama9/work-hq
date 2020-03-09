@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import Board from "../components/Board";
+import Todos from "../components/Todos";
 
-function Dashboard(props) {
+function TodoPage(props) {
   const [state, setState] = useState({ newApplications: [], tasks: [] });
 
   return (
     <div>
 
-      {/* Render a board component */}
+      {/* Render a todos component */}
       {/* UserID is passed down so that only the correct user's info is shown */}
-      <Board state={state} setState={setState} userID={props.userID} />
+      <Todos state={state} setState={setState} userID={props.userID} />
     </div>
   );
 }
 
-export default Dashboard;
+export default TodoPage;
