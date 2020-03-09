@@ -14,7 +14,7 @@ const TodosItem = (
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
   const [formMessage, setFormMessage] = useState("");
-  const [formState, setFormState] = useState({ description: description });
+  const [formState, setFormState] = useState({ description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // ========================================
