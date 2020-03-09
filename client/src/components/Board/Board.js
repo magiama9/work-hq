@@ -58,7 +58,7 @@ const classes = {
   headerBtn: {
     background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
     color: "white",
-    fontFamily: "'Nunito', sans-serif",
+    fontFamily: "'Nunito', sans-serif"
   },
   dropdown: {
     backgroundColor: "white",
@@ -232,17 +232,20 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState}/>
+          <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Applications</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2} >
+        <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>
+              APPLICATIONS
+            </Nav.Link>
             <Nav.Link href="/materials">MATERIALS</Nav.Link>
+            <Nav.Link href="/todos">TODO</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
@@ -278,7 +281,7 @@ const Board = props => {
                               resume={item.resume}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
-                              changeTaskStatus= {changeTaskStatus}
+                              changeTaskStatus={changeTaskStatus}
                             >
                               <div style={classes.item}>
                                 {item.title} - {item.company}
