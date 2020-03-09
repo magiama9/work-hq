@@ -10,7 +10,7 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false)
   const [formMessage, setFormMessage] = useState("")
-  const [formState, setFormState] = useState({description: ""})
+  const [formState, setFormState] = useState({ description: description });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -97,9 +97,12 @@ const BoardItem = ({ id, children, title, company, description, url, resume, cov
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Description <span style={redStyle}>*</span></Form.Label>
               <Form.Control as="textarea" rows="5"
+                as="textarea"
+                rows="5"
                 type="input"
                 name="description"
                 onChange={handleTyping}
+                value={formState.description} // Controlled Input
                 placeholder=""
                 required="required"
               />
