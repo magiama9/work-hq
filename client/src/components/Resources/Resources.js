@@ -43,7 +43,7 @@ const Resources = props => {
     console.log(props.userID);
     getAllResources(props.userID);
 
-    var newState = resLinks;
+    var newState = [];
     for (var i = 0; i < props.state.newApplications.length; i++) {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "resume";

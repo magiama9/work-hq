@@ -141,11 +141,35 @@ router.put("/resources/:id", (req, res) => {
 // Todo post route for adding todos
 router.post("/resources", (req, res) => {
   console.log(req.body);
-  db.Resources.findOneAndUpdate({ resourceID: req.params.id }, req.body, {
-    upsert: true,
-    new: true,
-    setDefaultsOnInsert: true
-  })
+  db.Resources.findOneAndUpdate(
+    { resource: req.body.resource, status: req.body.status },
+    req.body,
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true
+    }
+  )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  res.send("complete");
+});
+
+router.post("/resources/resume", (req, res) => {
+  console.log(req.body);
+  db.Resources.findOneAndUpdate(
+    { resource: req.body.resource, status: "resume" },
+    req.body,
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true
+    }
+  )
     .then(response => {
       console.log(response);
     })

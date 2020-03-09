@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
+import resourceFetch from "../../utils/resourceFetch";
 import resourcePost from "../../utils/resourcePost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
@@ -41,12 +42,45 @@ const labelsMap = {
 const Board = props => {
   // const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
+  const [resumes, setResumes] = useState([]);
+  const [coverLetters, setCoverLetters] = useState([]);
+
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
+      // getResources(userID);
+      let resources = [];
       res.data.forEach(job => {
-        console.log(job.resume);
+        if (job.coverLetter !== "" && !coverLetters.includes(job.coverLetter)) {
+          let newResource = {
+            resource: job.coverLetter,
+            status: "coverLetter",
+            resourceID: uuid(),
+            jobID: job.jobID,
+            userID: props.userID
+          };
+          resources.push(newResource);
+          coverLetters.push(job.coverLetter);
+          console.log(coverLetters);
+        }
+        if (job.resume !== "" && !resumes.includes(job.resume)) {
+          let newResource = {
+            resource: job.resume,
+            status: "resume",
+            resourceID: uuid(),
+            jobID: job.jobID,
+            userID: props.userID
+          };
+          resources.push(newResource);
+          resumes.push(job.resume);
+        }
       });
+      console.log(resources);
+      resources.forEach(resource => {
+        resourcePost.addResource(resource);
+      });
+
+      resources = [];
     });
   };
   // This code adds new applications to the board from data from forms

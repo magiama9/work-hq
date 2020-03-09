@@ -1,11 +1,18 @@
 import axios from "axios";
 
 export default {
-
   // Post route to add Resources
   addResource: function(newResource) {
     console.log(newResource);
     return axios.post("api/resources", newResource);
+  },
+  addResume: function(newResource) {
+    console.log(newResource);
+    return axios.post("api/resources/resume", newResource);
+  },
+  addCL: function(newResource) {
+    console.log(newResource);
+    return axios.post("api/resources/cl", newResource);
   },
 
   // Put route to update Resources
