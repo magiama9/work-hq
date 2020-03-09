@@ -12,6 +12,8 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
+import resourceFetch from "../../utils/resourceFetch";
+import resourcePost from "../../utils/resourcePost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -40,9 +42,45 @@ const labelsMap = {
 const Board = props => {
   // const [state, setState] = useState({ newApplications: [], tasks: []});
   const [tasks, setTaskStatus] = useState([]);
+  const [resumes, setResumes] = useState([]);
+  const [coverLetters, setCoverLetters] = useState([]);
+
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
+      // getResources(userID);
+      let resources = [];
+      res.data.forEach(job => {
+        if (job.coverLetter !== "" && !coverLetters.includes(job.coverLetter)) {
+          let newResource = {
+            resource: job.coverLetter,
+            status: "coverLetter",
+            resourceID: uuid(),
+            jobID: job.jobID,
+            userID: props.userID
+          };
+          resources.push(newResource);
+          coverLetters.push(job.coverLetter);
+          console.log(coverLetters);
+        }
+        if (job.resume !== "" && !resumes.includes(job.resume)) {
+          let newResource = {
+            resource: job.resume,
+            status: "resume",
+            resourceID: uuid(),
+            jobID: job.jobID,
+            userID: props.userID
+          };
+          resources.push(newResource);
+          resumes.push(job.resume);
+        }
+      });
+      console.log(resources);
+      resources.forEach(resource => {
+        resourcePost.addResource(resource);
+      });
+
+      resources = [];
     });
   };
   // This code adds new applications to the board from data from forms
@@ -55,9 +93,7 @@ const Board = props => {
       // Adding status and id to new applications
       props.state.newApplications[i].status = "interested";
       props.state.newApplications[i].userID = props.userID;
-      console.log(props.userID);
       props.state.newApplications[i].jobID = uuid();
-      console.log(props.state.newApplications[i].jobID);
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
@@ -83,6 +119,25 @@ const Board = props => {
         [taskIndex]: { $set: task }
       });
 
+      // Update state
+      setTaskStatus(newTasks);
+    },
+    [tasks]
+  );
+
+  // Editing Tasks
+  const editTask = useCallback(
+    (id, title, company, href, description, salary, location) => {
+      // Match the task to the ID
+      let task = tasks.find(task => task.jobID === id);
+      const taskIndex = tasks.indexOf(task);
+      // Set the working task
+      task = { ...task, title, company, href, description, salary, location };
+      jobPost.updateJob(task.jobID, task);
+      // Update the tasks
+      let newTasks = update(tasks, {
+        [taskIndex]: { $set: task }
+      });
       // Update state
       setTaskStatus(newTasks);
     },
@@ -126,15 +181,16 @@ const Board = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState}/>
+          <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
           <h1>Work HQ</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
-        <Col md={2} >
+        <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
+
             <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
             <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
             <Nav.Link href="/todos" style={classes.link}>TODOS</Nav.Link>
@@ -169,10 +225,13 @@ const Board = props => {
                               description={item.description}
                               company={item.company}
                               salary={item.salary}
-                              url={item.href}
+                              href={item.href}
                               resume={item.resume}
+                              location={item.location}
                               coverLetter={item.coverLetter}
                               contactEmail={item.contactEmail}
+                              changeTaskStatus={changeTaskStatus}
+                              editTask={editTask}
                             >
                               <div style={classes.item}>
                                 {item.title} - {item.company}

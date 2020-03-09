@@ -1,5 +1,7 @@
 # work-hq
 
+![Heroku](http://heroku-badge.herokuapp.com/?app=work-hq&style=flat&svg=1) ![GitHub package.json version](https://img.shields.io/github/package-json/v/magiama9/work-hq)
+
 Job searching that doesn't suck.
 
 ## Team
@@ -28,9 +30,9 @@ As someone who isn't actively job searching, but is open to opportunities, I wan
 
 1. ~~Users are able to add jobs to their dashboard~~
 2. ~~Users are able to move jobs across the categories in their dashboard~~
-3. Users are able to remove jobs from their dashboard
+3. ~~Users are able to remove jobs from their dashboard~~
 4. ~~Users are able to create and track to-dos related to their job applications~~
-5. Users are able to view their professional materials
+5. ~~Users are able to view their professional materials~~
 6. ~~Users are be authenticated and their information persists.~~
 
 ## Tech
@@ -39,4 +41,4 @@ WorkHQ is built and deployed using the MERN (Mongo, Express, React, Node) stack.
 
 Authentication flow is handled with Firebase Authentication. Users are able to securely log in with Google or anonymously to test features.
 
-Project is deployed via Heroku.
+Project is deployed via Heroku with MLabs (operates with MongoDB Atlas) as the cloud DB provider.

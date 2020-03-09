@@ -5,8 +5,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 // Defines each item on the Todos
-const TodosItem = (
-  { id, children, todo, description, changeTaskStatus, editTask },
+const ResourceItem = (
+  { id, children, resource, description, changeTaskStatus, editTask },
   props
 ) => {
   // State hooks
@@ -88,7 +88,7 @@ const TodosItem = (
       {/* popup on click */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{todo}</Modal.Title>
+          <Modal.Title>{resource}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {description}
@@ -135,4 +135,4 @@ const TodosItem = (
   );
 };
 
-export default TodosItem;
+export default ResourceItem;

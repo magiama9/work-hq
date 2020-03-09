@@ -2,60 +2,60 @@ import React, { useState, useCallback, useEffect } from "react";
 import uuid from "react-uuid";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
-import classes from "./TodosStyles";
+import classes from "./ResourceStyles";
 import update from "immutability-helper";
-import TodosColumn from "./TodosColumn";
-import TodosItem from "./TodosItem";
-import TodoForm from "../TodoForm";
+import ResourceColumn from "./ResourceColumn";
+import ResourceItem from "./ResourceItem";
+import ResourceForm from "../ResourcesForm";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
-import todoFetch from "../../utils/todoFetch";
-import todoPost from "../../utils/todoPost";
+import resourceFetch from "../../utils/resourceFetch";
+import resourcePost from "../../utils/resourcePost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
 
 // The different columns
-const channels = ["todo", "inprogress", "completed"];
+const channels = ["resume", "coverLetter", "other"];
 
 // What we label the columns.
 // Key : Label
 // Key is what we store in state
 // Label is what's displayed
 const labelsMap = {
-  todo: "Your Todos",
-  inprogress: "In Progress",
-  completed: "Completed Tasks"
+  resume: "Resumes",
+  coverLetter: "Cover Letters",
+  other: "Other Links"
 };
 
-const Todos = props => {
-  const [tasks, setTaskStatus] = useState([]);
-  const getAllTodos = userID => {
-    todoFetch.fetchAll(userID).then(res => {
+const Resources = props => {
+  const [resLinks, setResLinks] = useState([]);
+  const getAllResources = userID => {
+    resourceFetch.fetchAll(userID).then(res => {
       console.log(res);
-      setTaskStatus(res.data);
+      setResLinks(res.data);
     });
   };
-  // This code adds new items to the Todos from data from forms
+  // This code adds new items to the Resources from data from forms
   useEffect(() => {
     console.log(props.userID);
-    getAllTodos(props.userID);
+    getAllResources(props.userID);
 
-    var newState = tasks;
+    var newState = [];
     for (var i = 0; i < props.state.newApplications.length; i++) {
       // Adding status and id to new applications
-      props.state.newApplications[i].status = "todo";
+      props.state.newApplications[i].status = "resume";
       props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].todoID = uuid();
+      props.state.newApplications[i].resourceID = uuid();
       // pushing new applications
       newState.push(props.state.newApplications[i]);
       props.state.newApplications = [];
-      todoPost.addTodo(newState[newState.length - 1]);
-      getAllTodos(props.userID);
+      resourcePost.addResource(newState[newState.length - 1]);
+      getAllResources(props.userID);
     }
-    setTaskStatus(newState);
+    setResLinks(newState);
     changeTaskStatus();
   }, [props]);
 
@@ -63,40 +63,40 @@ const Todos = props => {
   const changeTaskStatus = useCallback(
     (id, status) => {
       // Match the task to the ID
-      let task = tasks.find(task => task.todoID === id);
-      const taskIndex = tasks.indexOf(task);
+      let resLink = resLinks.find(resLink => resLink.resourceID === id);
+      const resIndex = resLinks.indexOf(resLink);
 
       // Set the working task
-      task = { ...task, status };
-      todoPost.updateTodo(task.todoID, task);
+      resLink = { ...resLink, status };
+      resourcePost.updateResource(resLink.resourceID, resLink);
       // Update the tasks
-      let newTasks = update(tasks, {
-        [taskIndex]: { $set: task }
+      let newLinks = update(resLinks, {
+        [resIndex]: { $set: resLink }
       });
 
       // Update state
-      setTaskStatus(newTasks);
+      setResLinks(newLinks);
     },
-    [tasks]
+    [resLinks]
   );
 
   // Editing Tasks
-  const editTask = useCallback(
+  const editLink = useCallback(
     (id, description) => {
       // Match the task to the ID
-      let task = tasks.find(task => task.todoID === id);
-      const taskIndex = tasks.indexOf(task);
+      let resLink = resLinks.find(task => task.todoID === id);
+      const resIndex = resLinks.indexOf(resLink);
       // Set the working task
-      task = { ...task, description };
-      todoPost.updateTodo(task.todoID, task);
+      resLink = { ...resLink, description };
+      resourcePost.updateResource(resLink.resourceID, resLink);
       // Update the tasks
-      let newTasks = update(tasks, {
-        [taskIndex]: { $set: task }
+      let newLinks = update(resLinks, {
+        [resIndex]: { $set: resLink }
       });
       // Update state
-      setTaskStatus(newTasks);
+      setResLinks(newLinks);
     },
-    [tasks]
+    [resLinks]
   );
 
   return (
@@ -136,20 +136,20 @@ const Todos = props => {
           </NavDropdown>
         </Col>
         <Col md={2} style={classes.headerBtn}>
-          <TodoForm state={props.state} setState={props.setState} />
+          <ResourceForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Work HQ</h1>
+          <h1>Materials</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.link}>APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
-            <Nav.Link href="/todos" style={classes.activeLink}>
-              TODO
+            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
+            <Nav.Link href="/materials" style={classes.activeLink}>
+              >MATERIALS
             </Nav.Link>
+            <Nav.Link href="/todos">TODO</Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
@@ -160,7 +160,7 @@ const Todos = props => {
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
                 <Col key={channel} md={3}>
-                  <TodosColumn
+                  <ResourceColumn
                     key={channel}
                     status={channel}
                     changeTaskStatus={changeTaskStatus}
@@ -171,23 +171,24 @@ const Todos = props => {
                       </div>
                       <div>
                         {/* Renders the correct tasks onto the column */}
-                        {tasks
+                        {resLinks
                           .filter(item => item.status === channel)
                           .map(item => (
-                            <TodosItem
-                              key={item.todoID}
-                              id={item.todoID}
-                              todo={item.todo}
+                            <ResourceItem
+                              key={item.resourceID}
+                              id={item.resourceID}
+                              resource={item.resource}
                               description={item.description}
+                              jobArray={item.jobArray}
                               changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
-                              editTask={editTask}
+                              editLink={editLink}
                             >
-                              <div style={classes.item}>{item.todo}</div>
-                            </TodosItem>
+                              <div style={classes.item}>{item.resource}</div>
+                            </ResourceItem>
                           ))}
                       </div>
                     </div>
-                  </TodosColumn>
+                  </ResourceColumn>
                 </Col>
               ))}
             </section>
@@ -198,4 +199,4 @@ const Todos = props => {
   );
 };
 
-export default Todos;
+export default Resources;
