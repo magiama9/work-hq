@@ -1,6 +1,6 @@
 # work-hq
 
-![Heroku](http://heroku-badge.herokuapp.com/?app=work-hq&style=flat&svg=1)
+![Heroku](http://heroku-badge.herokuapp.com/?app=work-hq&style=flat&svg=1) ![GitHub package.json version](https://img.shields.io/github/package-json/v/magiama9/work-hq)
 
 Job searching that doesn't suck.
 
