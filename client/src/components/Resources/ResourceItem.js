@@ -81,9 +81,11 @@ const ResourceItem = (
 
   return (
     <>
-      <div ref={ref} style={{ opacity }} onClick={handleShow}>
-        {children}
-      </div>
+      <a href={resource} target="_blank">
+        <div ref={ref} style={{ opacity }}>
+          {children}
+        </div>
+      </a>
 
       {/* popup on click */}
       <Modal show={show} onHide={handleClose}>
