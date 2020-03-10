@@ -181,7 +181,11 @@ const Resources = props => {
                               changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
                               editLink={editLink}
                             >
-                              <div style={classes.item}>{item.resource}</div>
+                              <div style={classes.item}>
+                                <a href={item.resource} target="_blank">
+                                  {item.resource}
+                                </a>
+                              </div>
                             </ResourceItem>
                           ))}
                       </div>
