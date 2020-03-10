@@ -36,19 +36,19 @@ function App() {
                       exact
                       path="/dashboard"
                       render={props => (
-                        <Dashboard {...props} userID={user.user.uid} />
+                        <Dashboard {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
                       )}
                     />
                     <Route
                       exact
                       path="/todos"
                       render={props => (
-                        <Todos {...props} userID={user.user.uid} />
+                        <Todos {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
                       )}
                     />
 
                     <Route exact path="/materials" render={props => (
-                      <Materials {...props} userID={user.user.uid} />
+                      <Materials {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
                     )}/>
                   </div>
                 </div>

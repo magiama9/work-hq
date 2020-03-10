@@ -44,6 +44,7 @@ const Materials = props => {
       }
     }
     setResLinks(addedLinks);
+    console.log(props.photoURL)
   }, []);
 
   const addLink = event => {

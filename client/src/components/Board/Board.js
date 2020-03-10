@@ -18,6 +18,7 @@ import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+
 // The different columns
 const channels = [
   "interested",
@@ -102,6 +103,7 @@ const Board = props => {
     }
     setTaskStatus(newState);
     changeTaskStatus();
+    console.log(props.photoURL)
   }, [props]);
 
   //updating job in db whenever task is changed
@@ -148,7 +150,10 @@ const Board = props => {
     <>
       <Row >
         <Col md={1} style={classes.headerBtn}>
-          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
+          <NavDropdown 
+          title={
+            <img src={props.photoURL} alt="user profile pic" />
+          } id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
