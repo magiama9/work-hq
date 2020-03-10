@@ -14,7 +14,7 @@ const ResourceItem = (
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
   const [formMessage, setFormMessage] = useState("");
-  const [formState, setFormState] = useState({ description });
+  const [formState, setFormState] = useState({ resource });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // ========================================
@@ -81,33 +81,32 @@ const ResourceItem = (
 
   return (
     <>
-      <a href={resource} target="_blank">
-        <div ref={ref} style={{ opacity }}>
-          {children}
-        </div>
-      </a>
+      <div ref={ref} style={{ opacity }} onClick={handleShow}>
+        {children}
+      </div>
 
       {/* popup on click */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{resource}</Modal.Title>
+          <Modal.Title>
+            <a href={resource} target="_blank">
+              {resource}
+            </a>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {description}
           <Form noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
             {formMessage.length > 0 && <p style={redStyle}>{formMessage}</p>}
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>
-                Description <span style={redStyle}>*</span>
+                Link <span style={redStyle}>*</span>
               </Form.Label>
               <Form.Control
-                as="textarea"
-                rows="5"
                 type="input"
-                name="description"
+                name="resource"
                 onChange={handleTyping}
-                value={formState.description} // Controlled Input
+                value={formState.resource} // Controlled Input
                 placeholder=""
                 required="required"
               />

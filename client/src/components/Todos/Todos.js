@@ -4,6 +4,7 @@ import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import classes from "./TodosStyles";
 import update from "immutability-helper";
+import About from "../About";
 import TodosColumn from "./TodosColumn";
 import TodosItem from "./TodosItem";
 import TodoForm from "../TodoForm";
@@ -25,7 +26,7 @@ const channels = ["todo", "inprogress", "completed"];
 // Key is what we store in state
 // Label is what's displayed
 const labelsMap = {
-  todo: "Your Todos",
+  todo: "Your Tasks",
   inprogress: "In Progress",
   completed: "Completed Tasks"
 };
@@ -147,7 +148,7 @@ const Todos = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.activeLink}>
-              TODO
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>
@@ -189,6 +190,9 @@ const Todos = props => {
                   </TodosColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="todos"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>

@@ -7,6 +7,7 @@ import classes from "./BoardStyles";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
 import Form from "../Form";
+import About from "../About";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -185,7 +186,7 @@ const Board = props => {
           <Form state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Work HQ</h1>
+          <h1 style={{ display: "inline" }}>Work HQ</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
@@ -198,7 +199,7 @@ const Board = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.link}>
-              TODOS
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>
@@ -249,6 +250,9 @@ const Board = props => {
                   </BoardColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="dashboard"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>

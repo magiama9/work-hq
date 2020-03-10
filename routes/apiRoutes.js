@@ -4,7 +4,7 @@ const db = require("../models");
 // Get route for fetching a user's saved jobs
 router.get("/jobs/:uid", (req, res) => {
   console.log(req.params.uid);
-  db.Jobs.find({ userID: req.params.uid })
+  db.Jobs.find({ userID: req.params.uid, status: { $ne: "deleted" } })
     .then(jobs => res.json(jobs))
     .catch(err => res.status(422).end());
 });

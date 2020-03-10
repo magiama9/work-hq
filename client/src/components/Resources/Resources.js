@@ -4,6 +4,7 @@ import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import classes from "./ResourceStyles";
 import update from "immutability-helper";
+import About from "../About";
 import ResourceColumn from "./ResourceColumn";
 import ResourceItem from "./ResourceItem";
 import Row from "react-bootstrap/Row";
@@ -146,7 +147,7 @@ const Resources = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.link}>
-              TODO
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>
@@ -181,7 +182,11 @@ const Resources = props => {
                               changeTaskStatus={changeTaskStatus} // Allows proper event handling with the form
                               editLink={editLink}
                             >
-                              <div style={classes.item}>{item.resource}</div>
+                              <div style={classes.item}>
+                                <a href={item.resource} target="_blank">
+                                  {item.resource}
+                                </a>
+                              </div>
                             </ResourceItem>
                           ))}
                       </div>
@@ -189,6 +194,9 @@ const Resources = props => {
                   </ResourceColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="materials"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>
