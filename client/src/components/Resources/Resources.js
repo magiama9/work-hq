@@ -32,6 +32,7 @@ const labelsMap = {
 
 const Resources = props => {
   const [resLinks, setResLinks] = useState([]);
+  const [imageSource, setImageSource] = useState(props.photoURL); // If we get an image source from login, it uses that
   const getAllResources = userID => {
     resourceFetch.fetchAll(userID).then(res => {
       console.log(res);
@@ -40,6 +41,9 @@ const Resources = props => {
   };
   // This code adds new items to the Resources from data from forms
   useEffect(() => {
+    if (imageSource === null) {
+      setImageSource("https://via.placeholder.com/50"); // Sets the image to a placeholder if we don't get it from login
+    }
     console.log(props.userID);
     getAllResources(props.userID);
 
@@ -103,7 +107,18 @@ const Resources = props => {
     <>
       <Row>
         <Col md={1} style={classes.headerBtn}>
-          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
+          <NavDropdown
+            title={
+              <img
+                src={imageSource} // photoURL is passed down through props from the authentication
+                alt="user profile pic"
+                className="rounded-circle"
+                width="50px"
+              />
+            }
+            id="nav-dropdown"
+            // style={classes.dropdown}
+          >
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {

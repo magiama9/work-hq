@@ -6,10 +6,14 @@ function TodoPage(props) {
 
   return (
     <div>
-
       {/* Render a todos component */}
       {/* UserID is passed down so that only the correct user's info is shown */}
-      <Todos state={state} setState={setState} userID={props.userID} />
+      <Todos
+        state={state}
+        setState={setState}
+        userID={props.userID}
+        photoURL={props.photoURL}
+      />
     </div>
   );
 }

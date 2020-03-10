@@ -32,15 +32,17 @@ const labelsMap = {
 
 const Todos = props => {
   const [tasks, setTaskStatus] = useState([]);
+  const [imageSource, setImageSource] = useState(props.photoURL); // If we get an image source from login, it uses that
   const getAllTodos = userID => {
     todoFetch.fetchAll(userID).then(res => {
-      console.log(res);
       setTaskStatus(res.data);
     });
   };
   // This code adds new items to the Todos from data from forms
   useEffect(() => {
-    console.log(props.userID);
+    if (imageSource === null) {
+      setImageSource("https://via.placeholder.com/50"); // Sets the image to a placeholder if we don't get it from login
+    }
     getAllTodos(props.userID);
 
     var newState = tasks;
@@ -103,7 +105,18 @@ const Todos = props => {
     <>
       <Row>
         <Col md={1} style={classes.headerBtn}>
-          <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
+          <NavDropdown
+            title={
+              <img
+                src={imageSource} // photoURL is passed down through props from the authentication
+                alt="user profile pic"
+                className="rounded-circle"
+                width="50px"
+              />
+            }
+            id="nav-dropdown"
+            // style={classes.dropdown}
+          >
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
@@ -145,8 +158,12 @@ const Todos = props => {
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.link}>APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.link}>
+              APPLICATIONS
+            </Nav.Link>
+            <Nav.Link href="/materials" style={classes.link}>
+              MATERIALS
+            </Nav.Link>
             <Nav.Link href="/todos" style={classes.activeLink}>
               TODO
             </Nav.Link>
