@@ -171,7 +171,7 @@ const Resources = props => {
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>
-            <section style={classes.todos}>
+            <section style={classes.board}>
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
                 <Col key={channel} md={3}>
