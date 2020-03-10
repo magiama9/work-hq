@@ -4,6 +4,7 @@ import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import classes from "./ResourceStyles";
 import update from "immutability-helper";
+import About from "../About";
 import ResourceColumn from "./ResourceColumn";
 import ResourceItem from "./ResourceItem";
 import Row from "react-bootstrap/Row";
@@ -193,6 +194,9 @@ const Resources = props => {
                   </ResourceColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="materials"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>
