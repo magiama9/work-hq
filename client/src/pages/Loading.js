@@ -1,32 +1,27 @@
 import React, { Component } from "react";
 import Landing from "./Landing";
+import Loading from "../components/Loading";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const classes = {
-  background: {
+  divBackground: {
     background:
       "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",
     backgroundSize: "cover",
     height: "100vh",
+    width: "100vw",
     margin: "0px 0px 0px 0px",
     padding: "2em auto 2em auto"
-  },
-  message: {
-    fontFamily: "'Fredoka One', sans-serif",
-    fontSize: "3em",
-    color: "white",
-    width: "50%",
-    margin: "2em auto auto auto"
   }
 };
 
-class Loading extends Component {
+class LoadingPage extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      messages: ["Loading...", Landing],
+      messages: [<Loading />, <Landing/>],
       index: 0
     };
   }
@@ -51,17 +46,19 @@ class Loading extends Component {
   render() {
     const { index, messages } = this.state;
     return (
-      <Container fluid={true} style={classes.background}>
+      <Container fluid={true} style={classes.divBackground}>
         <Row>
-          <Col md={4}></Col>
-          <Col md={4}>
-            <h1 style={classes.message}>{messages[index]}</h1>
+          <Col md={12}>
+          {/* <Col md={4}></Col>
+          <Col md={4}> */}
+            <div style={classes.message}>{messages[index]}</div>
+          {/* </Col>
+          <Col md={4}></Col> */}
           </Col>
-          <Col md={4}></Col>
-        </Row>
+        </Row> 
       </Container>
     );
   }
 }
 
-export default Loading;
+export default LoadingPage;
