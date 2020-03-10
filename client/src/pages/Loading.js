@@ -28,7 +28,7 @@ class LoadingPage extends Component {
 
   // Starts an timer when the component mounts
   componentDidMount() {
-    this.timer = setInterval(() => {
+    this.timer = setTimeout(() => {
       this.setState(({ messages, index }) => {
         index = (index + 1) % messages.length;
         return {
