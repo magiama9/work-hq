@@ -154,24 +154,28 @@ const Resources = props => {
           <ResourceForm state={props.state} setState={props.setState} />
         </Col>
         <Col md={9} style={classes.header}>
-          <h1>Materials</h1>
+          <h1>Work HQ</h1>
         </Col>
       </Row>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard">APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials" style={classes.activeLink}>
-              >MATERIALS
+            <Nav.Link href="/dashboard" style={classes.link}>
+              APPLICATIONS
             </Nav.Link>
-            <Nav.Link href="/todos">TODO</Nav.Link>
+            <Nav.Link href="/materials" style={classes.activeLink}>
+              MATERIALS
+            </Nav.Link>
+            <Nav.Link href="/todos" style={classes.link}>
+              TODO
+            </Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
           <DndProvider backend={HTML5Backend}>
-            <section style={classes.todos}>
+            <section style={classes.board}>
               {/* Maps over the different channels and creates a column for each */}
               {channels.map(channel => (
                 <Col key={channel} md={3}>
