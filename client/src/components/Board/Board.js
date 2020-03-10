@@ -18,6 +18,7 @@ import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+import TopBar from "../TopBar";
 
 // The different columns
 const channels = [
@@ -158,37 +159,12 @@ const Board = props => {
 
   return (
     <>
-      <Row>
-        <Col md={1} style={classes.headerBtn}>
-          <NavDropdown
-            title={
-              <img
-                src={imageSource} // photoURL is passed down through props from the authentication
-                alt="user profile pic"
-                className="rounded-circle"
-                width="50px"
-              />
-            }
-            id="nav-dropdown"
-          >
-            <NavDropdown.Item eventKey="4.1">
-              <Button
-                onClick={() => {
-                  firebase.auth().signOut();
-                }}
-              >
-                Sign Out
-              </Button>
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Col>
-        <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState} />
-        </Col>
-        <Col md={9} style={classes.header}>
-          <h1 style={{ display: "inline" }}>Work HQ</h1>
-        </Col>
-      </Row>
+      <TopBar
+        photoURL={props.photoURL}
+        state={props.State}
+        setState={props.setState}
+        page="dashboard"
+      ></TopBar>
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
