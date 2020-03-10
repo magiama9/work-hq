@@ -92,7 +92,9 @@ const Board = props => {
   // This code adds new applications to the board from data from forms
   useEffect(() => {
     if (imageSource === null) {
-      setImageSource("https://s3.amazonaws.com/course_report_production/misc_imgs/default_user.png"); // Sets the image to a placeholder if we don't get it from login
+      setImageSource(
+        "https://s3.amazonaws.com/course_report_production/misc_imgs/default_user.png"
+      ); // Sets the image to a placeholder if we don't get it from login
     }
 
     getAllJobs(props.userID); // Fetches jobs on updates
@@ -167,29 +169,8 @@ const Board = props => {
               />
             }
             id="nav-dropdown"
-            // style={classes.dropdown}
           >
             <NavDropdown.Item eventKey="4.1">
-              <Button
-                onClick={() => {
-                  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-                  firebase.auth().signInWithPopup(googleAuthProvider);
-                }}
-              >
-                Sign In with Google
-              </Button>
-            </NavDropdown.Item>
-            <NavDropdown.Item eventKey="4.2">
-              <Button
-                data-testid="signin-anon"
-                onClick={() => {
-                  firebase.auth().signInAnonymously();
-                }}
-              >
-                Sign In Anonymously
-              </Button>
-            </NavDropdown.Item>
-            <NavDropdown.Item eventKey="4.3">
               <Button
                 onClick={() => {
                   firebase.auth().signOut();

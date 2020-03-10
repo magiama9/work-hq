@@ -6,7 +6,6 @@ import classes from "./ResourceStyles";
 import update from "immutability-helper";
 import ResourceColumn from "./ResourceColumn";
 import ResourceItem from "./ResourceItem";
-import ResourceForm from "../ResourcesForm";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
