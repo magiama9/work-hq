@@ -12,7 +12,6 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
-import resourceFetch from "../../utils/resourceFetch";
 import resourcePost from "../../utils/resourcePost";
 import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
@@ -45,13 +44,15 @@ const Board = props => {
   const [tasks, setTaskStatus] = useState([]);
   const [resumes, setResumes] = useState([]);
   const [coverLetters, setCoverLetters] = useState([]);
-  const [imageSource, setImageSource] = useState(props.photoURL);
+  const [imageSource, setImageSource] = useState(props.photoURL); // If we get an image source from login, it uses that
 
+  // Fetching jobs from the dataBase
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
       let resources = [];
       res.data.forEach(job => {
+        // Checking if the coverLetter field was completed and it's not already in our coverLetter links
         if (job.coverLetter !== "" && !coverLetters.includes(job.coverLetter)) {
           let newResource = {
             resource: job.coverLetter,
@@ -63,6 +64,8 @@ const Board = props => {
           resources.push(newResource);
           coverLetters.push(job.coverLetter);
         }
+
+        // Checking if the resume field was completed and it's not already in our resume links
         if (job.resume !== "" && !resumes.includes(job.resume)) {
           let newResource = {
             resource: job.resume,
@@ -75,19 +78,24 @@ const Board = props => {
           resumes.push(job.resume);
         }
       });
+
+      // Adds the unique resources to the database
       resources.forEach(resource => {
         resourcePost.addResource(resource);
       });
 
+      // Reset the resource array to empty
       resources = [];
     });
   };
+
   // This code adds new applications to the board from data from forms
   useEffect(() => {
     if (imageSource === null) {
-      setImageSource("https://via.placeholder.com/50");
+      setImageSource("https://via.placeholder.com/50"); // Sets the image to a placeholder if we don't get it from login
     }
-    getAllJobs(props.userID);
+
+    getAllJobs(props.userID); // Fetches jobs on updates
 
     var newState = tasks;
     for (var i = 0; i < props.state.newApplications.length; i++) {
@@ -102,7 +110,7 @@ const Board = props => {
       getAllJobs(props.userID);
     }
     setTaskStatus(newState);
-    changeTaskStatus();
+    changeTaskStatus(); // Callback Function
   }, [props]);
 
   //updating job in db whenever task is changed
