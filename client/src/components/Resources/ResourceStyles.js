@@ -14,7 +14,7 @@ const classes = {
     paddingRight: "0px"
   },
   header: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
     color: "white",
     fontFamily: "'Fredoka One', sans-serif",
     textAlign: "center",
@@ -23,7 +23,7 @@ const classes = {
     paddingRight: "180px"
   },
   headerBtn: {
-    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+    background: "linear-gradient(to bottom, #0e2e3a, #235560)",
     color: "white",
     fontFamily: "'Nunito', sans-serif"
   },

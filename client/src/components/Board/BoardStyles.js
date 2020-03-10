@@ -8,13 +8,24 @@ import React from "react";
 //blue: #0D92FF
 //pink: #FF4A75
 // grey: #F5F6FA
+
+//OR
+// dark teal: #0e2e3a
+// med teal: #235560
+// teal: #3c8791
+// aqua: #62cec4
+// maroon: #791c1b
+// red: #e93f33
+// orange: #ee8037
+// gold: #f3a638
+// light yellow: #f9d496
 const classes = {
   row: {
     paddingLeft: "0px",
     paddingRight: "0px"
   },
   header: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
     color: "white",
     fontFamily: "'Fredoka One', sans-serif",
     textAlign: "center",
@@ -23,7 +34,7 @@ const classes = {
     paddingRight: "180px"
   },
   headerBtn: {
-    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+    background: "linear-gradient(to bottom, #0e2e3a, #235560)",
     color: "white",
     fontFamily: "'Nunito', sans-serif",
   },
