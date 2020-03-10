@@ -1,41 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import classes from "./SideBarStyles";
 
 const SideBar = props => {
-  let dashboard = classes.link;
-  let materials = classes.link;
-  let todos = classes.link;
-
-  const handleActive = page => {
-    switch (page) {
-      case "dashboard":
-        dashboard = classes.activeLink;
-        break;
-      case "materials":
-        materials = classes.activeLink;
-        break;
-      case "todos":
-        todos = classes.activeLink;
-        break;
-    }
-  };
-
-  useEffect(() => {
-    handleActive(props.page);
-    console.log(todos);
-  }, [props]);
   return (
     <Col md={2}>
       <Nav defaultActiveKey="/" className="flex-column">
-        <Nav.Link href="/dashboard" style={dashboard}>
+        <Nav.Link
+          href="/dashboard"
+          style={props.page === "dashboard" ? classes.activeLink : classes.link}
+        >
           APPLICATIONS
         </Nav.Link>
-        <Nav.Link href="/materials" style={materials}>
+        <Nav.Link
+          href="/materials"
+          style={props.page === "materials" ? classes.activeLink : classes.link}
+        >
           MATERIALS
         </Nav.Link>
-        <Nav.Link href="/todos" style={todos}>
+        <Nav.Link
+          href="/todos"
+          style={props.page === "todos" ? classes.activeLink : classes.link}
+        >
           TASKS
         </Nav.Link>
       </Nav>
