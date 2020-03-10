@@ -124,12 +124,6 @@ const TodosItem = (
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary">Edit</Button>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
