@@ -31,7 +31,8 @@ const classes = {
     backgroundColor: "white",
     borderRadius: "5px",
     width: "75px",
-    marginTop: "17px"
+    marginTop: "17px",
+    marginLeft: "10px"
   },
   board: {
     display: "flex",

@@ -146,7 +146,7 @@ const Board = props => {
 
   return (
     <>
-      <Row style={classes.row}>
+      <Row >
         <Col md={1} style={classes.headerBtn}>
           <NavDropdown title="User" id="nav-dropdown" style={classes.dropdown}>
             <NavDropdown.Item eventKey="4.1">
