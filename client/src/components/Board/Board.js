@@ -18,6 +18,7 @@ import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+import TopBar from "../TopBar";
 
 // The different columns
 const channels = [
@@ -158,6 +159,12 @@ const Board = props => {
 
   return (
     <>
+      <TopBar
+        photoURL={props.photoURL}
+        state={props.State}
+        setState={props.setState}
+        page="dashboard"
+      ></TopBar>
       <Row>
         <Col md={1} style={classes.headerBtn}>
           <NavDropdown

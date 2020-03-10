@@ -17,6 +17,7 @@ import firebase from "firebase/app";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+import TopBar from "../TopBar";
 
 // The different columns
 const channels = ["todo", "inprogress", "completed"];
@@ -106,6 +107,12 @@ const Todos = props => {
 
   return (
     <>
+      <TopBar
+        photoURL={props.photoURL}
+        state={props.State}
+        setState={props.setState}
+        page="todos"
+      ></TopBar>
       <Row>
         <Col md={1} style={classes.headerBtn}>
           <NavDropdown
