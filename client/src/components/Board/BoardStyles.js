@@ -2,33 +2,37 @@ import React from "react";
 
 //set styling for each column as channel.column
 // colors
-//orange: #F69346
-//green: #18C6B3
-//yellow: #FFBF13
-//blue: #0D92FF
-//pink: #FF4A75
-// grey: #F5F6FA
+// dark teal: #0e2e3a
+// med teal: #235560
+// teal: #3c8791
+// aqua: #62cec4
+// maroon: #791c1b
+// red: #e93f33
+// orange: #ee8037
+// gold: #f3a638
+// light yellow: #f9d496
 const classes = {
   row: {
     paddingLeft: "0px",
     paddingRight: "0px"
   },
   header: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
     color: "white",
     fontFamily: "'Fredoka One', sans-serif",
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px",
-    paddingRight: "180px"
+    paddingRight: "18vw"
   },
   headerBtn: {
-    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
-    color: "white",
+    background: "linear-gradient(to bottom, #0e2e3a, #235560)",
+    color: "#f9d496",
     fontFamily: "'Nunito', sans-serif",
   },
   dropdown: {
     backgroundColor: "white",
+    color: "#3c8791",
     borderRadius: "5px",
     width: "75px",
     marginTop: "17px",
@@ -48,7 +52,7 @@ const classes = {
   },
   activeLink: {
     backgroundColor: "#F5F6FA",
-    color: "#0D92FF",
+    color: "#62cec4",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     padding: "20px 0 20px 50px",
@@ -57,7 +61,8 @@ const classes = {
   link: {
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
-    padding: "20px 0 20px 50px"
+    padding: "20px 0 20px 50px",
+    color: "#3c8791"
   },
   column: {
     // minWidth: 180,
@@ -76,7 +81,7 @@ const classes = {
   //   fontWeight: 600
   // },
   interested: {
-    backgroundColor: "#F69346",
+    backgroundColor: "#0e2e3a",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -86,7 +91,7 @@ const classes = {
     fontWeight: 600
   },
   applied: {
-    backgroundColor: "#18C6B3",
+    backgroundColor: "#ee8037",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -96,7 +101,7 @@ const classes = {
     fontWeight: 600
   },
   responded: {
-    backgroundColor: "#FFBF13",
+    backgroundColor: "#3c8791",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -106,7 +111,7 @@ const classes = {
     fontWeight: 600
   },
   interviewing: {
-    backgroundColor: "#0D92FF",
+    backgroundColor: "#f3a638",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -116,7 +121,7 @@ const classes = {
     fontWeight: 600
   },
   offer: {
-    backgroundColor: "#FF4A75",
+    backgroundColor: "#791c1b",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
