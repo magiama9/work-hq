@@ -45,6 +45,7 @@ const Board = props => {
   const [tasks, setTaskStatus] = useState([]);
   const [resumes, setResumes] = useState([]);
   const [coverLetters, setCoverLetters] = useState([]);
+  const [imageSource, setImageSource] = useState(props.photoURL);
 
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
@@ -86,7 +87,10 @@ const Board = props => {
   };
   // This code adds new applications to the board from data from forms
   useEffect(() => {
-    console.log(props.userID);
+    if (imageSource === null) {
+      setImageSource("https://via.placeholder.com/50");
+      console.log(imageSource);
+    }
     getAllJobs(props.userID);
 
     var newState = tasks;
@@ -103,7 +107,7 @@ const Board = props => {
     }
     setTaskStatus(newState);
     changeTaskStatus();
-    console.log(props.photoURL)
+    console.log(props.photoURL);
   }, [props]);
 
   //updating job in db whenever task is changed
@@ -148,12 +152,20 @@ const Board = props => {
 
   return (
     <>
-      <Row >
+      <Row>
         <Col md={1} style={classes.headerBtn}>
-          <NavDropdown 
-          title={
-            <img src={props.photoURL} alt="user profile pic" />
-          } id="nav-dropdown" style={classes.dropdown}>
+          <NavDropdown
+            title={
+              <img
+                src={imageSource} // photoURL is passed down through props from the authentication
+                alt="user profile pic"
+                className="rounded-circle"
+                width="50px"
+              />
+            }
+            id="nav-dropdown"
+            // style={classes.dropdown}
+          >
             <NavDropdown.Item eventKey="4.1">
               <Button
                 onClick={() => {
@@ -195,10 +207,15 @@ const Board = props => {
       <Row noGutters={true}>
         <Col md={2}>
           <Nav defaultActiveKey="/" className="flex-column">
-
-            <Nav.Link href="/dashboard" style={classes.activeLink}>APPLICATIONS</Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>MATERIALS</Nav.Link>
-            <Nav.Link href="/todos" style={classes.link}>TODOS</Nav.Link>
+            <Nav.Link href="/dashboard" style={classes.activeLink}>
+              APPLICATIONS
+            </Nav.Link>
+            <Nav.Link href="/materials" style={classes.link}>
+              MATERIALS
+            </Nav.Link>
+            <Nav.Link href="/todos" style={classes.link}>
+              TODOS
+            </Nav.Link>
           </Nav>
         </Col>
         <Col md={10}>

@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 
 const classes = {
   background: {
-    background: "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",
+    background:
+      "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",
     backgroundSize: "cover",
     height: "100vh",
     margin: "0px 0px 0px 0px",
@@ -19,7 +20,7 @@ const classes = {
     width: "50%",
     margin: "2em auto auto auto"
   }
-}
+};
 
 class Loading extends Component {
   constructor(...args) {
@@ -27,23 +28,29 @@ class Loading extends Component {
     this.state = {
       messages: ["Loading...", Landing],
       index: 0
-    }
+    };
   }
 
+  // Starts an timer when the component mounts
   componentDidMount() {
     this.timer = setInterval(() => {
-      this.setState(({messages, index}) => {
+      this.setState(({ messages, index }) => {
         index = (index + 1) % messages.length;
         return {
           index
-        }
+        };
       });
     }, 3000);
   }
 
+  // Clears the interval when the component unmounts
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     const { index, messages } = this.state;
-    return(
+    return (
       <Container fluid={true} style={classes.background}>
         <Row>
           <Col md={4}></Col>
@@ -53,7 +60,7 @@ class Loading extends Component {
           <Col md={4}></Col>
         </Row>
       </Container>
-    )
+    );
   }
 }
 
