@@ -19,6 +19,7 @@ import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
 import TopBar from "../TopBar";
+import SideBar from "../SideBar";
 
 // The different columns
 const channels = [
@@ -159,6 +160,7 @@ const Board = props => {
 
   return (
     <>
+      {/* Renders Top Bar with the correct form for the current page */}
       <TopBar
         photoURL={props.photoURL}
         state={props.State}
@@ -166,19 +168,8 @@ const Board = props => {
         page="dashboard"
       ></TopBar>
       <Row noGutters={true}>
-        <Col md={2}>
-          <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>
-              APPLICATIONS
-            </Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>
-              MATERIALS
-            </Nav.Link>
-            <Nav.Link href="/todos" style={classes.link}>
-              TASKS
-            </Nav.Link>
-          </Nav>
-        </Col>
+        {/* Renders sidebar with the active page highlighted */}
+        <SideBar page="dashboard"></SideBar>
         <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}

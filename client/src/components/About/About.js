@@ -45,7 +45,7 @@ const About = props => {
 
   useEffect(() => {
     handleContent(props.page);
-  }, [props.page]);
+  }, [props]);
 
   return (
     <>
