@@ -45,11 +45,11 @@ function Add(props) {
   // For handling the save to move over to board
   const handleSave = (event) => {
     const form = event.currentTarget
-    var re = new RegExp("^(http|https)://", "i");
-    var coverLetterStr = formState.coverLetter;
-    var resumeLetterStr = formState.resume;
-    var coverLetterMatch = re.test(coverLetterStr);
-    var resumeLetterMatch = re.test(resumeLetterStr);
+    let re = new RegExp("^(http|https)://", "i");
+    let coverLetterStr = formState.coverLetter;
+    let resumeLetterStr = formState.resume;
+    let coverLetterMatch = re.test(coverLetterStr);
+    let resumeLetterMatch = re.test(resumeLetterStr);
 
     if (coverLetterStr.length===0) {
       coverLetterMatch = true
@@ -74,7 +74,7 @@ function Add(props) {
 
     }else {
       if (checkForm()){
-      var oldState = props.state;
+      let oldState = props.state;
       //push new form to applications
       oldState.newApplications.push(formState);
       props.setState({
