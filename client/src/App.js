@@ -22,8 +22,6 @@ function App() {
     <>
       <FirebaseAuthProvider {...config} firebase={firebase}>
         <Router>
-          <Route exact path="/" component={Landing} />
-
           {/* Displays the user's correct pages if they are authenticated */}
           {/* TODO: Pass the user to the materials page and render it properly */}
           <IfFirebaseAuthed>
@@ -34,22 +32,49 @@ function App() {
                   <div>
                     <Route
                       exact
+                      path="/"
+                      render={props => (
+                        <Dashboard
+                          {...props}
+                          userID={user.user.uid}
+                          photoURL={user.user.photoURL}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
                       path="/dashboard"
                       render={props => (
-                        <Dashboard {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
+                        <Dashboard
+                          {...props}
+                          userID={user.user.uid}
+                          photoURL={user.user.photoURL}
+                        />
                       )}
                     />
                     <Route
                       exact
                       path="/todos"
                       render={props => (
-                        <Todos {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
+                        <Todos
+                          {...props}
+                          userID={user.user.uid}
+                          photoURL={user.user.photoURL}
+                        />
                       )}
                     />
 
-                    <Route exact path="/materials" render={props => (
-                      <Materials {...props} userID={user.user.uid} photoURL={user.user.photoURL}/>
-                    )}/>
+                    <Route
+                      exact
+                      path="/materials"
+                      render={props => (
+                        <Materials
+                          {...props}
+                          userID={user.user.uid}
+                          photoURL={user.user.photoURL}
+                        />
+                      )}
+                    />
                   </div>
                 </div>
               );
@@ -59,9 +84,10 @@ function App() {
           {/* If the user isn't authenticated, it displays the landing page */}
           <IfFirebaseUnAuthed>
             {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
+            <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={LoadingPage} />
             <Route exact path="/materials" component={LoadingPage} />
-              <Route exact path="/todos" component={LoadingPage} />
+            <Route exact path="/todos" component={LoadingPage} />
           </IfFirebaseUnAuthed>
         </Router>
       </FirebaseAuthProvider>
