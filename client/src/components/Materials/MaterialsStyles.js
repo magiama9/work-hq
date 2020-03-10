@@ -3,7 +3,7 @@ import React from "react";
 const classes = {
   matBoard: {
     backgroundColor: "#F5F6FA",
-    height: "1000px"
+    height: "100vh"
   },
   header: {
     background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
