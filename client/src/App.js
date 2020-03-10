@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Loading from "./pages/Loading";
+import LoadingPage from "./pages/Loading";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Materials from "./pages/Materials";
@@ -59,9 +59,9 @@ function App() {
           {/* If the user isn't authenticated, it displays the landing page */}
           <IfFirebaseUnAuthed>
             {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
-            <Route exact path="/dashboard" component={Loading} />
-            <Route exact path="/materials" component={Loading} />
-              <Route exact path="/todos" component={Loading} />
+            <Route exact path="/dashboard" component={LoadingPage} />
+            <Route exact path="/materials" component={LoadingPage} />
+              <Route exact path="/todos" component={LoadingPage} />
           </IfFirebaseUnAuthed>
         </Router>
       </FirebaseAuthProvider>
