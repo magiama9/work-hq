@@ -147,7 +147,7 @@ const Todos = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.activeLink}>
-              TODO
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>

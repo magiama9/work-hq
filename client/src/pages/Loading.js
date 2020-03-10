@@ -7,8 +7,9 @@ import Col from "react-bootstrap/Col";
 
 const classes = {
   divBackground: {
-    background:
-      "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",
+    background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
+    // background:
+    //   "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",
     backgroundSize: "cover",
     height: "100vh",
     width: "100vw",

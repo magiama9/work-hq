@@ -1,16 +1,16 @@
 import React from "react";
 const classes = {
   header: {
-    background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
+    background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
     color: "white",
     fontFamily: "'Fredoka One', sans-serif",
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px",
-    paddingRight: "180px"
+    paddingRight: "25vw"
   },
   headerBtn: {
-    background: "linear-gradient(to bottom, #0D92FF, #46a9dc)",
+    background: "linear-gradient(to bottom, #0e2e3a, #235560)",
     color: "white",
     fontFamily: "'Nunito', sans-serif"
   },
@@ -35,17 +35,16 @@ const classes = {
   },
   activeLink: {
     backgroundColor: "#F5F6FA",
-    color: "#0D92FF",
+    color: "#62cec4",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
-    
     padding: "20px 0 20px 50px",
     borderRadius: "45px 0px 0px 45px"
   },
   link: {
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
-    
+    color: "#3c8791",
     padding: "20px 0 20px 50px"
   },
   column: {
@@ -54,7 +53,7 @@ const classes = {
     backgroundColor: "#F5F6FA"
   },
   todo: {
-    backgroundColor: "#F69346",
+    backgroundColor: "#3c8791",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -64,7 +63,7 @@ const classes = {
     fontWeight: 600
   },
   inprogress: {
-    backgroundColor: "#18C6B3",
+    backgroundColor: "#f3a638",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -74,7 +73,7 @@ const classes = {
     fontWeight: 600
   },
   completed: {
-    backgroundColor: "#FFBF13",
+    backgroundColor: "#791c1b",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",

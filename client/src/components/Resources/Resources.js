@@ -146,7 +146,7 @@ const Resources = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.link}>
-              TODO
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>
