@@ -50,7 +50,6 @@ const Board = props => {
   const getAllJobs = userID => {
     jobFetch.fetchAll(userID).then(res => {
       setTaskStatus(res.data);
-      // getResources(userID);
       let resources = [];
       res.data.forEach(job => {
         if (job.coverLetter !== "" && !coverLetters.includes(job.coverLetter)) {
@@ -63,7 +62,6 @@ const Board = props => {
           };
           resources.push(newResource);
           coverLetters.push(job.coverLetter);
-          console.log(coverLetters);
         }
         if (job.resume !== "" && !resumes.includes(job.resume)) {
           let newResource = {
@@ -77,7 +75,6 @@ const Board = props => {
           resumes.push(job.resume);
         }
       });
-      console.log(resources);
       resources.forEach(resource => {
         resourcePost.addResource(resource);
       });
@@ -89,7 +86,6 @@ const Board = props => {
   useEffect(() => {
     if (imageSource === null) {
       setImageSource("https://via.placeholder.com/50");
-      console.log(imageSource);
     }
     getAllJobs(props.userID);
 
@@ -107,7 +103,6 @@ const Board = props => {
     }
     setTaskStatus(newState);
     changeTaskStatus();
-    console.log(props.photoURL);
   }, [props]);
 
   //updating job in db whenever task is changed
