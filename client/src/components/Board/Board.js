@@ -92,7 +92,7 @@ const Board = props => {
   // This code adds new applications to the board from data from forms
   useEffect(() => {
     if (imageSource === null) {
-      setImageSource("https://via.placeholder.com/50"); // Sets the image to a placeholder if we don't get it from login
+      setImageSource("https://s3.amazonaws.com/course_report_production/misc_imgs/default_user.png"); // Sets the image to a placeholder if we don't get it from login
     }
 
     getAllJobs(props.userID); // Fetches jobs on updates

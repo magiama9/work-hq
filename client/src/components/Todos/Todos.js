@@ -41,7 +41,7 @@ const Todos = props => {
   // This code adds new items to the Todos from data from forms
   useEffect(() => {
     if (imageSource === null) {
-      setImageSource("https://via.placeholder.com/50"); // Sets the image to a placeholder if we don't get it from login
+      setImageSource("https://s3.amazonaws.com/course_report_production/misc_imgs/default_user.png"); // Sets the image to a placeholder if we don't get it from login
     }
     getAllTodos(props.userID);
 
