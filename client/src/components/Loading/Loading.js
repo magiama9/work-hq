@@ -7,7 +7,8 @@ const classes = {
     fontSize: "3em",
     color: "white",
     width: "100vw",
-    margin: "2em auto auto auto"
+    marginTop: "40vh",
+    marginLeft: "40vw"
   }
 }
 
