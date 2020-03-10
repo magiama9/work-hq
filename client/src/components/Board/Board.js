@@ -198,7 +198,7 @@ const Board = props => {
               MATERIALS
             </Nav.Link>
             <Nav.Link href="/todos" style={classes.link}>
-              TODOS
+              TASKS
             </Nav.Link>
           </Nav>
         </Col>
