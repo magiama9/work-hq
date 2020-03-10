@@ -158,7 +158,7 @@ const Board = props => {
       {/* Renders Top Bar with the correct form for the current page */}
       <TopBar
         photoURL={props.photoURL}
-        state={props.State}
+        state={props.state}
         setState={props.setState}
         page="dashboard"
       ></TopBar>

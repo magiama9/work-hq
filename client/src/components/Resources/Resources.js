@@ -29,6 +29,7 @@ const labelsMap = {
 };
 
 const Resources = props => {
+ 
   const [resLinks, setResLinks] = useState([]);
   const [imageSource, setImageSource] = useState(props.photoURL); // If we get an image source from login, it uses that
   const getAllResources = userID => {
@@ -108,7 +109,7 @@ const Resources = props => {
       {/* Renders Top Bar with the correct form for the current page */}
       <TopBar
         photoURL={props.photoURL}
-        state={props.State}
+        state={props.state}
         setState={props.setState}
         page="materials"
       ></TopBar>
