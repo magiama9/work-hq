@@ -112,7 +112,10 @@ const classes = {
     fontSize: "0.8em",
     cursor: "pointer",
     backgroundColor: "white",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    overflow: "hidden",
+    wordWrap: "break-word",
+    lineHeight: "1em"
   }
 };
 

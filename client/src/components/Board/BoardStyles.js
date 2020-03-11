@@ -1,5 +1,6 @@
 //set styling for each column as channel.column
 // colors
+
 // dark teal: #0e2e3a
 // med teal: #235560
 // teal: #3c8791
@@ -134,7 +135,10 @@ const classes = {
     fontSize: "0.8em",
     cursor: "pointer",
     backgroundColor: "white",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    overflow: "hidden",
+    wordWrap: "break-word",
+    lineHeight: "1em"
   }
 };
 

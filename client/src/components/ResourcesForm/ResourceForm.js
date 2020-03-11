@@ -38,18 +38,25 @@ function ResourceForm(props) {
   // For handling the save to move over to board
   const handleSave = event => {
     const form = event.currentTarget;
+    let re = new RegExp("^(http|https)://", "i");
+    let otherLinkStr = formState.resource;
+    let otherLinkMatch = re.test(otherLinkStr);
     // console.log("submit") // for testing
     if (form.checkValidity() === false) {
       // console.log("bad form") // for testing
       setFormMessage("Please fill out the required fields");
       event.preventDefault();
       event.stopPropagation();
+    } else if (otherLinkMatch == false) {
+      setFormMessage("Link must begin with 'http://' or 'https://'");
+      event.preventDefault();
+      event.stopPropagation();
     } else {
       var oldState = props.state;
-      oldState.newApplications.push(formState);
+      oldState.newResources.push(formState);
       props.setState({
         ...props.state,
-        newApplications: oldState.newApplications
+        newResources: oldState.newResources
       });
       setValidated(true);
       handleClose();
@@ -82,7 +89,7 @@ function ResourceForm(props) {
                 type="input"
                 name="resource"
                 onChange={handleTyping}
-                placeholder=""
+                placeholder="https://"
                 value={formState.resource}
                 required="required"
               />

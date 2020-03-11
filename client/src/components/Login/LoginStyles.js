@@ -1,5 +1,6 @@
 const classes = {
   background: {
+//     background: "linear-gradient(to bottom right, , #3c8791, #0e2e3a, #3c8791)",
     // background: "linear-gradient(to bottom right, #0D92FF, #18C6B3)",
     background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",
     // background: "url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940')",

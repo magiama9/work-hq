@@ -89,7 +89,7 @@ const ResourceItem = (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            <a href={resource} target="_blank">
+            <a href={resource} target="_blank" rel="noopener noreferrer">
               {resource}
             </a>
           </Modal.Title>

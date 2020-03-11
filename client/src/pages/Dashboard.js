@@ -15,6 +15,7 @@ function Dashboard(props) {
       <Board
         state={state}
         setState={setState}
+        displayName={props.displayName}
         userID={props.userID}
         photoURL={props.photoURL}
       />
