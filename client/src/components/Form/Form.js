@@ -103,7 +103,7 @@ function Add(props) {
     }
   }
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => [setShow(false), setValidated(false), setFormMessage("")];
   const handleShow = () => setShow(true);
   return (
     <>
