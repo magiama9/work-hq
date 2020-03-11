@@ -59,11 +59,6 @@ const SaaS = () => {
                 <Nav.Link href="#flow" style={{fontFamily: "'Nunito', sans-serif"}}>How It Works</Nav.Link>
               </Nav>
               <Nav>
-                <Nav.Link href="/login">
-                  <Button variant="flat" size="xl" style={{fontFamily: "'Nunito', sans-serif"}}>
-                    Get Started
-                  </Button>
-                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

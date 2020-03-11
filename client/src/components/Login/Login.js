@@ -56,6 +56,7 @@ function Login() {
                     style={classes.btn}
                     onClick={() => {
                       firebase.auth().signOut();
+                      window.location.replace("/");
                     }}
                   >
                     Sign Out
