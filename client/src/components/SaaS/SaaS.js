@@ -63,7 +63,7 @@ const SaaS = () => {
       <Container>
         <Row style={{ height: "95vh" }}>
           <Col md={{ span: 8, offset: 0 }}>
-            <Jumbotron className={classes.jTron}>
+            <Jumbotron>
               <h1>Job Searching That Doesn't Suck.</h1>
               <p>
                 Job searching will never be easy, but it doesn’t have to be
