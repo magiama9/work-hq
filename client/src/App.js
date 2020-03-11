@@ -73,6 +73,7 @@ function App() {
                       render={props => (
                         <Materials
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
