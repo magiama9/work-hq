@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "react-sortable": "^2.0.0"
   }
 }
