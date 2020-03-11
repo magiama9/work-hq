@@ -14,19 +14,19 @@ const About = props => {
   const todoContent = {
     title: "Tasks",
     content:
-      "This is your tasks page. You can add tasks by hitting 'New Task'! As you start and complete tasks, simply drag them across the columns. If you would like to edit or delete a task, simply click on the item."
+      "This is your tasks page! You can add tasks by hitting “New Task +”. As you start and complete tasks, simply drag them across the columns. If you would like to edit or delete a task, simply click on the item and select the appropriate button.  Revel in all your glory as tasks get completed!"
   };
 
   const dashboardContent = {
     title: "Applications",
     content:
-      "This is your dashboard! Add new jobs to your dashboard by hitting new application. As your job search progresses, simply drag your jobs across the columns. If you would like to edit or delete an application, simply click on the item."
+      "This is your dashboard! Add new jobs to your dashboard by hitting “New Application +”.  Fill out the required areas and watch as your application appears on the dashboard!  As your job search progresses, simply drag your jobs across the columns. If you would like to edit or delete an application, simply click on the item and select the appropriate button."
   };
 
   const materialsContent = {
     title: "Materials",
     content:
-      "This is your materials page. Materials are automatically added into the correct column as you add jobs to your dashboard. If you would like, you can drag them to different columns. If you would like to edit or delete the link, click on the card. Click the text to go to directly to your link."
+      "This is your materials page! Materials are automatically added into the correct column as you add jobs to your dashboard. If you would like, you can drag them to different columns. If you would like to edit or delete the link, click on the card and select the appropriate button. Click the text to go to directly to your link and view it."
   };
 
   const handleContent = page => {
