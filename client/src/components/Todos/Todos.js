@@ -4,18 +4,16 @@ import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend"; // Doesn't work with touch
 import classes from "./TodosStyles";
 import update from "immutability-helper";
+import About from "../About";
 import TodosColumn from "./TodosColumn";
 import TodosItem from "./TodosItem";
-import TodoForm from "../TodoForm";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
 import todoFetch from "../../utils/todoFetch";
 import todoPost from "../../utils/todoPost";
-import firebase from "firebase/app";
-import Button from "react-bootstrap/Button";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+import TopBar from "../TopBar";
+import SideBar from "../SideBar";
 
 // The different columns
 const channels = ["todo", "inprogress", "completed"];
@@ -25,7 +23,7 @@ const channels = ["todo", "inprogress", "completed"];
 // Key is what we store in state
 // Label is what's displayed
 const labelsMap = {
-  todo: "Your Todos",
+  todo: "Your Tasks",
   inprogress: "In Progress",
   completed: "Completed Tasks"
 };
@@ -105,52 +103,17 @@ const Todos = props => {
 
   return (
     <>
-      <Row>
-        <Col md={1} style={classes.headerBtn}>
-          <NavDropdown
-            title={
-              <img
-                src={imageSource} // photoURL is passed down through props from the authentication
-                alt="user profile pic"
-                className="rounded-circle"
-                width="50px"
-              />
-            }
-            id="nav-dropdown"
-            // style={classes.dropdown}
-          >
-            <NavDropdown.Item eventKey="4.1">
-              <Button
-                onClick={() => {
-                  firebase.auth().signOut();
-                }}
-              >
-                Sign Out
-              </Button>
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Col>
-        <Col md={2} style={classes.headerBtn}>
-          <TodoForm state={props.state} setState={props.setState} />
-        </Col>
-        <Col md={9} style={classes.header}>
-          <h1>Work HQ</h1>
-        </Col>
-      </Row>
+      {/* Renders Top Bar with the correct form for the current page */}
+      <TopBar
+        photoURL={props.photoURL}
+        state={props.state}
+        setState={props.setState}
+        page="todos"
+      ></TopBar>
       <Row noGutters={true}>
-        <Col md={2}>
-          <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.link}>
-              APPLICATIONS
-            </Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>
-              MATERIALS
-            </Nav.Link>
-            <Nav.Link href="/todos" style={classes.activeLink}>
-              TASKS
-            </Nav.Link>
-          </Nav>
-        </Col>
+        {/* Renders sidebar with the active page highlighted */}
+        <SideBar page="todos"></SideBar>
+
         <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
@@ -189,6 +152,9 @@ const Todos = props => {
                   </TodosColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="todos"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>

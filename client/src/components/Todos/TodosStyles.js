@@ -1,4 +1,3 @@
-import React from "react";
 const classes = {
   header: {
     background: "linear-gradient(to bottom right, #0e2e3a, #3c8791)",

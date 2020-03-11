@@ -13,7 +13,11 @@ function Login() {
   return (
     <>
       <Container fluid={true} style={classes.background}>
-        <Animated animationIn="bounceInDown" animationOut="fadeOut" isVisible={true}>
+        <Animated
+          animationIn="bounceInDown"
+          animationOut="fadeOut"
+          isVisible={true}
+        >
           <Row style={classes.row}>
             <Col md={4}></Col>
             <Col md={4}>
@@ -22,13 +26,16 @@ function Login() {
             <Col md={4}></Col>
           </Row>
           <Row style={classes.row}>
-            <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
+            <Col
+              md={4}
+              style={{ paddingLeft: "0px", paddingRight: "0px" }}
+            ></Col>
             <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
               {/* Login authentication */}
               <FirebaseAuthProvider {...config} firebase={firebase}>
                 <div className={classes.btnDiv}>
-                  <button block={true}
-
+                  <button
+                    block={true}
                     style={classes.btn}
                     onClick={() => {
                       const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
@@ -44,26 +51,8 @@ function Login() {
                     Sign In with Google
                   </button>
 
-                  <button block={true}
-
-
-                    style={classes.btn}
-                    data-testid="signin-anon"
-                    onClick={() => {
-                      firebase
-                        .auth()
-                        .signInAnonymously()
-                        .then(() => {
-                          window.location.replace("/dashboard");
-                        })
-                        .catch(error => console.log(error));
-                    }}
-                  >
-                    Sign In Anonymously
-                  </button>
-
-                  <button block={true}
-
+                  <button
+                    block={true}
                     style={classes.btn}
                     onClick={() => {
                       firebase.auth().signOut();
@@ -74,10 +63,13 @@ function Login() {
                 </div>
               </FirebaseAuthProvider>
             </Col>
-            <Col md={4} style={{ paddingLeft: "0px", paddingRight: "0px" }}></Col>
+            <Col
+              md={4}
+              style={{ paddingLeft: "0px", paddingRight: "0px" }}
+            ></Col>
           </Row>
-      </Animated>
-    </Container>
+        </Animated>
+      </Container>
     </>
   );
 }

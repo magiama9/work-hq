@@ -6,17 +6,15 @@ import update from "immutability-helper";
 import classes from "./BoardStyles";
 import BoardColumn from "./BoardColumn";
 import BoardItem from "./BoardItem";
-import Form from "../Form";
+import About from "../About";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
 import resourcePost from "../../utils/resourcePost";
-import firebase from "firebase/app";
-import Button from "react-bootstrap/Button";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "firebase/auth";
+import TopBar from "../TopBar";
+import SideBar from "../SideBar";
 
 // The different columns
 const channels = [
@@ -157,51 +155,16 @@ const Board = props => {
 
   return (
     <>
-      <Row>
-        <Col md={1} style={classes.headerBtn}>
-          <NavDropdown
-            title={
-              <img
-                src={imageSource} // photoURL is passed down through props from the authentication
-                alt="user profile pic"
-                className="rounded-circle"
-                width="50px"
-              />
-            }
-            id="nav-dropdown"
-          >
-            <NavDropdown.Item eventKey="4.1">
-              <Button
-                onClick={() => {
-                  firebase.auth().signOut();
-                }}
-              >
-                Sign Out
-              </Button>
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Col>
-        <Col md={2} style={classes.headerBtn}>
-          <Form state={props.state} setState={props.setState} />
-        </Col>
-        <Col md={9} style={classes.header}>
-          <h1>Work HQ</h1>
-        </Col>
-      </Row>
+      {/* Renders Top Bar with the correct form for the current page */}
+      <TopBar
+        photoURL={props.photoURL}
+        state={props.state}
+        setState={props.setState}
+        page="dashboard"
+      ></TopBar>
       <Row noGutters={true}>
-        <Col md={2}>
-          <Nav defaultActiveKey="/" className="flex-column">
-            <Nav.Link href="/dashboard" style={classes.activeLink}>
-              APPLICATIONS
-            </Nav.Link>
-            <Nav.Link href="/materials" style={classes.link}>
-              MATERIALS
-            </Nav.Link>
-            <Nav.Link href="/todos" style={classes.link}>
-              TASKS
-            </Nav.Link>
-          </Nav>
-        </Col>
+        {/* Renders sidebar with the active page highlighted */}
+        <SideBar page="dashboard"></SideBar>
         <Col md={10}>
           {/* This handles the click events */}
           {/* I need to figure out how to make it work with touch events */}
@@ -249,6 +212,9 @@ const Board = props => {
                   </BoardColumn>
                 </Col>
               ))}
+              <span style={{ fontSize: "3rem" }}>
+                <About page="dashboard"></About>
+              </span>
             </section>
           </DndProvider>
         </Col>

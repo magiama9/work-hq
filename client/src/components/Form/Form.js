@@ -45,15 +45,36 @@ function Add(props) {
   // For handling the save to move over to board
   const handleSave = (event) => {
     const form = event.currentTarget
-    // console.log("submit") // for testing
+    let re = new RegExp("^(http|https)://", "i");
+    let coverLetterStr = formState.coverLetter;
+    let resumeLetterStr = formState.resume;
+    let coverLetterMatch = re.test(coverLetterStr);
+    let resumeLetterMatch = re.test(resumeLetterStr);
+
+    if (coverLetterStr.length===0) {
+      coverLetterMatch = true
+    }
+
+    if (resumeLetterStr.length===0) {
+      resumeLetterMatch = true
+    }
+
+    console.log("submit", form.checkValidity()) // for testing
     if (form.checkValidity() === false) {
-      // console.log("bad form") // for testing
-      setFormMessage("Please fill out the required fields")
+      console.log("----------------bad form") // for testing
+      setFormMessage("Required field(s) have not been filled out.")
       event.preventDefault();
       event.stopPropagation();
 
-    } else {
-      var oldState = props.state;
+    } else if(coverLetterMatch==false || resumeLetterMatch == false){
+      console.log("----------------bad form") // for testing
+      setFormMessage("Required field(s) have not been filled out.")
+      event.preventDefault();
+      event.stopPropagation();
+
+    }else {
+      if (checkForm()){
+      let oldState = props.state;
       //push new form to applications
       oldState.newApplications.push(formState);
       props.setState({
@@ -62,8 +83,25 @@ function Add(props) {
       });
       setValidated(true);
       handleClose();
+      }
+      else {
+      setValidated(true);
+      setFormMessage("Required field(s) have not been filled out.")
+      event.preventDefault();
+      event.stopPropagation();
+      }
     }
   };
+
+  // Checks if title and company and description have something written
+  const checkForm = () => {
+    if (formState.title.length > 0 && formState.company.length > 0 && formState.description.length > 0){
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -91,8 +129,7 @@ function Add(props) {
                 type="input"
                 name="title"
                 onChange={handleTyping}
-                placeholder=""
-                required="required"
+                required = "required"
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
@@ -116,7 +153,7 @@ function Add(props) {
               />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Description <span style={redStyle}>*</span></Form.Label>
               <Form.Control as = "textarea" rows="5"
                 type="input"
                 name="description"

@@ -7,7 +7,8 @@ import Dashboard from "./pages/Dashboard";
 import Materials from "./pages/Materials";
 import Todos from "./pages/Todos";
 import SaaSPage from "./pages/SaaSPage";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
 import {
@@ -28,9 +29,8 @@ function App() {
           <IfFirebaseAuthed>
             {user => {
               return (
-                <div>
-                  {" "}
-                  <div>
+                <>
+                  <Switch>
                     <Route
                       exact
                       path="/"
@@ -76,8 +76,9 @@ function App() {
                         />
                       )}
                     />
-                  </div>
-                </div>
+                    <Route component={ErrorPage}></Route>
+                  </Switch>
+                </>
               );
             }}
           </IfFirebaseAuthed>
@@ -85,10 +86,13 @@ function App() {
           {/* If the user isn't authenticated, it displays the landing page */}
           <IfFirebaseUnAuthed>
             {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
-            <Route exact path="/" component={SaaSPage} />
-            <Route exact path="/dashboard" component={LoadingPage} />
-            <Route exact path="/materials" component={LoadingPage} />
-            <Route exact path="/todos" component={LoadingPage} />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/dashboard" component={LoadingPage} />
+              <Route exact path="/materials" component={LoadingPage} />
+              <Route exact path="/todos" component={LoadingPage} />
+              <Route component={ErrorPage}></Route>
+            </Switch>
           </IfFirebaseUnAuthed>
         </Router>
       </FirebaseAuthProvider>

@@ -1,7 +1,7 @@
 {
-  "name": "mern",
-  "version": "1.0.0",
-  "description": "",
+  "name": "work-hq",
+  "version": "0.1.0",
+  "description": "Job searching that doesn't suck.",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
