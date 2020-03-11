@@ -1,53 +1,112 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import classes from "./SaaSstyles";
+import Image from "react-bootstrap/Image";
 
 const SaaS = () => {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <style type="text/css">
+        {`
+        
+    .btn-flat {
+      background-color: #0c2e3a;
+      color: white;
+    }
+    body {
+      background: rgb(233, 230, 225)
+    }
+    .btn-xxl {
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+    }
+    .navbar {
+      background: rgba(233, 230, 225)
+    }
+
+    .jumbotron {
+      background: rgb(233, 230, 225)
+    }`}
+      </style>
+
+      <Navbar
+        sticky="top"
+        expand="lg"
+        style={{
+          paddingLeft: "75px",
+          paddingRight: "75px",
+          paddingTop: "75px",
+          height: "3vh"
+        }}
+      >
         <Navbar.Brand href="#home">Work HQ</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">About</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#flow">How It Works</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/login">
-              <Button>Login</Button>
+              <Button variant="flat" size="xl">
+                Get Started
+              </Button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <Container>
+        <Row style={{ height: "95vh" }}>
+          <Col md={{ span: 8, offset: 0 }}>
+            <Jumbotron className={classes.jTron}>
+              <h1>Job Searching That Doesn't Suck.</h1>
+              <p>
+                Job searching will never be easy, but it doesn’t have to be
+                quite so hard. Work HQ makes it easy to keep your job search
+                organized so you can focus on nailing the interview.
+              </p>
+              <p>
+                <a href="/login">
+                  <Button variant="flat" size="xxl">
+                    Get Started
+                  </Button>
+                </a>
+              </p>
+            </Jumbotron>
+          </Col>
 
-      <Jumbotron className={classes.jTron}>
-        <h1>Hello, world!</h1>
-        <p>
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
-      </Jumbotron>
+          <Row style={{}}>
+            <div id="features">
+              <Image src="/feature-list.png" fluid></Image>
+            </div>
+          </Row>
+          <Container id="flow" style={{ paddingTop: "25px", height: "95vh" }}>
+            <Row style={{ height: "100%" }}>
+              <Col>
+                <Image src="/app-flow.png" fluid></Image>
+              </Col>
+            </Row>
+          </Container>
+        </Row>
+      </Container>
+
+      {/* <Row>
+        <Col>
+          <Image src="/dashboard.png" fluid></Image>
+        </Col>
+        <Col>
+          <Image src="/tasks.png" fluid></Image>
+        </Col>
+        <Col>
+          <Image src="/materials.png" fluid></Image>
+        </Col>
+      </Row> */}
     </>
   );
 };
