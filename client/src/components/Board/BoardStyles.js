@@ -1,16 +1,6 @@
 //set styling for each column as channel.column
 // colors
-<<<<<<< HEAD
-//orange: #F69346
-//green: #18C6B3
-//yellow: #FFBF13
-//blue: #0D92FF
-//pink: #FF4A75
-// grey: #F5F6FA
 
-//OR
-=======
->>>>>>> 9b49156750bd63008f6b22a30042a1940c07b29c
 // dark teal: #0e2e3a
 // med teal: #235560
 // teal: #3c8791
@@ -36,11 +26,7 @@ const classes = {
   },
   headerBtn: {
     background: "linear-gradient(to bottom, #0e2e3a, #235560)",
-<<<<<<< HEAD
-    color: "white",
-=======
     color: "#f9d496",
->>>>>>> 9b49156750bd63008f6b22a30042a1940c07b29c
     fontFamily: "'Nunito', sans-serif",
   },
   dropdown: {
