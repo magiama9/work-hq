@@ -80,10 +80,8 @@ const SaaS = () => {
             </Jumbotron>
           </Col>
 
-          <Row style={{}}>
-            <div id="features">
-              <Image src="/feature-list.png" fluid></Image>
-            </div>
+          <Row id="features" style={{ paddingTop: "25px" }}>
+            <Image src="/feature-list.png" fluid></Image>
           </Row>
           <Container id="flow" style={{ paddingTop: "25px", height: "95vh" }}>
             <Row style={{ height: "100%" }}>
