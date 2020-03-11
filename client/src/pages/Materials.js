@@ -12,7 +12,13 @@ function MaterialsPage(props) {
 
   return (
     <div>
-      <Resources state={state} setState={setState} userID={props.userID} photoURL={props.photoURL}/>
+      <Resources
+        state={state}
+        setState={setState}
+        displayName={props.displayName}
+        userID={props.userID}
+        photoURL={props.photoURL}
+      />
     </div>
   );
 }
