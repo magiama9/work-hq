@@ -20,12 +20,12 @@ const classes = {
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "10px",
-    paddingRight: "180px"
+    paddingRight: "25vw"
   },
   headerBtn: {
     background: "linear-gradient(to bottom, #0e2e3a, #235560)",
     color: "white",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
   },
   dropdown: {
     backgroundColor: "white",
@@ -48,7 +48,7 @@ const classes = {
   },
   activeLink: {
     backgroundColor: "#F5F6FA",
-    color: "#0D92FF",
+    color: "#62cec4",
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
     padding: "20px 0 20px 50px",
@@ -57,7 +57,8 @@ const classes = {
   link: {
     fontWeight: "600",
     fontFamily: "'Nunito', sans-serif",
-    padding: "20px 0 20px 50px"
+    padding: "20px 0 20px 50px",
+    color: "#3c8791"
   },
   column: {
     // minWidth: 180,
@@ -76,7 +77,7 @@ const classes = {
   //   fontWeight: 600
   // },
   resume: {
-    backgroundColor: "#F69346",
+    backgroundColor: "#3c8791",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -86,7 +87,7 @@ const classes = {
     fontWeight: 600
   },
   coverLetter: {
-    backgroundColor: "#18C6B3",
+    backgroundColor: "#f3a638",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -96,7 +97,7 @@ const classes = {
     fontWeight: 600
   },
   other: {
-    backgroundColor: "#FFBF13",
+    backgroundColor: "#791c1b",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
