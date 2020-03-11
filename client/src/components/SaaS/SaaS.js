@@ -23,7 +23,7 @@ const SaaS = () => {
       background-size: cover;
     }
     body {
-      background: rgba(233, 230, 225, 1.0)
+      background: rgba(233, 230, 225, 1.0);
     }
     .btn-xxl {
       padding: 1rem 1.5rem;
@@ -35,7 +35,7 @@ const SaaS = () => {
     }
 
     .jumbotron {
-      background: rgba(233, 230, 225, 0.0)
+      background: rgba(233, 230, 225, 0.0);
     
     }`}
       </style>
@@ -51,16 +51,16 @@ const SaaS = () => {
               height: "3vh"
             }}
           >
-            <Navbar.Brand href="#home">Work HQ</Navbar.Brand>
+            <Navbar.Brand href="#home" style={{fontFamily: "'Nunito', sans-serif", fontWeight: "600"}}>Work HQ</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#flow">How It Works</Nav.Link>
+                <Nav.Link href="#features" style={{fontFamily: "'Nunito', sans-serif"}}>Features</Nav.Link>
+                <Nav.Link href="#flow" style={{fontFamily: "'Nunito', sans-serif"}}>How It Works</Nav.Link>
               </Nav>
               <Nav>
                 <Nav.Link href="/login">
-                  <Button variant="flat" size="xl">
+                  <Button variant="flat" size="xl" style={{fontFamily: "'Nunito', sans-serif"}}>
                     Get Started
                   </Button>
                 </Nav.Link>
@@ -71,15 +71,15 @@ const SaaS = () => {
         <Row style={{ height: "95vh" }}>
           <Col md={{ span: 8, offset: 0 }}>
             <Jumbotron>
-              <h1>Job Searching That Doesn't Suck.</h1>
-              <p>
+              <h1 style={{fontFamily: "'Fredoka One', sans-serif"}}>Job Searching That Doesn't Suck.</h1>
+              <p style={{fontFamily: "'Nunito', sans-serif"}}>
                 Job searching will never be easy, but it doesn’t have to be
                 quite so hard. Work HQ makes it easy to keep your job search
                 organized so you can focus on nailing the interview.
               </p>
               <p>
                 <a href="/login">
-                  <Button variant="flat" size="xxl">
+                  <Button variant="flat" size="xxl" style={{fontFamily: "'Nunito', sans-serif"}}>
                     Get Started
                   </Button>
                 </a>
@@ -116,3 +116,4 @@ const SaaS = () => {
 };
 
 export default SaaS;
+
