@@ -37,6 +37,7 @@ function App() {
                       render={props => (
                         <Dashboard
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
@@ -49,6 +50,7 @@ function App() {
                       render={props => (
                         <Dashboard
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
@@ -60,6 +62,7 @@ function App() {
                       render={props => (
                         <Todos
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
