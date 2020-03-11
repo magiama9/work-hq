@@ -10,7 +10,15 @@ The WorkHQ team consists of [May Hitchings](https://github.com/mhitchi), [Jon Ch
 
 ## About
 
-Job searching isn't easy, but it doesn't have to be quite so hard. WorkHQ is a tool designed to assist job-seekers in organizing their job search. WorkHQ makes it easy to find jobs you're interested in, apply to them, and add them to a tracker that not only organizes the jobs you've applied for, but reminds you of action items so your job search is more effective. Users are able to import jobs from any source, including major job boards, keep track of their active applications, and store their job search materials including resumes and cover letters. Many job-seekers keep track of their job applications across different tools including excel and kanban style lists, but WorkHQ makes it easy to keep everything organized in one place.
+Job searching isn't easy, but it doesn't have to be quite so hard. WorkHQ is a tool designed to assist job-seekers in organizing their job search.
+
+![app workflow image](https://github.com/magiama9/work-hq/blob/master/client/public/app-flow.png "App WorkFlow")
+![features list image](https://github.com/magiama9/work-hq/blob/master/client/public/feature-list.png "Features List")
+![dashboard image](https://github.com/magiama9/work-hq/blob/master/client/public/dashboard.png "Dashboard")
+![tasks image](https://github.com/magiama9/work-hq/blob/master/client/public/tasks.png "Tasks")
+![materials image](https://github.com/magiama9/work-hq/blob/master/client/public/materials.png "Materials")
+
+WorkHQ makes it easy to find jobs you're interested in, apply to them, and add them to a tracker that organizes your entire search. Users are able to import jobs from any source, including major job boards, keep track of their active applications, and store their job search materials including resumes and cover letters. Many job-seekers keep track of their job applications across different tools including excel and kanban style lists, but WorkHQ makes it easy to keep everything organized in one place.
 
 ## User Stories
 
