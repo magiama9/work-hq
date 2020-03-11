@@ -87,7 +87,7 @@ function App() {
           <IfFirebaseUnAuthed>
             {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
             <Switch>
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/" component={SaaSPage} />
               <Route exact path="/dashboard" component={LoadingPage} />
               <Route exact path="/materials" component={LoadingPage} />
               <Route exact path="/todos" component={LoadingPage} />
