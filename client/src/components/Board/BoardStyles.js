@@ -1,5 +1,3 @@
-import React from "react";
-
 //set styling for each column as channel.column
 // colors
 // dark teal: #0e2e3a
