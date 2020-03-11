@@ -46,14 +46,15 @@ const Todos = props => {
     getAllTodos(props.userID);
 
     var newState = tasks;
-    for (var i = 0; i < props.state.newApplications.length; i++) {
-      // Adding status and id to new applications
-      props.state.newApplications[i].status = "todo";
-      props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].todoID = uuid();
-      // pushing new applications
-      newState.push(props.state.newApplications[i]);
-      props.state.newApplications = [];
+    //iterating through newTasks from Todos page
+    for (var i = 0; i < props.state.newTasks.length; i++) {
+      // Adding status and id to new Tasks
+      props.state.newTasks[i].status = "todo";
+      props.state.newTasks[i].userID = props.userID;
+      props.state.newTasks[i].todoID = uuid();
+      // pushing new Tasks
+      newState.push(props.state.newTasks[i]);
+      props.state.newTasks = [];
       todoPost.addTodo(newState[newState.length - 1]);
       getAllTodos(props.userID);
     }
@@ -72,12 +73,12 @@ const Todos = props => {
       task = { ...task, status };
       todoPost.updateTodo(task.todoID, task);
       // Update the tasks
-      let newTasks = update(tasks, {
+      let addedTasks = update(tasks, {
         [taskIndex]: { $set: task }
       });
 
       // Update state
-      setTaskStatus(newTasks);
+      setTaskStatus(addedTasks);
     },
     [tasks]
   );
