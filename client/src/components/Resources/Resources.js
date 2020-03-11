@@ -48,15 +48,15 @@ const Resources = props => {
     console.log(props.userID);
     getAllResources(props.userID);
 
-    var newState = [];
-    for (var i = 0; i < props.state.newApplications.length; i++) {
-      // Adding status and id to new applications
-      props.state.newApplications[i].status = "resume";
-      props.state.newApplications[i].userID = props.userID;
-      props.state.newApplications[i].resourceID = uuid();
-      // pushing new applications
-      newState.push(props.state.newApplications[i]);
-      props.state.newApplications = [];
+    var newState = resLinks;
+    for (var i = 0; i < props.state.newResources.length; i++) {
+      // Adding status and id to new Resources
+      props.state.newResources[i].status = "resume";
+      props.state.newResources[i].userID = props.userID;
+      props.state.newResources[i].resourceID = uuid();
+      // pushing new Resources
+      newState.push(props.state.newResources[i]);
+      props.state.newResources = [];
       resourcePost.addResource(newState[newState.length - 1]);
       getAllResources(props.userID);
     }

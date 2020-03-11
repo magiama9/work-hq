@@ -46,10 +46,10 @@ function ResourceForm(props) {
       event.stopPropagation();
     } else {
       var oldState = props.state;
-      oldState.newApplications.push(formState);
+      oldState.newResources.push(formState);
       props.setState({
         ...props.state,
-        newApplications: oldState.newApplications
+        newResources: oldState.newResources
       });
       setValidated(true);
       handleClose();
