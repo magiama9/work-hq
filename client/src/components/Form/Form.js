@@ -86,7 +86,7 @@ function Add(props) {
       }
       else {
       setValidated(true);
-      setFormMessage("Required field(s) have not been filled out.")
+      setFormMessage("Required field(s) have not been filled out. When submitting a cover letter or resume, please make sure that it has http:// or https:// before the link")
       event.preventDefault();
       event.stopPropagation();
       }
