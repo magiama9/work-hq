@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Todos from "../components/Todos";
 
 function TodoPage(props) {
-  const [state, setState] = useState({ newApplications: [], tasks: [] });
+  const [state, setState] = useState({ newTasks: [], tasks: [] });
 
   return (
     <div>

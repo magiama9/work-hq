@@ -3,7 +3,7 @@ import Resources from "../components/Resources";
 
 function MaterialsPage(props) {
   const [state, setState] = useState({
-    newApplications: [],
+    newResources: [],
     tasks: [],
     resLinks: [],
     covLinks: []

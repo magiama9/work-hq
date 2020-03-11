@@ -7,6 +7,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import classes from "./TopBarStyles";
 import TodoForm from "../TodoForm";
+import ResourceForm from "../ResourcesForm";
 import Form from "../Form";
 
 const TopBar = props => {
@@ -51,6 +52,9 @@ const TopBar = props => {
         )}
         {page === "dashboard" && (
           <Form state={props.state} setState={props.setState} />
+        )}
+        {page === "materials" && (
+          <ResourceForm state={props.state} setState={props.setState} />
         )}
       </Col>
       <Col md={9} style={classes.header}>
