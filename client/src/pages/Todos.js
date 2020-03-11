@@ -11,6 +11,7 @@ function TodoPage(props) {
       <Todos
         state={state}
         setState={setState}
+        displayName={props.displayName}
         userID={props.userID}
         photoURL={props.photoURL}
       />

@@ -106,6 +106,7 @@ const Todos = props => {
     <>
       {/* Renders Top Bar with the correct form for the current page */}
       <TopBar
+        displayName={props.displayName}
         photoURL={props.photoURL}
         state={props.state}
         setState={props.setState}

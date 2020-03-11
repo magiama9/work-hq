@@ -8,7 +8,12 @@ import Materials from "./pages/Materials";
 import Todos from "./pages/Todos";
 import SaaSPage from "./pages/SaaSPage";
 import ErrorPage from "./pages/ErrorPage";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/app";
 import {
@@ -34,13 +39,7 @@ function App() {
                     <Route
                       exact
                       path="/"
-                      render={props => (
-                        <Dashboard
-                          {...props}
-                          userID={user.user.uid}
-                          photoURL={user.user.photoURL}
-                        />
-                      )}
+                      render={() => <Redirect to="/dashboard"></Redirect>}
                     />
                     <Route exact path="/login" component={Landing} />
                     <Route
@@ -49,6 +48,7 @@ function App() {
                       render={props => (
                         <Dashboard
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
@@ -60,6 +60,7 @@ function App() {
                       render={props => (
                         <Todos
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
@@ -72,11 +73,13 @@ function App() {
                       render={props => (
                         <Materials
                           {...props}
+                          displayName={user.user.displayName}
                           userID={user.user.uid}
                           photoURL={user.user.photoURL}
                         />
                       )}
                     />
+                    <Route exact path="/landing" component={SaaSPage} />
                     <Route component={ErrorPage}></Route>
                   </Switch>
                 </>
