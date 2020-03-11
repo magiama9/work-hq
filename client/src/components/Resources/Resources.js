@@ -9,6 +9,7 @@ import ResourceColumn from "./ResourceColumn";
 import ResourceItem from "./ResourceItem";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import resourceFetch from "../../utils/resourceFetch";
 import resourcePost from "../../utils/resourcePost";
 import "firebase/auth";
@@ -164,9 +165,9 @@ const Resources = props => {
                   </ResourceColumn>
                 </Col>
               ))}
-              <span style={{ fontSize: "3rem" }}>
+              <Button style={{ fontSize: "2rem", height: "5rem", backgroundColor: "rgb(000,000,000,0.0)", border: "none", color: "black", marginTop: "-0.20em", marginLeft: "3em"}}>
                 <About page="materials"></About>
-              </span>
+              </Button>
             </section>
           </DndProvider>
         </Col>

@@ -9,6 +9,7 @@ import TodosColumn from "./TodosColumn";
 import TodosItem from "./TodosItem";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import todoFetch from "../../utils/todoFetch";
 import todoPost from "../../utils/todoPost";
 import "firebase/auth";
@@ -154,9 +155,9 @@ const Todos = props => {
                   </TodosColumn>
                 </Col>
               ))}
-              <span style={{ fontSize: "3rem" }}>
+              <Button style={{ fontSize: "2rem", height: "5rem", backgroundColor: "rgb(000,000,000,0.0)", border: "none", color: "black", marginTop: "-0.20em", marginLeft: "3em"}}>
                 <About page="todos"></About>
-              </span>
+              </Button>
             </section>
           </DndProvider>
         </Col>

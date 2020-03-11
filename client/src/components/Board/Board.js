@@ -9,6 +9,7 @@ import BoardItem from "./BoardItem";
 import About from "../About";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import jobFetch from "../../utils/jobFetch";
 import jobPost from "../../utils/jobPost";
 import resourcePost from "../../utils/resourcePost";
@@ -213,9 +214,9 @@ const Board = props => {
                   </BoardColumn>
                 </Col>
               ))}
-              <span style={{ fontSize: "3rem" }}>
+              <Button style={{ fontSize: "2rem", height: "5rem", backgroundColor: "rgb(000,000,000,0.0)", border: "none", color: "black", marginTop: "-0.20em"}}>
                 <About page="dashboard"></About>
-              </span>
+              </Button>
             </section>
           </DndProvider>
         </Col>
