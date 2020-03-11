@@ -6,7 +6,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import classes from "./SaaSstyles";
 import Image from "react-bootstrap/Image";
 
 const SaaS = () => {
