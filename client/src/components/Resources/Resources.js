@@ -149,7 +149,11 @@ const Resources = props => {
                               editLink={editLink}
                             >
                               <div style={classes.item}>
-                                <a href={item.resource} target="_blank">
+                                <a
+                                  href={item.resource}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
                                   {item.resource}
                                 </a>
                               </div>
