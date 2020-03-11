@@ -14,19 +14,22 @@ const About = props => {
   const todoContent = {
     title: "Tasks",
     content:
-      "This is your tasks page! You can add tasks by hitting “New Task +”. As you start and complete tasks, simply drag them across the columns. If you would like to edit or delete a task, simply click on the item and select the appropriate button.  Revel in all your glory as tasks get completed!"
+
+      "This is your tasks page. You can add tasks by clicking the 'New Task' button at the top of the page As you start and complete tasks, simply drag them across the columns. If you would like to edit or delete a task, simply click on the item."
   };
 
   const dashboardContent = {
     title: "Applications",
     content:
-      "This is your dashboard! Add new jobs to your dashboard by hitting “New Application +”.  Fill out the required areas and watch as your application appears on the dashboard!  As your job search progresses, simply drag your jobs across the columns. If you would like to edit or delete an application, simply click on the item and select the appropriate button."
+
+      "This is your dashboard! Add new jobs to your dashboard by clicking the 'New Application' button at the top of the page. As your job search progresses, simply drag your jobs across the columns. If you would like to edit or delete an application, simply click on the item."
   };
 
   const materialsContent = {
     title: "Materials",
     content:
-      "This is your materials page! Materials are automatically added into the correct column as you add jobs to your dashboard. If you would like, you can drag them to different columns. If you would like to edit or delete the link, click on the card and select the appropriate button. Click the text to go to directly to your link and view it."
+
+      "This is your materials page. Add new resources by clicking the 'Add Resource' button at the top of the page. Materials are automatically added into the correct column as you add jobs to your dashboard. You can also drag items into different columns. If you would like to edit or delete the link, click on the card. If you would like to visit your link, click on the link text."
   };
 
   const handleContent = page => {
@@ -60,9 +63,6 @@ const About = props => {
         </Modal.Header>
         <Modal.Body>
           <p>{modalContent.content}</p>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
         </Modal.Body>
       </Modal>
     </>

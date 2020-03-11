@@ -43,7 +43,8 @@ const classes = {
     margin: "0 20px 0 0",
     padding: "10px",
     width: "90vw",
-    fontFamily: "'Nunito', sans-serif"
+    fontFamily: "'Nunito', sans-serif",
+    overflow: "hidden"
   },
   noPad: {
     paddingLeft: "0 !important",

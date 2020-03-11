@@ -15,52 +15,59 @@ const SaaS = () => {
         {`
         
     .btn-flat {
-      background-color: #0c2e3a;
+      background-color: #791c1b;
       color: white;
     }
+    .topbit {
+      background: linear-gradient(rgba(233, 230, 225, 0.0),rgba(233, 230, 225, 1.0)), url("https://images.pexels.com/photos/1843717/pexels-photo-1843717.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+      background-size: cover;
+    }
     body {
-      background: rgb(233, 230, 225)
+      background: rgba(233, 230, 225, 1.0)
     }
     .btn-xxl {
       padding: 1rem 1.5rem;
       font-size: 1.5rem;
     }
-    .navbar {
-      background: rgba(233, 230, 225)
+    .btn:hover {
+      background-color: #e93f33;
+      color: white;
     }
 
     .jumbotron {
-      background: rgb(233, 230, 225)
+      background: rgba(233, 230, 225, 0.0)
+    
     }`}
       </style>
-
-      <Navbar
-        sticky="top"
-        expand="lg"
-        style={{
-          paddingLeft: "75px",
-          paddingRight: "75px",
-          paddingTop: "75px",
-          height: "3vh"
-        }}
-      >
-        <Navbar.Brand href="#home">Work HQ</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#flow">How It Works</Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link href="/login">
-              <Button variant="flat" size="xl">
-                Get Started
-              </Button>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-      <Container>
+      <Container fluid={true} className="topbit">
+        <Row>
+          <Navbar
+            sticky="top"
+            expand="lg"
+            style={{
+              paddingLeft: "75px",
+              paddingRight: "75px",
+              paddingTop: "75px",
+              height: "3vh"
+            }}
+          >
+            <Navbar.Brand href="#home">Work HQ</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="#features">Features</Nav.Link>
+                <Nav.Link href="#flow">How It Works</Nav.Link>
+              </Nav>
+              <Nav>
+                <Nav.Link href="/login">
+                  <Button variant="flat" size="xl">
+                    Get Started
+                  </Button>
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Row>
         <Row style={{ height: "95vh" }}>
           <Col md={{ span: 8, offset: 0 }}>
             <Jumbotron>
