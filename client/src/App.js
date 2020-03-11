@@ -42,6 +42,7 @@ function App() {
                         />
                       )}
                     />
+                    <Route exact path="/login" component={Landing} />
                     <Route
                       exact
                       path="/dashboard"
@@ -88,6 +89,7 @@ function App() {
             {/* CAN WE JUST REPLACE THIS WITH ONE CATCHALL ROUTE? */}
             <Switch>
               <Route exact path="/" component={SaaSPage} />
+              <Route exact path="/login" component={Landing} />
               <Route exact path="/dashboard" component={LoadingPage} />
               <Route exact path="/materials" component={LoadingPage} />
               <Route exact path="/todos" component={LoadingPage} />
