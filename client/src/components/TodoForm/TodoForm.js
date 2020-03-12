@@ -41,7 +41,7 @@ function TodoForm(props) {
     // console.log("submit") // for testing
     if (form.checkValidity() === false || formState.todo.length === 0 || formState.description.length === 0) {
       // console.log("bad form") // for testing
-      setFormMessage("Please fill out the required fields");
+      setFormMessage("Required field(s) have not been filled out.");
       event.preventDefault();
       event.stopPropagation();
       setValidated(true);

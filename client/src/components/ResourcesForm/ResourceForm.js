@@ -51,6 +51,7 @@ function ResourceForm(props) {
       setFormMessage("Link must begin with 'http://' or 'https://'");
       event.preventDefault();
       event.stopPropagation();
+      setValidated(true)
     } else {
       var oldState = props.state;
       oldState.newResources.push(formState);
@@ -96,7 +97,7 @@ function ResourceForm(props) {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>
-                Notes <span style={redStyle}>*</span>
+                Notes
               </Form.Label>
               <Form.Control
                 as="textarea"
@@ -106,7 +107,6 @@ function ResourceForm(props) {
                 onChange={handleTyping}
                 value={formState.description}
                 placeholder=""
-                required="required"
               />
             </Form.Group>
           </Form>
