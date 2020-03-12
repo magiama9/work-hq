@@ -83,6 +83,17 @@ function Add(props) {
       });
       setValidated(true);
       handleClose();
+      setFormState({
+        title: "",
+        company: "",
+        href: "",
+        salary: "",
+        location: "",
+        description: "",
+        contactEmail: "",
+        coverLetter: "",
+        resume: ""
+      })
       }
       else {
       setValidated(true);
@@ -105,6 +116,7 @@ function Add(props) {
 
   const handleClose = () => [setShow(false), setValidated(false), setFormMessage("")];
   const handleShow = () => setShow(true);
+  console.log("this is our form state", formState)
   return (
     <>
       <Button variant="primary" onClick={handleShow} style={classes.btn}>
