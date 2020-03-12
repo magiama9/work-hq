@@ -39,11 +39,12 @@ function TodoForm(props) {
   const handleSave = event => {
     const form = event.currentTarget;
     // console.log("submit") // for testing
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || formState.todo.length === 0 || formState.description.length === 0) {
       // console.log("bad form") // for testing
       setFormMessage("Please fill out the required fields");
       event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
     } else {
       var oldState = props.state;
       oldState.newTasks.push(formState);

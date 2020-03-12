@@ -32,9 +32,15 @@ const TodosItem = (
 
   const handleEdit = event => {
     event.preventDefault();
-    editTask(id, formState.description);
+    if (formState.description.length > 0 ){
+      editTask(id, formState.description);
     console.log(id);
     handleClose();
+    }
+    else {
+      setValidated(true);
+        setFormMessage("Please fill out the required fields")
+    }
   };
 
   // For handling the save to move over to Todos
@@ -79,6 +85,7 @@ const TodosItem = (
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
 
+  console.log(todo, "------------------todo")
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
@@ -91,7 +98,6 @@ const TodosItem = (
           <Modal.Title>{todo}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {description}
           <Form noValidate validated={validated} onSubmit={handleSave}>
             {/* Message when required fields are not filled out  */}
             {formMessage.length > 0 && <p style={redStyle}>{formMessage}</p>}

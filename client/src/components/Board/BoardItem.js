@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { FormCheck } from "react-bootstrap";
 
 // This should be split into a separate component
 // Defines each item on the board
@@ -41,12 +42,29 @@ const BoardItem = ({ id, children, title, company, description, href, salary, lo
     console.log(id)
   }
 
+  const checkForm = () => {
+    if (formState.title.length > 0 && formState.company.length > 0 && formState.description.length > 0){
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
     // Edit
     const handleEdit = (event) => {
-      event.preventDefault()
+      console.log("---------------about to edit", formState)
+      const form = event.currentTarget
+      if (form.checkValidity == false || checkForm() === false) {
+        setValidated(true);
+        setFormMessage("Please fill out the required fields")
+        event.preventDefault()
+      }
+      else{
       editTask(id, formState.title, formState.company, formState.href, formState.description, formState.salary, formState.location)
       console.log(id)
       handleClose()
+      }
     }
 
   // For handling the save to move over to board
@@ -87,7 +105,7 @@ const BoardItem = ({ id, children, title, company, description, href, salary, lo
           <Modal.Title>{title} - {company}</Modal.Title>
         </Modal.Header>
         <Modal.Body>  
-          <Form name="modal" noValidate validated={validated} onSubmit={handleSave}>
+          <Form name="modal" noValidate validated={validated} onSubmit={handleEdit}>
             {/* Message when required fields are not filled out  */}
             {formMessage.length > 0 && (
               <p style={redStyle}>{formMessage}</p>

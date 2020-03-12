@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 // Defines each item on the Todos
 const ResourceItem = (
-  { id, children, resource, description, changeTaskStatus, editTask },
+  { id, children, resource, description, changeTaskStatus, editLink },
   props
 ) => {
   // State hooks
@@ -32,9 +32,15 @@ const ResourceItem = (
 
   const handleEdit = event => {
     event.preventDefault();
-    editTask(id, formState.description);
+    if (formState.resource.length > 0 ){
+      editLink(id, formState.resource);
     console.log(id);
     handleClose();
+    }
+    else {
+      setValidated(true);
+        setFormMessage("Please fill out the required fields")
+    }
   };
 
   // For handling the save to move over to Todos
@@ -79,6 +85,7 @@ const ResourceItem = (
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
 
+  console.log("$$$$$$$this is our props", editLink)
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
@@ -125,12 +132,6 @@ const ResourceItem = (
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary">Edit</Button>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
