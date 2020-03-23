@@ -88,7 +88,7 @@ function ResourceForm(props) {
       data.append('name', name);
   
       return (dispatch) => {
-        axios.post('/files', data)
+        axios.post('api/resources', data)
           .then(response => dispatch(uploadSuccess(response)))
           .catch(error => dispatch(uploadFail(error)))
       }
