@@ -87,7 +87,7 @@ const classes = {
     fontWeight: 600
   },
   coverLetter: {
-    backgroundColor: "#f3a638",
+    backgroundColor: "#791c1b",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",
@@ -97,7 +97,7 @@ const classes = {
     fontWeight: 600
   },
   other: {
-    backgroundColor: "#791c1b",
+    backgroundColor: "#f3a638",
     textAlign: "center",
     padding: 10,
     fontSize: "1.2em",

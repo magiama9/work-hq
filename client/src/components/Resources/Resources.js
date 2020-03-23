@@ -24,9 +24,9 @@ const channels = ["resume", "coverLetter", "other"];
 // Key is what we store in state
 // Label is what's displayed
 const labelsMap = {
+  other: "Misc Links",
   resume: "Resumes",
-  coverLetter: "Cover Letters",
-  other: "Other Links"
+  coverLetter: "Cover Letters"
 };
 
 const Resources = props => {
