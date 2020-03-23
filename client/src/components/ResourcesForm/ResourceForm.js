@@ -48,11 +48,13 @@ function ResourceForm(props) {
       setFormMessage("Please fill out the required fields");
       event.preventDefault();
       event.stopPropagation();
-    } else if (otherLinkMatch == false) {
-      setFormMessage("Link must begin with 'http://' or 'https://'");
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
+    } 
+    // else if (otherLinkMatch == false) {
+    //   setFormMessage("Link must begin with 'http://' or 'https://'");
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // } 
+    else {
       var oldState = props.state;
       oldState.newResources.push(formState);
       props.setState({
