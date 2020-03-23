@@ -105,6 +105,7 @@ function ResourceForm(props) {
         file,
         name: 'Awesome Cat Pic'
       })
+      setFormState({ ...formState, [e.target.name]: e.target.value })
     }
   //FILE UPLOADING END
 
@@ -140,7 +141,9 @@ function ResourceForm(props) {
               />
             </Form.Group>
             {/* file uploading */}
-            <input type="file" onChange={handleFileUpload} />
+            <Form.Group>
+              <Form.Control type="file" name="resource" onChange={handleFileUpload} />
+            </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>
                 Notes <span style={redStyle}>*</span>

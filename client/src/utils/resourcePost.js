@@ -24,4 +24,6 @@ export default {
     console.log(updatedResource);
     return axios.put(`api/resources/${resourceID}`, updatedResource);
   }
+
+
 };
