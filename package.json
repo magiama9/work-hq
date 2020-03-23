@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
     "if-env": "^1.0.4",
     "mongoose": "^5.8.11",
     "react-sortable": "^2.0.0"

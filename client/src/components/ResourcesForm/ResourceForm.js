@@ -66,50 +66,53 @@ function ResourceForm(props) {
     }
   };
 
-  //FILE UPLOADING START
-    // Redux action
-    function uploadSuccess({ data }) {
-      return {
-        type: 'UPLOAD_DOCUMENT_SUCCESS',
-        data,
-      };
-    }
+  // //FILE UPLOADING START
+  //   // Redux action
+  //   function uploadSuccess({ data }) {
+  //     return {
+  //       type: 'UPLOAD_DOCUMENT_SUCCESS',
+  //       data,
+  //     };
+  //   }
   
-    function uploadFail(error) {
-      return {
-        type: 'UPLOAD_DOCUMENT_FAIL',
-        error,
-      };
-    }
+  //   function uploadFail(error) {
+  //     return {
+  //       type: 'UPLOAD_DOCUMENT_FAIL',
+  //       error,
+  //     };
+  //   }
   
-    function uploadDocumentRequest({ file, name }) {  
-      let data = new FormData();
-      data.append('file', document);
-      data.append('name', name);
+  //   function uploadDocumentRequest({ file, name }) {  
+  //     let data = new FormData();
+  //     data.append('file', document);
+  //     data.append('name', name);
   
-      return (dispatch) => {
-        axios.post('api/resources', data)
-          .then(response => dispatch(uploadSuccess(response)))
-          .catch(error => dispatch(uploadFail(error)))
-      }
-    }
+  //     return (dispatch) => {
+  //       axios.post('api/resources', data)
+  //         .then(response => dispatch(uploadSuccess(response)))
+  //         .catch(error => dispatch(uploadFail(error)))
+  //     }
+  //   }
   
-    /*
-    ... A lot of Redux / React boilerplate happens here 
-    like mapDispatchToProps and mapStateToProps and @connect ...
-    */
+  //   /*
+  //   ... A lot of Redux / React boilerplate happens here 
+  //   like mapDispatchToProps and mapStateToProps and @connect ...
+  //   */
   
-    // Component method
-    function handleFileUpload(e) {
-      console.log(e.target.value)
-      const file = e.target.value;
-      uploadDocumentRequest({
-        file,
-        name: 'Awesome Cat Pic'
-      })
-      setFormState({ ...formState, [e.target.name]: e.target.value })
-    }
-  //FILE UPLOADING END
+  //   // Component method
+  //   function handleFileUpload(e) {
+  //     console.log(e.target.value)
+  //     const file = e.target.value;
+  //     uploadDocumentRequest({
+  //       file,
+  //       name: 'Awesome Cat Pic'
+  //     })
+  //     setFormState({ ...formState, [e.target.name]: e.target.value })
+  //   }
+  // //FILE UPLOADING END
+  function handleLinkChange(e) {
+    setFormState({ ...formState, [e.target.name]: e.target.value })
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -144,7 +147,8 @@ function ResourceForm(props) {
             </Form.Group>
             {/* file uploading */}
             <Form.Group>
-              <Form.Control type="file" name="resource" onChange={handleFileUpload} />
+              {/* <Form.Control type="file" name="resource" onChange={handleFileUpload} /> */}
+              <Form.Control id="item-upload" action="/resources/upload" method="POST" enctype="multipart/form-data" name="resource" type="file" onChange={handleLinkChange}/>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>

@@ -1,5 +1,11 @@
 const router = require("express").Router();
 const db = require("../models");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const aws = require("aws-sdk");
+var dotenv = require('dotenv');
+
+dotenv.load();
 
 // Get route for fetching a user's saved jobs
 router.get("/jobs/:uid", (req, res) => {
@@ -138,6 +144,27 @@ router.put("/resources/:id", (req, res) => {
   res.send("complete");
 });
 
+// resources post route for adding resources
+router.post("/resources", (req, res) => {
+  console.log(req.body);
+  db.Resources.findOneAndUpdate(
+    { resource: req.body.resource, status: req.body.status },
+    req.body,
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true
+    }
+  )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  res.send("complete");
+});
+
 // Todo post route for adding todos
 router.post("/resources", (req, res) => {
   console.log(req.body);
@@ -177,6 +204,55 @@ router.post("/resources/resume", (req, res) => {
       console.error(err);
     });
   res.send("complete");
+});
+
+router.get("/resources/upload", secured(), (req, res) => {
+  res.render("resourceupload");
+});
+
+// POST ROUTE FOR ADDING resources
+// ROUTE IS SECURED. POST WILL FAIL IF USER IS NOT LOGGED IN
+router.post("/resources/upload", upload.single("photo"), (req, res, next) => {
+  // req.file is the `photo` file
+  // req.body holds the text fields of the form
+  console.log("POST ROUTE HIT")
+  // stores the req.body as a new object
+  let obj = req.body;
+
+  // initializes filepath variable
+  let filepath;
+  // // Sets the img property of the new object to a filepath
+  // obj.img = filepath2;
+  if (typeof req.file != "undefined") {
+    obj.img = req.file.location;
+  }
+
+  // Adds an item to the database.
+  query.addItem(obj);
+
+  // ADDING THE # MAKES THE BROWSER LOAD AN UNCACHED VERSION. OR AT LEAST IT SEEMS TO
+  res.redirect("/resources/#");
+});
+
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-2"
+});
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "shopdesk-fjord",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: "public-read",
+    metadata: function(req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function(req, file, cb) {
+      cb(null, Date.now().toString());
+    }
+  })
 });
 
 module.exports = router;
