@@ -96,6 +96,7 @@ const BoardItem = (
 
   //make transparent while dragging
   const opacity = isDragging ? 0 : 1;
+  // const verticalAlign = 'middle';
 
   drag(ref);
   console.log(title);
