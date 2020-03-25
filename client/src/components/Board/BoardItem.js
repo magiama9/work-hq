@@ -101,7 +101,12 @@ const BoardItem = (
   drag(ref);
   return (
     <>
-      <div ref={ref} style={{ opacity }} onClick={handleShow}>
+      <div
+        ref={ref}
+        style={{ opacity, transform: 'translate(0,0)' }}
+        // The translate(0,0) fixes a bug where a white background appears behind the radiused corners of the item when dragging
+        onClick={handleShow}
+      >
         {children}
       </div>
 
