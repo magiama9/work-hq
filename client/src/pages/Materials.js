@@ -8,7 +8,6 @@ function MaterialsPage(props) {
     resLinks: [],
     covLinks: []
   });
-  const userID = props.userID;
 
   return (
     <div>
