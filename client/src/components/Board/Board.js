@@ -124,9 +124,9 @@ const Board = (props) => {
 
       if (task && task.status !== status) {
         const taskIndex = tasks.indexOf(task);
-
+        // const index = tasks.length;
         // Set the working task
-        task = { ...task, status };
+        task = { ...task, status};
         jobPost.updateJob(task.jobID, task);
 
         // Update the tasks
@@ -141,6 +141,27 @@ const Board = (props) => {
         // Update state
         setTaskStatus(newTasks);
       }
+      //else if (task && task.status === status) {
+      //   const index = tasks.length;
+      //   task = { ...task, index };
+      //   jobPost.updateJob(task.jobID, task);
+      // }
+    },
+    [tasks]
+  );
+
+  const orderTask = useCallback(
+    (dragIndex, hoverIndex) => {
+      const dragTask = tasks[dragIndex];
+      setTaskStatus(
+        update(tasks, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragTask]
+          ]
+        })
+      );
+      console.log(tasks);
     },
     [tasks]
   );
@@ -209,7 +230,9 @@ const Board = (props) => {
                             <BoardItem
                               key={item.jobID}
                               id={item.jobID}
+                              index={index}
                               title={item.title}
+                              status={item.status}
                               description={item.description}
                               company={item.company}
                               salary={item.salary}
@@ -220,6 +243,7 @@ const Board = (props) => {
                               contactEmail={item.contactEmail}
                               changeTaskStatus={changeTaskStatus}
                               editTask={editTask}
+                              orderTask={orderTask}
                             >
                               <div
                                 style={Object.assign(

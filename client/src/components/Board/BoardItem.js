@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useDrag } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 const BoardItem = (
   {
     id,
+    itemIndex,
+    index,
     children,
     title,
     company,
@@ -17,7 +19,9 @@ const BoardItem = (
     salary,
     location,
     changeTaskStatus,
-    editTask
+    orderTask,
+    editTask,
+    status
   },
   props
 ) => {
@@ -32,6 +36,7 @@ const BoardItem = (
     salary,
     location
   });
+  let changed = false;
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -41,8 +46,19 @@ const BoardItem = (
 
   //make draggable
   const ref = useRef(null);
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: 'card', id },
+  const [{ isDragging, end }, drag] = useDrag({
+    item: { type: 'card', id, index, status },
+    begin() {
+      changed = false;
+    },
+    end(item, monitor) {
+      if (
+        monitor.didDrop() &&
+        monitor.getDropResult().columnStatus !== status
+      ) {
+        changed = true;
+      }
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })
@@ -98,9 +114,59 @@ const BoardItem = (
   const opacity = isDragging ? 0 : 1;
   // const verticalAlign = 'middle';
 
-  drag(ref);
+  const [, drop] = useDrop({
+    accept: 'card',
+    drop(item, monitor) {},
+    hover(item, monitor) {
+      if (!ref.current) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
+      console.log(hoverIndex);
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+      // Determine rectangle on screen
+      const hoverBoundingRect = ref.current.getBoundingClientRect();
+      // Get vertical middle
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      // Determine mouse position
+      const clientOffset = monitor.getClientOffset();
+      // Get pixels to the top
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      // Only perform the move when the mouse has crossed half of the items height
+      // When dragging downwards, only move when the cursor is below 50%
+      // When dragging upwards, only move when the cursor is above 50%
+      // Dragging downwards
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
+      if (changed) {
+        return;
+      }
+      // Time to actually perform the action
+      orderTask(dragIndex, hoverIndex);
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations,
+      // but it's good here for the sake of performance
+      // to avoid expensive index searches.
+      item.index = hoverIndex;
+    }
+  });
+  // React.Children.map(children, (child) => {
+  //   console.log(child);
+  // });
+  drag(drop(ref));
   return (
     <>
+      {console.log(itemIndex)}
       <div
         ref={ref}
         style={{ opacity, transform: 'translate(0,0)' }}
