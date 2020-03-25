@@ -34,7 +34,6 @@ function Add(props) {
     resume: ''
   });
   const handleTyping = (e) => {
-    // console.log("typing", e.target.value, e.target.name) // for testing //
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
@@ -59,14 +58,11 @@ function Add(props) {
       resumeLetterMatch = true;
     }
 
-    console.log('submit', form.checkValidity()); // for testing
     if (form.checkValidity() === false) {
-      console.log('----------------bad form'); // for testing
       setFormMessage('Required field(s) have not been filled out.');
       event.preventDefault();
       event.stopPropagation();
     } else if (coverLetterMatch === false || resumeLetterMatch === false) {
-      console.log('----------------bad form'); // for testing
       setFormMessage('Required field(s) have not been filled out.');
       event.preventDefault();
       event.stopPropagation();
@@ -122,7 +118,6 @@ function Add(props) {
     setFormMessage('')
   ];
   const handleShow = () => setShow(true);
-  console.log('this is our form state', formState);
   return (
     <>
       <Button variant='primary' onClick={handleShow} style={classes.btn}>
