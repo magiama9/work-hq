@@ -4,7 +4,6 @@ export default {
 
   // Returns all jobs associated with the user's ID
   fetchAll: function(userID) {
-    console.log(userID);
     return axios.get(`api/jobs/${userID}`);
   },
 
