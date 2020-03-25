@@ -135,7 +135,7 @@ const classes = {
     margin: 10,
     fontSize: "0.8em",
     cursor: "pointer",
-    backgroundColor: "white",
+    backgroundColor: "red",
     borderRadius: "5px",
     overflow: "hidden",
     wordWrap: "break-word",
