@@ -3,7 +3,7 @@ import { useDrag } from 'react-dnd';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { FormCheck } from 'react-bootstrap';
+// import { FormCheck } from 'react-bootstrap';
 
 // Defines each item on the board
 const BoardItem = (
