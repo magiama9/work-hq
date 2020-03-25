@@ -21,7 +21,7 @@ const TopBar = props => {
         "https://s3.amazonaws.com/course_report_production/misc_imgs/default_user.png"
       ); // Sets the image to a placeholder if we don't get it from login
     }
-  }, [props.page]);
+  }, [props.page, imageSource]);
   return (
     <>
       <style type="text/css">
