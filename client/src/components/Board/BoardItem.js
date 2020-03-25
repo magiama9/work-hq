@@ -99,7 +99,6 @@ const BoardItem = (
   // const verticalAlign = 'middle';
 
   drag(ref);
-  console.log(title);
   return (
     <>
       <div ref={ref} style={{ opacity }} onClick={handleShow}>
