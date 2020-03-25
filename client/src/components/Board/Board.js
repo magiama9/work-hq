@@ -117,20 +117,30 @@ const Board = (props) => {
   //updating job in db whenever task is changed
   const changeTaskStatus = useCallback(
     (id, status) => {
+      console.log(tasks);
+
       // Match the task to the ID
       let task = tasks.find((task) => task.jobID === id);
-      const taskIndex = tasks.indexOf(task);
 
-      // Set the working task
-      task = { ...task, status };
-      jobPost.updateJob(task.jobID, task);
-      // Update the tasks
-      let newTasks = update(tasks, {
-        [taskIndex]: { $set: task }
-      });
+      if (task && task.status !== status) {
+        const taskIndex = tasks.indexOf(task);
 
-      // Update state
-      setTaskStatus(newTasks);
+        // Set the working task
+        task = { ...task, status };
+        jobPost.updateJob(task.jobID, task);
+
+        // Update the tasks
+        // let newTasks = update(tasks, {
+        //   [taskIndex]: { $set: task }
+        // });
+
+        let newTasks = tasks.concat(task);
+
+        newTasks.splice(taskIndex, 1);
+        console.log(newTasks);
+        // Update state
+        setTaskStatus(newTasks);
+      }
     },
     [tasks]
   );
