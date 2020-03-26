@@ -255,4 +255,4 @@ const upload = multer({
   })
 });
 
-module.exports = router;
+module.exports = {router, s3, upload}
